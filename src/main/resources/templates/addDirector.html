@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+<main>
+    <div th:replace="~{navigation::copy}"></div>
+
+    <form method="post" th:object="${director}" class="container">
+        <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+            <p>The form contained errors!</p>
+        </div>
+
+        <div class="form-group mt-4">
+            <label th:for="name">Name:</label>
+            <input type="text" class="form-control" th:field="*{directorName}" id="directorName" required>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('directorName')}" th:errors="*{directorName}"></div>
+        </div>
+
+        <div class="form-group mt-4">
+            <label th:for="birth">Birth:</label>
+            <input type="text" class="form-control" th:field="*{birth}" id="birth" required>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}"></div>
+        </div>
+
+        <div class="form-group mt-4">
+            <label th:for="award">Award:</label>
+            <input type="text" class="form-control" th:field="*{award}" id="award" required>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('award')}" th:errors="*{award}"></div>
+        </div>
+
+        <button th:utext="#{forfilm.submit}" type="submit" class="btn btn-primary mt-4">Submit</button>
+
+    </form>
+</main>
+<div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>
+
+<script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

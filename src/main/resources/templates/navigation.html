@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Navigation</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="copy">
+    <div class="container m-lg-1">
+        <a class="navbar-brand mx-lg-5" th:href="@{/home}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-5 " th:href="@{/films}">Films</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-5 " th:href="@{/actors}">Actors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-5 " th:href="@{/directors}">Directors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-5 " th:href="@{/films/addFilm}">Add Films</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-5" th:href="@{/actors/addActor}">Add Actors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-5 " th:href="@{/directors/addDirector}">Add Directors</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

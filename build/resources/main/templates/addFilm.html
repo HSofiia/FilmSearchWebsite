@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Films and Actors</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+<main>
+    <div th:replace="~{navigation::copy}"></div>
+
+    <form method="post" th:object="${film}" class="container">
+        <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+            <p>The form contained errors!</p>
+        </div>
+
+        <div class="form-group mt-4">
+            <label th:utext="#{forfilm.name}" th:for="filmName">Name:</label>
+            <input type="text" class="form-control" th:field="*{filmName}" id="filmName" required>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('filmName')}" th:errors="*{filmName}"></div>
+        </div>
+
+        <div class="form-group mt-4">
+            <label th:utext="#{forfilm.genre}" th:for="genre">Genre:</label>
+            <select class="form-control" th:field="*{genre}" id="genre" required>
+                <option th:utext="#{forfilm.history}" value="HISTORY">History</option>
+                <option th:utext="#{forfilm.spy}" value="SPY">Spy</option>
+                <option th:utext="#{forfilm.fantasy}" value="FANTASY">Fantasy</option>
+                <option th:utext="#{forfilm.romance}" value="ROMANCE">Romance</option>
+                <option th:utext="#{forfilm.action}" value="ACTION">Action</option>
+            </select>
+        </div>
+
+        <div class="form-group mt-4">
+            <label th:utext="#{forfilm.box}" th:for="boxOffice">Box Office (millions):</label>
+            <input type="text" class="form-control" th:field="*{boxOffice}" id="boxOffice" required>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('boxOffice')}" th:errors="*{boxOffice}"></div>
+        </div>
+
+        <div class="form-group mt-4">
+            <label th:utext="#{forfilm.date}" th:for="year">Release Date:</label>
+            <input type="date" class="form-control" th:field="*{year}" id="year" required>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
+        </div>
+
+        <button th:utext="#{forfilm.submit}" type="submit" class="btn btn-primary mt-4">Submit</button>
+
+    </form>
+</main>
+<div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>
+
+<script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

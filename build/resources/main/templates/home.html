@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Home page</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+<main>
+    <div th:replace="~{navigation::copy}"></div>
+    <div class="container">
+        <div class="jumbotron mt-3">
+            <h1 th:utext="#{home.welcome}" class="display-4">Welcome to the Films and Actors Project!</h1>
+            <p th:utext="#{home.explain}" class="lead">This is a simple web application for managing films and
+                actors.</p>
+            <hr class="my-4">
+            <p th:utext="#{home.text}">Use the navigation bar to explore the application.</p>
+        </div>
+    </div>
+</main>
+<div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>
+
+<script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

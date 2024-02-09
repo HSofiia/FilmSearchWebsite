@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Films and Actors</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<main>
+    <div th:replace="~{navigation::copy}"></div>
+
+
+    <!-- Display Directors -->
+    <div>
+        <table class="table table-striped">
+            <thead class="thead-dark container">
+            <tr>
+                <th th:utext="#{fordirector.name}" class="text-center display-5 col-sm-6 col-lg-4 col-xl-2 ">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="director : ${directors}">
+                <td class="text-center"><a class="text-decoration-none text-reset"
+                                           th:href="@{'/directors/' + ${director.id}}"
+                                           th:text="${director.getDirectorName()}"></a></td>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Search Form -->
+    <div class="container search_form">
+        <form th:action="@{/directors/search}" method="get" class="m-5 p-sm-1">
+            <div class="form-group">
+                <input type="text" id="award" name="award" class="form-control" placeholder="Search by Award">
+            </div>
+            <div class="container d-flex justify-content-center mt-4 mb-1">
+                <div>
+                    <button th:utext="#{fordirector.find}" class="btn btn-outline-secondary" type="submit">Find</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>
+
+<script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

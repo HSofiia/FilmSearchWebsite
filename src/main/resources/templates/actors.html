@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Films and Actors</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<main>
+    <div th:replace="~{navigation::copy}"></div>
+
+
+    <!-- Display Actors -->
+    <div>
+        <table class="table table-striped">
+            <thead class="thead-dark container">
+            <tr>
+                <th th:utext="#{forfilm.name}" class="text-center display-5 col-sm-6 col-lg-4 col-xl-2 ">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="actor : ${actors}">
+                <td class="text-center"><a class="text-decoration-none text-reset"
+                                           th:href="@{'/actors/' + ${actor.id}}"
+                                           th:text="${actor.getActorName()}"></a></td>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Search Form -->
+    <div class="container search_form">
+        <form th:action="@{/actors/search}" method="get" class="m-5 p-sm-1">
+            <div class="form-group">
+                <input type="text" id="nationality" name="nationality" class="form-control"
+                       placeholder="Search by Nationality">
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="gender" name="gender" class="form-control" placeholder="Search by Gender">
+            </div>
+
+            <div class="container d-flex justify-content-center mt-4 mb-1">
+                <div>
+                    <button class="btn btn-outline-secondary" type="submit">Find</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>
+
+<script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

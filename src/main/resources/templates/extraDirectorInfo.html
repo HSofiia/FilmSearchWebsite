@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Actor Details</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<main>
+
+    <!-- Details Info -->
+
+    <div class="container mt-3 mb-3">
+        <h1 class="text-center display-5 mt-3 mb-3" th:text="${director.getDirectorName()}"></h1>
+        <p class="lead text-center">
+            <span th:utext="#{fordirector.birth}">Birth Year:</span> <a th:text="${director.getBirth()}"></a><br>
+            <span th:utext="#{fordirector.award}">Award:</span> <a th:text="${director.getAward()}"></a><br>
+        </p>
+    </div>
+
+    <!-- Back and Delete button -->
+
+    <div class="container d-flex justify-content-center mt-4 mb-1">
+        <div class="m-2">
+            <a th:utext="#{foractor.back}" th:href="@{/directors}" class="btn btn-secondary">Go Back</a>
+        </div>
+        <div class="m-2">
+            <form th:method="DELETE" th:action="@{/directors/{id}(id=${director.getId()})}" class="mb-2">
+                <input class="btn btn-outline-danger" type="submit" th:value="#{foractor.delete}">
+            </form>
+        </div>
+    </div>
+</main>
+<div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>
+<script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
