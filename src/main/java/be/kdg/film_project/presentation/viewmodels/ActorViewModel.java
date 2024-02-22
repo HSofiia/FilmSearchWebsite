@@ -1,10 +1,13 @@
 package be.kdg.film_project.presentation.viewmodels;
 
 import be.kdg.film_project.domain.Actor;
+import be.kdg.film_project.domain.FilmCasting;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import nonapi.io.github.classgraph.json.Id;
+
+import java.util.List;
 
 public class ActorViewModel {
     @Id
@@ -21,7 +24,24 @@ public class ActorViewModel {
     @Size(min = 3, max = 70, message = "Name should have length between 3 and 70")
     private String nationality;
 
+    private List<FilmViewModel> film;
+
     public ActorViewModel() {
+    }
+
+    public ActorViewModel(Integer id, String actorName, Actor.Gender gender, String nationality) {
+        this.id = id;
+        this.actorName = actorName;
+        this.gender = gender;
+        this.nationality = nationality;
+    }
+
+    public ActorViewModel(Integer id, String actorName, Actor.Gender gender, String nationality, List<FilmViewModel> film) {
+        this.id = id;
+        this.actorName = actorName;
+        this.gender = gender;
+        this.nationality = nationality;
+        this.film = film;
     }
 
     public ActorViewModel(String actorName, Actor.Gender gender, String nationality) {
@@ -60,6 +80,14 @@ public class ActorViewModel {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public List<FilmViewModel> getFilm() {
+        return film;
+    }
+
+    public void setFilm(List<FilmViewModel> film) {
+        this.film = film;
     }
 
     @Override

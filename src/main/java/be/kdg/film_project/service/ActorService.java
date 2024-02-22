@@ -9,7 +9,7 @@ public interface ActorService {
 
     List<Actor> getActors();
 
-    Actor getActorById(int id);
+    Actor getActorWithFilms(int id);
 
     void deleteActor(int actorId);
 

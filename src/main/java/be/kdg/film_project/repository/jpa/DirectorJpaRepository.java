@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@Profile("jpa")
 public interface DirectorJpaRepository extends JpaRepository<Director, Integer> {
     List<Director> findDirectorByAward(String award);
 }

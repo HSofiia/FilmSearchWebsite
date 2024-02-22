@@ -3,7 +3,6 @@ package be.kdg.film_project.service.jpa;
 import be.kdg.film_project.domain.Film;
 import be.kdg.film_project.repository.jpa.FilmJpaRepository;
 import be.kdg.film_project.service.FilmService;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +10,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@Profile("jpa")
 public class FilmJpaService implements FilmService {
     private FilmJpaRepository filmJpaRepository;
 
@@ -33,14 +31,8 @@ public class FilmJpaService implements FilmService {
     }
 
     @Override
-    public Film getFilmById(Integer id) {
-        List<Film> films = filmJpaRepository.findAll();
-        for (Film film : films) {
-            if (film.getId() == id) {
-                return film;
-            }
-        }
-        return null;
+    public Film getFilmWithActors(int id) {
+        return filmJpaRepository.findByIdWithActors(id).orElse(null);
     }
 
     @Override
@@ -56,7 +48,7 @@ public class FilmJpaService implements FilmService {
 
     @Override
     public List<Film> getByActors(String actorName) {
-        return filmJpaRepository.findFilmByActors(actorName);
+        return filmJpaRepository.findFilmsByActorName(actorName);
     }
 
 }

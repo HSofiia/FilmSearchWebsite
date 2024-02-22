@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Profile("jpa")
 public class ActorJpaService implements ActorService {
     private final ActorJpaRepository actorJpaRepository;
 
@@ -32,14 +31,8 @@ public class ActorJpaService implements ActorService {
     }
 
     @Override
-    public Actor getActorById(int id) {
-        List<Actor> actors = actorJpaRepository.findAll();
-        for (Actor actor : actors) {
-            if (actor.getId() == id) {
-                return actor;
-            }
-        }
-        return null;
+    public Actor getActorWithFilms(int id) {
+        return actorJpaRepository.findByIdWithFilms(id).orElse(null);
     }
 
     @Override

@@ -2,6 +2,7 @@ package be.kdg.film_project.controller;
 
 import be.kdg.film_project.domain.Film;
 import be.kdg.film_project.presentation.exceptions.FilmException;
+import be.kdg.film_project.presentation.viewmodels.ActorViewModel;
 import be.kdg.film_project.presentation.viewmodels.FilmViewModel;
 import be.kdg.film_project.service.FilmService;
 import jakarta.validation.Valid;
@@ -12,11 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/films")
 public class FilmController {
     private final FilmService filmService;
     private Logger logger = LoggerFactory.getLogger(FilmController.class);
@@ -25,41 +26,72 @@ public class FilmController {
         this.filmService = actorService;
     }
 
-    @GetMapping
-    public String getFilmsView(Model model) {
-        List<Film> filmsList = filmService.getFilms();
-        model.addAttribute("films", filmsList);
-        return "films";
+    @GetMapping("/films")
+    public ModelAndView allFilms(){
+        var mav = new ModelAndView();
+        mav.setViewName("films");
+        mav.addObject("all_films",
+                filmService.getFilms()
+                        .stream()
+                        .map(film -> new FilmViewModel(
+                                film.getId(),
+                                film.getFilmName(),
+                                film.getGenre(),
+                                film.getBoxOffice(),
+                                film.getYear()
+                        ))
+                        .toList());
+        return mav;
     }
 
-    @GetMapping("/{id}")
-    public String getFilmId(@PathVariable Integer id, Model model) {
-        Film film = filmService.getFilmById(id);
-        model.addAttribute("film", film);
-        return "extraFilmInfo";
+    @GetMapping("/extraFilmInfo")
+    public ModelAndView getFilmId(@RequestParam("id")int id) {
+        var film = filmService.getFilmWithActors(id);
+        var mav = new ModelAndView();
+        mav.setViewName("extraFilmInfo");
+        mav.addObject("one_film",
+                new FilmViewModel(
+                        film.getId(),
+                        film.getFilmName(),
+                        film.getGenre(),
+                        film.getBoxOffice(),
+                        film.getYear(),
+                        film.getCastings()
+                                .stream().map(
+                                        mapper ->
+                                                new ActorViewModel(
+                                                        mapper.getActor().getActorName(),
+                                                        mapper.getActor().getGender(),
+                                                        mapper.getActor().getNationality()
+                                                )
+                                ).toList()
+                ));
+        return mav;
     }
 
-    @GetMapping("/search")
-    public String searchFilms(@RequestParam(required = false, value = "actorsName") String actorsName,
-                              Model model) {
+    @GetMapping("/films/search")
+    public ModelAndView searchFilms(@RequestParam(required = false, value = "actorsName") String actorsName) {
+        var mav = new ModelAndView("films");
         List<Film> films;
         if (actorsName != null) {
             films = filmService.getByActors(actorsName);
         } else {
             films = filmService.getFilms();
         }
-        model.addAttribute("films", films);
-        return "films";
+        mav.addObject("all_films", films);
+        return mav;
     }
 
-    @GetMapping("/addFilm")
-    public String showAddFilmForm(Model model) {
-        model.addAttribute("film", new FilmViewModel());
-        return "addFilm";
+    @GetMapping("/films/addFilm")
+    public ModelAndView getAddFilm() {
+        var mav = new ModelAndView();
+        mav.setViewName("addFilm");
+        mav.addObject("film", new FilmViewModel());
+        return mav;
     }
 
-    @PostMapping("/addFilm")
-    public String processAddFilmForm(@ModelAttribute("film") @Valid FilmViewModel viewModel, BindingResult result) {
+    @PostMapping("/films/addFilm")
+    public String processAddFilmForm(@Valid @ModelAttribute("film")  FilmViewModel viewModel, BindingResult result) {
         logger.info("Processing " + viewModel.toString());
         if (result.hasErrors()) {
             result.getAllErrors().forEach(e -> logger.warn(e.toString()));
@@ -75,8 +107,8 @@ public class FilmController {
         }
     }
 
-    @RequestMapping("/{id}")
-    public String deleteFilm(@PathVariable int id) {
+    @RequestMapping("/extraFilmInfo")
+    public String deleteFilm(@RequestParam("id") int id) {
         filmService.deleteFilm(id);
         return "redirect:/films";
     }

@@ -13,7 +13,7 @@ INSERT INTO PUBLIC.FILM (FILM_NAME, RELEASE_YEAR, BOX_OFFICE, GENRE) VALUES
                                                                          ('Peaky Blinders', '2022-04-03', 62.0, 'HISTORY'),
                                                                          ('Pirates of the Caribbean', '2017-05-26', 795.9, 'ACTION');
 
-INSERT INTO PUBLIC.FILM_ACTOR (FILM_ID, ACTOR_ID) VALUES
+INSERT INTO PUBLIC.FILM_CASTING (FILM_ID, ACTOR_ID) VALUES
                                                       (1, 1), -- Oppenheimer - Killian Merphy
                                                       (1, 4), -- Oppenheimer - Rami Malek
                                                       (2, 4), -- No Time to Die - Rami Malek

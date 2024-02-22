@@ -1,16 +1,13 @@
 package be.kdg.film_project.presentation.viewmodels;
 
 import be.kdg.film_project.domain.Film;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
+import be.kdg.film_project.domain.FilmCasting;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import nonapi.io.github.classgraph.json.Id;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class FilmViewModel {
     @Id
@@ -29,6 +26,11 @@ public class FilmViewModel {
     @PastOrPresent(message = "release date should be in the past or present!")
     private LocalDate year;
 
+    private List<ActorViewModel> castings;
+
+    public FilmViewModel() {
+    }
+
     public FilmViewModel(Integer filmId, String filmName, Film.Genre genre, Double boxOffice, LocalDate year) {
         this.filmId = filmId;
         this.filmName = filmName;
@@ -37,26 +39,19 @@ public class FilmViewModel {
         this.year = year;
     }
 
-    public FilmViewModel() {
-    }
-
-    public void setFilmId(Integer filmId) {
+    public FilmViewModel(Integer filmId, String filmName, Film.Genre genre, Double boxOffice, LocalDate year, List<ActorViewModel> castings) {
         this.filmId = filmId;
-    }
-
-    public void setFilmName(String filmName) {
         this.filmName = filmName;
-    }
-
-    public void setGenre(Film.Genre genre) {
         this.genre = genre;
-    }
-
-    public void setBoxOffice(Double boxOffice) {
         this.boxOffice = boxOffice;
+        this.year = year;
+        this.castings = castings;
     }
 
-    public void setYear(LocalDate year) {
+    public FilmViewModel(String filmName, Film.Genre genre, Double boxOffice, LocalDate year) {
+        this.filmName = filmName;
+        this.genre = genre;
+        this.boxOffice = boxOffice;
         this.year = year;
     }
 
@@ -64,20 +59,48 @@ public class FilmViewModel {
         return filmId;
     }
 
+    public void setFilmId(Integer filmId) {
+        this.filmId = filmId;
+    }
+
     public String getFilmName() {
         return filmName;
+    }
+
+    public void setFilmName(String filmName) {
+        this.filmName = filmName;
     }
 
     public Film.Genre getGenre() {
         return genre;
     }
 
+    public void setGenre(Film.Genre genre) {
+        this.genre = genre;
+    }
+
     public Double getBoxOffice() {
         return boxOffice;
     }
 
+    public void setBoxOffice(Double boxOffice) {
+        this.boxOffice = boxOffice;
+    }
+
     public LocalDate getYear() {
         return year;
+    }
+
+    public void setYear(LocalDate year) {
+        this.year = year;
+    }
+
+    public List<ActorViewModel> getCastings() {
+        return castings;
+    }
+
+    public void setCastings(List<ActorViewModel> castings) {
+        this.castings = castings;
     }
 
     @Override

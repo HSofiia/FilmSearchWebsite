@@ -10,7 +10,7 @@ public interface FilmService {
 
     List<Film> getFilms();
 
-    Film getFilmById(Integer id);
+    Film getFilmWithActors(int id);
 
     void deleteFilm(int filmId);
 

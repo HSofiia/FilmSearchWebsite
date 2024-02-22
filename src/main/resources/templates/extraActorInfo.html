@@ -12,10 +12,10 @@
     <!-- Details Info -->
 
     <div class="container mt-3 mb-3">
-        <h1 class="text-center display-5 mt-3 mb-3" th:text="${actor.getActorName()}"></h1>
+        <h1 class="text-center display-5 mt-3 mb-3" th:text="${one_actor.getActorName()}"></h1>
         <p class="lead text-center">
-            <span th:utext="#{foractor.gender}">Gender:</span> <a th:text="${actor.getGender()}"></a><br>
-            <span th:utext="#{foractor.nationality}">Nationality:</span> <a th:text="${actor.getNationality()}"></a><br>
+            <span th:utext="#{foractor.gender}">Gender:</span> <a th:text="${one_actor.getGender()}"></a><br>
+            <span th:utext="#{foractor.nationality}">Nationality:</span> <a th:text="${one_actor.getNationality()}"></a><br>
         </p>
     </div>
 
@@ -26,7 +26,7 @@
             <a th:utext="#{foractor.back}" th:href="@{/actors}" class="btn btn-secondary">Go Back</a>
         </div>
         <div class="m-2">
-            <form th:method="DELETE" th:action="@{/actors/{id}(id=${actor.getId()})}" class="mb-2">
+            <form th:method="DELETE" th:action="@{/extraActorInfo(id=${one_actor.getId()})}" class="mb-2">
                 <input class="btn btn-outline-danger" type="submit" th:value="#{foractor.delete}">
             </form>
         </div>
@@ -46,10 +46,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="film : ${actor.getFilms()}">
-            <td><a th:href="@{/films/{id}(id=${film.getId()})}" th:text="${film.getFilmName()}" class="text-black-50">[filmName]</a>
-            </td>
-            <!--      <td th:text="${film.getYear().toString()}" class="px-3">[release_year]</td>-->
+        <tr th:each="film : ${one_actor.getFilm()}">
+<!--   change the link to film through actor     -->
+            <td><a th:href="@{/films/{id}(id=${film.getFilmId()})}" th:text="${film.getFilmName()}" class="text-black-50">[filmName]</a></td>
             <td th:text="${film.getYear()}" class="px-3">[release_year]</td>
             <td th:text="${film.getBoxOffice()}" class="px-3">[boxOffice]</td>
             <td th:text="${film.getGenre()}" class="px-3">[genre]</td>

@@ -3,6 +3,7 @@ package be.kdg.film_project.controller;
 import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.presentation.exceptions.ActorException;
 import be.kdg.film_project.presentation.viewmodels.ActorViewModel;
+import be.kdg.film_project.presentation.viewmodels.FilmViewModel;
 import be.kdg.film_project.service.ActorService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -12,11 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/actors")
 public class ActorController {
     private final ActorService actorService;
     private Logger logger = LoggerFactory.getLogger(ActorController.class);
@@ -25,41 +26,71 @@ public class ActorController {
         this.actorService = actorService;
     }
 
-    @GetMapping
-    public String getActorsView(Model model) {
-        List<Actor> actorsList = actorService.getActors();
-        model.addAttribute("actors", actorsList);
-        return "actors";
+    @GetMapping("/actors")
+    public ModelAndView allActors() {
+        var mav = new ModelAndView();
+        mav.setViewName("actors");
+        mav.addObject("all_actors",
+                actorService.getActors()
+                        .stream()
+                        .map(actor -> new ActorViewModel(
+                                actor.getId(),
+                                actor.getActorName(),
+                                actor.getGender(),
+                                actor.getNationality()
+                        ))
+                        .toList());
+        return mav;
     }
 
-    @GetMapping("/{id}")
-    public String getActorId(@PathVariable Integer id, Model model) {
-        Actor actor = actorService.getActorById(id);
-        model.addAttribute("actor", actor);
-        return "extraActorInfo";
+    @GetMapping("/extraActorInfo")
+    public ModelAndView oneActor(@RequestParam("id") int id) {
+        var actor = actorService.getActorWithFilms(id);
+        var mav = new ModelAndView();
+        mav.setViewName("extraActorInfo");
+        mav.addObject("one_actor",
+                new ActorViewModel(
+                        actor.getId(),
+                        actor.getActorName(),
+                        actor.getGender(),
+                        actor.getNationality(),
+                        actor.getFilm()
+                                .stream().map(
+                                        mapper ->
+                                                new FilmViewModel(
+                                                        mapper.getFilm().getFilmName(),
+                                                        mapper.getFilm().getGenre(),
+                                                        mapper.getFilm().getBoxOffice(),
+                                                        mapper.getFilm().getYear()
+                                                )
+                                ).toList()
+                ));
+        return mav;
     }
 
-    @GetMapping("/search")
-    public String searchActors(@RequestParam(required = false, value = "gender") Actor.Gender gender,
-                               @RequestParam(required = false, value = "nationality") String nationality,
-                               Model model) {
+    @GetMapping("/actors/search")
+    public ModelAndView searchActors(@RequestParam(required = false, value = "gender") Actor.Gender gender,
+                               @RequestParam(required = false, value = "nationality") String nationality) {
+        var mav = new ModelAndView("actors"); // Return the actors.html template
         List<Actor> actors;
         if (gender != null && nationality != null) {
             actors = actorService.getByGenderAndNationality(gender, nationality);
         } else {
             actors = actorService.getActors();
         }
-        model.addAttribute("actors", actors);
-        return "actors";
+        mav.addObject("all_actors",actors);
+        return mav;
     }
 
-    @GetMapping("/addActor")
-    public String getAddActor(Model model) {
-        model.addAttribute("actor", new ActorViewModel());
-        return "addActor";
+    @GetMapping("/actors/addActor")
+    public ModelAndView getAddActor() {
+        var mav = new ModelAndView();
+        mav.setViewName("addActor");
+        mav.addObject("actor", new ActorViewModel());
+        return mav;
     }
 
-    @PostMapping("/addActor")
+    @PostMapping("/actors/addActor")
     public String processAddActorForm(@Valid @ModelAttribute("actor") ActorViewModel viewModel, BindingResult result) {
         logger.info("Processing " + viewModel.toString());
         if (result.hasErrors()) {
@@ -75,8 +106,8 @@ public class ActorController {
         }
     }
 
-    @RequestMapping("/{id}")
-    public String deleteActor(@PathVariable int id) {
+    @RequestMapping("/extraActorInfo")
+    public String deleteActor(@RequestParam("id") int id) {
         actorService.deleteActor(id);
         return "redirect:/actors";
     }

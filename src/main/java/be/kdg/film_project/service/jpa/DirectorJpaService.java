@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Profile("jpa")
 public class DirectorJpaService implements DirectorService {
     private DirectorJpaRepository directorJpaRepository;
 

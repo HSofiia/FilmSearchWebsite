@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  postgres_issues_db:
+    image: postgres:16.1-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: 'pg_film'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'student1234567890'
+    ports:
+      - '5436:5432'

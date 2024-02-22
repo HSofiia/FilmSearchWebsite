@@ -1,10 +1,8 @@
 package be.kdg.film_project.domain;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "actor")
@@ -28,27 +26,17 @@ public class Actor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToMany(mappedBy = "actors", fetch = FetchType.EAGER) // lazy is a better use
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
-    private Set<Film> films;
+//    CASCADE??
+    @OneToMany(mappedBy = "actor", cascade = CascadeType.REMOVE)
+    private List<FilmCasting> film;
 
     public Actor() {
-        this.films = new HashSet<>();
-    }
-
-    public Actor(int id, String actorName, Gender gender, String nationality) {
-        this.id = id;
-        this.actorName = actorName;
-        this.gender = gender;
-        this.nationality = nationality;
-        this.films = new HashSet<>();
     }
 
     public Actor(String actorName, Gender gender, String nationality) {
         this.actorName = actorName;
         this.gender = gender;
         this.nationality = nationality;
-        this.films = new HashSet<>();
     }
 
     public String getActorName() {
@@ -67,12 +55,12 @@ public class Actor {
         return id;
     }
 
-    public Set<Film> getFilms() {
-        return films;
+    public List<FilmCasting> getFilm() {
+        return film;
     }
 
-    public void setFilms(Set<Film> films) {
-        this.films = films;
+    public void setFilm(List<FilmCasting> filmCastings) {
+        this.film = filmCastings;
     }
 
     public void setId(int id) {
@@ -90,12 +78,6 @@ public class Actor {
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
-
-    public Film addFilm(Film film) {
-        films.add(film);
-        return film;
-    }
-
 
     @Override
     public String toString() {

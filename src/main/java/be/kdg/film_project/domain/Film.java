@@ -1,8 +1,6 @@
 package be.kdg.film_project.domain;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ public class Film {
     private String filmName;
 
     @Column(name = "release_year")
-    private transient LocalDate year;
+    private LocalDate year;
 
     @Column(name = "box_office")
     private double boxOffice;
@@ -37,27 +35,10 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToMany
-    @JoinTable(
-            name = "film_actor",
-            joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id")
-    )
-
-    @Cascade(CascadeType.PERSIST)
-    private Set<Actor> actors;
+    @OneToMany(mappedBy = "film", cascade = CascadeType.REMOVE)
+    private List<FilmCasting> castings;
 
     public Film() {
-        this.actors = new HashSet<>();
-    }
-
-    public Film(int id, String filmName, LocalDate year, double boxOffice, Genre genre) {
-        this.id = id;
-        this.filmName = filmName;
-        this.year = year;
-        this.boxOffice = boxOffice;
-        this.genre = genre;
-        this.actors = new HashSet<>();
     }
 
     public Film(String filmName, LocalDate year, double boxOffice, Genre genre) {
@@ -65,7 +46,6 @@ public class Film {
         this.year = year;
         this.boxOffice = boxOffice;
         this.genre = genre;
-        this.actors = new HashSet<>();
     }
 
     public int getId() {
@@ -88,10 +68,6 @@ public class Film {
         return genre;
     }
 
-    public Set<Actor> getActors() {
-        return actors;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -112,23 +88,18 @@ public class Film {
         this.genre = genre;
     }
 
-    public void setActors(Set<Actor> actors) {
-        this.actors = actors;
+    public List<FilmCasting> getCastings() {
+        return castings;
+    }
+
+    public void setCastings(List<FilmCasting> castings) {
+        this.castings = castings;
     }
 
     public Director addDirector(Director director) {
         directors.add(director);
         return director;
     }
-
-    public void addActor(Actor actor) {
-        if (this.actors == null)
-            this.actors = new HashSet<>();
-
-        this.actors.add(actor);
-        actor.getFilms().add(this);
-    }
-
 
     @Override
     public String toString() {
