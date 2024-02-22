@@ -78,7 +78,14 @@ public class ActorController {
         } else {
             actors = actorService.getActors();
         }
-        mav.addObject("all_actors",actors);
+        List<ActorViewModel> actorViewModels = actors.stream()
+                        .map(actor -> new ActorViewModel(
+                                actor.getId(),
+                                actor.getActorName(),
+                                actor.getGender(),
+                                actor.getNationality()
+                        )).toList();
+        mav.addObject("all_actors",actorViewModels);
         return mav;
     }
 

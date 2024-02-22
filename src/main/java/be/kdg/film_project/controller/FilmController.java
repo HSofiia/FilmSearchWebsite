@@ -73,12 +73,21 @@ public class FilmController {
     public ModelAndView searchFilms(@RequestParam(required = false, value = "actorsName") String actorsName) {
         var mav = new ModelAndView("films");
         List<Film> films;
-        if (actorsName != null) {
+        if (actorsName != null && !actorsName.isEmpty()) {
             films = filmService.getByActors(actorsName);
         } else {
             films = filmService.getFilms();
         }
-        mav.addObject("all_films", films);
+        List<FilmViewModel> filmViewModels = films.stream()
+                .map(film -> new FilmViewModel(
+                        film.getId(),
+                        film.getFilmName(),
+                        film.getGenre(),
+                        film.getBoxOffice(),
+                        film.getYear()
+                )).toList();
+
+        mav.addObject("all_films", filmViewModels);
         return mav;
     }
 

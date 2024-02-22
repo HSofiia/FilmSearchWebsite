@@ -46,8 +46,11 @@
         </thead>
         <tbody>
         <tr th:each="actor : ${one_film.getCastings()}">
-            <td><a th:href="@{/actors/{id}(id=${actor.getId()})}" th:text="${actor.getActorName()}"
-                   class="text-black-50"></a></td>
+            <td>
+                <a th:href="@{'/extraActorInfo?id=' + ${actor.id}}"
+                   th:text="${actor.getActorName()}" class="text-black-50">
+                </a>
+            </td>
             <td th:text="${actor.getGender()}"></td>
             <td th:text="${actor.getNationality()}"></td>
         </tr>

@@ -13,7 +13,13 @@ import java.util.Optional;
 
 @Repository
 public interface FilmJpaRepository extends JpaRepository<Film, Integer> {
-    @Query("SELECT DISTINCT fc.film FROM FilmCasting fc JOIN fc.actor a WHERE LOWER(a.actorName) LIKE %:actorName%")
+    @Query("""
+    SELECT DISTINCT f
+    FROM Film f
+    JOIN FilmCasting fc ON f.id = fc.film.id
+    JOIN Actor a ON a.id = fc.actor.id
+    WHERE a.actorName = :actorName
+    """)
     List<Film> findFilmsByActorName(@Param("actorName") String actorName);
 
     List<Film> findByFilmName(String filmName);

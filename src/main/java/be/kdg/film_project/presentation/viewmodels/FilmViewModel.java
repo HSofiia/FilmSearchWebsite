@@ -1,7 +1,6 @@
 package be.kdg.film_project.presentation.viewmodels;
 
 import be.kdg.film_project.domain.Film;
-import be.kdg.film_project.domain.FilmCasting;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import nonapi.io.github.classgraph.json.Id;
@@ -12,7 +11,7 @@ import java.util.List;
 public class FilmViewModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer filmId;
+    private Integer id;
 
     @NotBlank(message = "name is mandatory")
     private String filmName;
@@ -32,7 +31,7 @@ public class FilmViewModel {
     }
 
     public FilmViewModel(Integer filmId, String filmName, Film.Genre genre, Double boxOffice, LocalDate year) {
-        this.filmId = filmId;
+        this.id = filmId;
         this.filmName = filmName;
         this.genre = genre;
         this.boxOffice = boxOffice;
@@ -40,7 +39,7 @@ public class FilmViewModel {
     }
 
     public FilmViewModel(Integer filmId, String filmName, Film.Genre genre, Double boxOffice, LocalDate year, List<ActorViewModel> castings) {
-        this.filmId = filmId;
+        this.id = filmId;
         this.filmName = filmName;
         this.genre = genre;
         this.boxOffice = boxOffice;
@@ -56,11 +55,11 @@ public class FilmViewModel {
     }
 
     public Integer getFilmId() {
-        return filmId;
+        return id;
     }
 
     public void setFilmId(Integer filmId) {
-        this.filmId = filmId;
+        this.id = filmId;
     }
 
     public String getFilmName() {
@@ -106,7 +105,7 @@ public class FilmViewModel {
     @Override
     public String toString() {
         return "FilmViewModel{" +
-                "filmId=" + filmId +
+                "filmId=" + id +
                 ", filmName='" + filmName + '\'' +
                 ", genre=" + genre +
                 ", boxOffice=" + boxOffice +
