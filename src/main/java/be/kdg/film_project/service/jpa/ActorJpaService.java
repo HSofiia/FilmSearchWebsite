@@ -3,7 +3,6 @@ package be.kdg.film_project.service.jpa;
 import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.repository.jpa.ActorJpaRepository;
 import be.kdg.film_project.service.ActorService;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +24,11 @@ public class ActorJpaService implements ActorService {
     }
 
     @Override
+    public Actor getActor(int actorId) {
+        return actorJpaRepository.findById(actorId).orElse(null);
+    }
+
+    @Override
     @Transactional
     public List<Actor> getActors() {
         return actorJpaRepository.findAll();
@@ -37,8 +41,13 @@ public class ActorJpaService implements ActorService {
 
     @Override
     @Transactional
-    public void deleteActor(int actorId) {
+    public boolean deleteActor(int actorId) {
+        var actor = actorJpaRepository.findByIdWithRelatedFilm(actorId);
+        if (actor.isEmpty()) {
+            return false;
+        }
         actorJpaRepository.deleteById(actorId);
+        return true;
     }
 
     @Override

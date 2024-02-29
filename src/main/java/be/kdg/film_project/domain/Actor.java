@@ -26,8 +26,7 @@ public class Actor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    CASCADE??
-    @OneToMany(mappedBy = "actor", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "actor")
     private List<FilmCasting> film;
 
     public Actor() {

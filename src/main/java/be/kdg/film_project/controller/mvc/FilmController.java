@@ -1,9 +1,9 @@
-package be.kdg.film_project.controller;
+package be.kdg.film_project.controller.mvc;
 
 import be.kdg.film_project.domain.Film;
 import be.kdg.film_project.presentation.exceptions.FilmException;
-import be.kdg.film_project.presentation.viewmodels.ActorViewModel;
-import be.kdg.film_project.presentation.viewmodels.FilmViewModel;
+import be.kdg.film_project.controller.mvc.viewmodels.ActorViewModel;
+import be.kdg.film_project.controller.mvc.viewmodels.FilmViewModel;
 import be.kdg.film_project.service.FilmService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -60,6 +60,7 @@ public class FilmController {
                                 .stream().map(
                                         mapper ->
                                                 new ActorViewModel(
+                                                        mapper.getActor().getId(),
                                                         mapper.getActor().getActorName(),
                                                         mapper.getActor().getGender(),
                                                         mapper.getActor().getNationality()

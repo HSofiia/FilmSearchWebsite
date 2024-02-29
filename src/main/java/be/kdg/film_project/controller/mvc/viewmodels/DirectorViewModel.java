@@ -1,4 +1,4 @@
-package be.kdg.film_project.presentation.viewmodels;
+package be.kdg.film_project.controller.mvc.viewmodels;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

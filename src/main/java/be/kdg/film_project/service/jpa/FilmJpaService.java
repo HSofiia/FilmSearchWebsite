@@ -1,5 +1,6 @@
 package be.kdg.film_project.service.jpa;
 
+import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.domain.Film;
 import be.kdg.film_project.repository.jpa.FilmJpaRepository;
 import be.kdg.film_project.service.FilmService;
@@ -25,6 +26,11 @@ public class FilmJpaService implements FilmService {
     }
 
     @Override
+    public Film getFilm(int filmId) {
+        return filmJpaRepository.findById(filmId).orElse(null);
+    }
+
+    @Override
     @Transactional
     public List<Film> getFilms() {
         return filmJpaRepository.findAll();
@@ -37,8 +43,13 @@ public class FilmJpaService implements FilmService {
 
     @Override
     @Transactional
-    public void deleteFilm(int filmId) {
+    public boolean deleteFilm(int filmId) {
+        var film = filmJpaRepository.findByIdWithCasting(filmId);
+        if (film.isEmpty()) {
+            return false;
+        }
         filmJpaRepository.deleteById(filmId);
+        return true;
     }
 
     @Override
@@ -50,5 +61,4 @@ public class FilmJpaService implements FilmService {
     public List<Film> getByActors(String actorName) {
         return filmJpaRepository.findFilmsByActorName(actorName);
     }
-
 }

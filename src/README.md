@@ -1,9 +1,11 @@
-# Programming3_Sofiia_Hmyria
-
-# Film Project
+# Programming 5
 
 ## Author
-Sofiia Hmyria
+Name:       Sofiia Hmyria
+Email:      sofiia.hmyria@student.kdg.be
+StudentID:  
+Year:       2023-2024
+Group:      ACS 202
 
 ## Domain Overview
 The Film Project is a Java Spring Boot application that manages information about films, actors, and directors. 
@@ -16,28 +18,7 @@ The application uses Thymeleaf for server-side rendering and Bootstrap for styli
 - Actor: Represents an actor, including details such as name, gender, nationality, and the films they have participated in.
 - Director: Represents a director with basic details.
 
-## Profiles
-- `object`: Uses in-memory data structures to store and retrieve information (for development and testing purposes).
-- `jpa`: Utilizes Spring Data JPA for persistence, allowing interaction with relational databases.
-- `jdbc`: Uses JDBC for database operations.
-
-## Database
-The application supports three profiles with different database configurations:
-- `object` profile uses an in-memory database.
-- `jpa` profile uses the H2 database for development and testing and PostgreSQL for production.
-- `jdbc` profile uses plain JDBC for database operations.
-
 ## How to Run the Project
-1. Choose the desired profile (`object`, `jpa`, or `jdbc`) in the `application.properties` file + database (`dev`, `prod`)
-2. Configure the database connection properties accordingly. 
-3. Run the application.
-
-### Profiles Configuration
-- For `object` profile: spring.profiles.active=object
-- For `jpa` profile: spring.profiles.active=jpa
-- For `jdbc` profile: spring.profiles.active=jdbc
-
-### Database Configuration
-- For `h2` database: Update the `application-dev.properties` with your database connection details.
-- For `postgreSQL` database: Update the `application-prod.properties` with your database connection details.
+1. Configure the database connection property accordingly. 
+2. Run the application.
 

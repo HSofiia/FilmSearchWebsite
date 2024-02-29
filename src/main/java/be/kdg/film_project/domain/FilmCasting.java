@@ -1,6 +1,8 @@
 package be.kdg.film_project.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "film_id", "actor_id" }) })
@@ -9,10 +11,12 @@ public class FilmCasting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "film_id")
     private Film film;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "actor_id")
     private Actor actor;

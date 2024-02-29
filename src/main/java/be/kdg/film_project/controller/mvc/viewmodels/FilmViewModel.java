@@ -1,4 +1,4 @@
-package be.kdg.film_project.presentation.viewmodels;
+package be.kdg.film_project.controller.mvc.viewmodels;
 
 import be.kdg.film_project.domain.Film;
 import jakarta.persistence.*;

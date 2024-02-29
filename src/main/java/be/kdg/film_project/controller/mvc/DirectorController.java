@@ -1,8 +1,8 @@
-package be.kdg.film_project.controller;
+package be.kdg.film_project.controller.mvc;
 
 import be.kdg.film_project.domain.Director;
 import be.kdg.film_project.presentation.exceptions.ActorException;
-import be.kdg.film_project.presentation.viewmodels.DirectorViewModel;
+import be.kdg.film_project.controller.mvc.viewmodels.DirectorViewModel;
 import be.kdg.film_project.service.DirectorService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;

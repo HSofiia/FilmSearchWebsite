@@ -23,7 +23,9 @@ public class Director {
     @Column(name = "award")
     public String award;
 
-    private transient final List<Film> films = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "film_id", referencedColumnName = "id")
+    private Film film;
 
     public Director(String name, int birth, String award) {
         this.directorName = name;
@@ -75,12 +77,6 @@ public class Director {
         this.award = award;
     }
 
-    public Film addFilmD(Film film) {
-        films.add(film);
-        film.addDirector(this);
-        return film;
-    }
-
 
     @Override
     public String toString() {
@@ -89,7 +85,6 @@ public class Director {
                 ", directorName='" + directorName + '\'' +
                 ", birth=" + birth +
                 ", award='" + award + '\'' +
-                ", films=" + films +
                 '}';
     }
 }

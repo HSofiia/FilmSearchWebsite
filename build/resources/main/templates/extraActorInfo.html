@@ -48,7 +48,9 @@
         <tbody>
         <tr th:each="film : ${one_actor.getFilm()}">
 <!--   change the link to film through actor     -->
-            <td><a th:href="@{/films/{id}(id=${film.getFilmId()})}" th:text="${film.getFilmName()}" class="text-black-50">[filmName]</a></td>
+            <td>
+                <a th:href="@{'/extraFilmInfo?id=' + ${film.getFilmId()}}" th:text="${film.getFilmName()}" class="text-black-50">[filmName]</a>
+            </td>
             <td th:text="${film.getYear()}" class="px-3">[release_year]</td>
             <td th:text="${film.getBoxOffice()}" class="px-3">[boxOffice]</td>
             <td th:text="${film.getGenre()}" class="px-3">[genre]</td>

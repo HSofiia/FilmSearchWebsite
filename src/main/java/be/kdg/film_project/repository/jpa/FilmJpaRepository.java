@@ -31,4 +31,11 @@ public interface FilmJpaRepository extends JpaRepository<Film, Integer> {
             where film.id = :filmId
             """)
     Optional<Film> findByIdWithActors(long filmId);
+
+    @Query("""
+           select film from Film film
+           left join fetch film.castings
+           where film.id = :filmId
+           """)
+    Optional<Film> findByIdWithCasting(long filmId);
 }

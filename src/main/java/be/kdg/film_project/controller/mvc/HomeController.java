@@ -1,4 +1,4 @@
-package be.kdg.film_project.controller;
+package be.kdg.film_project.controller.mvc;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;

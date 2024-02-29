@@ -1,7 +1,6 @@
-package be.kdg.film_project.presentation.viewmodels;
+package be.kdg.film_project.controller.mvc.viewmodels;
 
 import be.kdg.film_project.domain.Actor;
-import be.kdg.film_project.domain.FilmCasting;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

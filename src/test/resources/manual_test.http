@@ -1,0 +1,43 @@
+### Homepage
+
+GET http://localhost:8080/home
+
+### API: retrieve all actors
+
+GET http://localhost:8080/api/actors
+
+### API: retrieve all films
+
+GET http://localhost:8080/api/films
+
+### API: retrieve one actor (path variable)
+
+GET http://localhost:8080/api/actors/1
+
+### API: retrieve one film (path variable)
+
+GET http://localhost:8080/api/films/1
+
+### API: retrieve all films of one specific actor
+
+GET http://localhost:8080/api/actors/1/films
+
+### API: retrieve all actors of one specific film
+
+GET http://localhost:8080/api/films/1/actors
+
+### API: search actor
+
+GET http://localhost:8080/actors/search?nationality=American&gender=M
+
+### API: search film
+
+GET http://localhost:8080/actors/search?actorName=Rami+Malek
+
+### API: delete an actor
+
+DELETE http://localhost:8080/api/actors/2
+
+### API: delete an film
+
+DELETE http://localhost:8080/api/films/1

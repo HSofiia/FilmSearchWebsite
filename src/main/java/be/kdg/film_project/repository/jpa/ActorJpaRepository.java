@@ -21,5 +21,12 @@ public interface ActorJpaRepository extends JpaRepository<Actor, Integer> {
             where actor.id = :actorId
             """)
     Optional<Actor> findByIdWithFilms(long actorId);
+
+    @Query("""
+           select actor from Actor actor
+           left join fetch actor.film
+           where actor.id = :actorId
+           """)
+    Optional<Actor> findByIdWithRelatedFilm(long actorId);
 }
 

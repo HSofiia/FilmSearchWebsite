@@ -1,5 +1,6 @@
 package be.kdg.film_project.service;
 
+import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.domain.Film;
 
 import java.time.LocalDate;
@@ -10,9 +11,11 @@ public interface FilmService {
 
     List<Film> getFilms();
 
+    Film getFilm(int filmId);
+
     Film getFilmWithActors(int id);
 
-    void deleteFilm(int filmId);
+    boolean deleteFilm(int filmId);
 
     List<Film> getByName(String name);
 

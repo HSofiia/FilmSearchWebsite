@@ -9,9 +9,11 @@ public interface ActorService {
 
     List<Actor> getActors();
 
+    Actor getActor(int actorId);
+
     Actor getActorWithFilms(int id);
 
-    void deleteActor(int actorId);
+    boolean deleteActor(int actorId);
 
     List<Actor> getByGender(Actor.Gender gender);
 
