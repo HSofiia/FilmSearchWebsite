@@ -8,6 +8,7 @@ import be.kdg.film_project.service.ActorService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +46,7 @@ public class ActorController {
 
     @GetMapping("/extraActorInfo")
     public ModelAndView oneActor(@RequestParam("id") int id) {
-        var actor = actorService.getActorWithFilms(id);
+        var actor = actorService.getActor(id);
         var mav = new ModelAndView();
         mav.setViewName("extraActorInfo");
         mav.addObject("one_actor",
@@ -53,18 +54,7 @@ public class ActorController {
                         actor.getId(),
                         actor.getActorName(),
                         actor.getGender(),
-                        actor.getNationality(),
-                        actor.getFilm()
-                                .stream().map(
-                                        mapper ->
-                                                new FilmViewModel(
-                                                        mapper.getFilm().getId(),
-                                                        mapper.getFilm().getFilmName(),
-                                                        mapper.getFilm().getGenre(),
-                                                        mapper.getFilm().getBoxOffice(),
-                                                        mapper.getFilm().getYear()
-                                                )
-                                ).toList()
+                        actor.getNationality()
                 ));
         return mav;
     }
@@ -90,35 +80,33 @@ public class ActorController {
         return mav;
     }
 
-    @GetMapping("/actors/addActor")
-    public ModelAndView getAddActor() {
-        var mav = new ModelAndView();
-        mav.setViewName("addActor");
-        mav.addObject("actor", new ActorViewModel());
-        return mav;
+    @GetMapping("/addActor")
+    public String getAddActor(Model model) {
+            model.addAttribute("actor", new ActorViewModel());
+            return "/addActor";
     }
 
-    @PostMapping("/actors/addActor")
-    public String processAddActorForm(@Valid @ModelAttribute("actor") ActorViewModel viewModel, BindingResult result) {
-        logger.info("Processing " + viewModel.toString());
-        if (result.hasErrors()) {
-            result.getAllErrors().forEach(e -> logger.warn(e.toString()));
-            return "addActor";
-        } else {
-            logger.info("Successfully processed ");
-            actorService.addActor(
-                    viewModel.getActorName(),
-                    viewModel.getGender(),
-                    viewModel.getNationality());
-            return "redirect:/actors";
-        }
-    }
+//    @PostMapping("/actors/addActor")
+//    public String processAddActorForm(@Valid @ModelAttribute("actor") ActorViewModel viewModel, BindingResult result) {
+//        logger.info("Processing " + viewModel.toString());
+//        if (result.hasErrors()) {
+//            result.getAllErrors().forEach(e -> logger.warn(e.toString()));
+//            return "addActor";
+//        } else {
+//            logger.info("Successfully processed ");
+//            actorService.addActor(
+//                    viewModel.getActorName(),
+//                    viewModel.getGender(),
+//                    viewModel.getNationality());
+//            return "redirect:/actors";
+//        }
+//    }
 
-    @RequestMapping("/extraActorInfo")
-    public String deleteActor(@RequestParam("id") int id) {
-        actorService.deleteActor(id);
-        return "redirect:/actors";
-    }
+//    @RequestMapping("/extraActorInfo")
+//    public String deleteActor(@RequestParam("id") int id) {
+//        actorService.deleteActor(id);
+//        return "redirect:/actors";
+//    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ActorException.class)

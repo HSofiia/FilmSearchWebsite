@@ -4,7 +4,6 @@ import be.kdg.film_project.domain.Actor;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import nonapi.io.github.classgraph.json.Id;
 
 import java.util.List;
 

@@ -1,65 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Actor Details</title>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/actor/extraActorInfo.js" type="module"></script>
 </head>
 <body>
-<main>
 
-    <!-- Details Info -->
+<!-- Details Info -->
+<main class="container mt-3 mb-3">
+    <h1 id="name" class="text-center display-5 mt-3 mb-3" th:text="${one_actor.getActorName()}"></h1>
+    <div class="bla">
+        <input id="actorId" type="hidden" th:value="${one_actor.id}">
 
-    <div class="container mt-3 mb-3">
-        <h1 class="text-center display-5 mt-3 mb-3" th:text="${one_actor.getActorName()}"></h1>
-        <p class="lead text-center">
-            <span th:utext="#{foractor.gender}">Gender:</span> <a th:text="${one_actor.getGender()}"></a><br>
-            <span th:utext="#{foractor.nationality}">Nationality:</span> <a th:text="${one_actor.getNationality()}"></a><br>
-        </p>
+        <div class="col-9 lead text-center">
+            <label for="gender" class="form-label" th:utext="#{foractor.gender}">Gender:</label>
+            <textarea id="gender" rows="2" th:text="${one_actor.gender}"></textarea>
+        </div>
+
+        <div class="col-9 lead text-center">
+            <label for="nationality" class="form-label" th:utext="#{foractor.nationality}">Nationality:</label>
+            <textarea id="nationality" rows="2" th:text="${one_actor.nationality}"></textarea>
+        </div>
     </div>
 
-    <!-- Back and Delete button -->
+    <!-- Back and Delete, Update button -->
 
     <div class="container d-flex justify-content-center mt-4 mb-1">
         <div class="m-2">
             <a th:utext="#{foractor.back}" th:href="@{/actors}" class="btn btn-secondary">Go Back</a>
         </div>
         <div class="m-2">
-            <form th:method="DELETE" th:action="@{/extraActorInfo(id=${one_actor.getId()})}" class="mb-2">
-                <input class="btn btn-outline-danger" type="submit" th:value="#{foractor.delete}">
-            </form>
+            <button class="btn btn-outline-danger" type="button" th:value="#{foractor.delete}">Delete</button>
+        </div>
+        <div class="m-2">
+            <button id="updateButtonActor" type="button" class="btn btn-primary">Update</button>
         </div>
     </div>
 
-    <!-- List of related actors -->
+    <!-- List of related films -->
 
-    <h5 class="text-center font-weight-bold mt-4 mb-2">Films participated in</h5>
-
-    <table class="my-3 col-xxl-12 justify-content-center table table-bordered table-hover">
-        <thead>
-        <tr class="table100-head thead-dark">
-            <th class="px-3">Film Name</th>
-            <th class="px-3">Release Year</th>
-            <th class="px-3">Box Office</th>
-            <th class="px-3">Genre</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="film : ${one_actor.getFilm()}">
-<!--   change the link to film through actor     -->
-            <td>
-                <a th:href="@{'/extraFilmInfo?id=' + ${film.getFilmId()}}" th:text="${film.getFilmName()}" class="text-black-50">[filmName]</a>
-            </td>
-            <td th:text="${film.getYear()}" class="px-3">[release_year]</td>
-            <td th:text="${film.getBoxOffice()}" class="px-3">[boxOffice]</td>
-            <td th:text="${film.getGenre()}" class="px-3">[genre]</td>
-        </tr>
-        </tbody>
-    </table>
-
+    <div class="mt-5">
+        <div class="dropdown" id="dropdownButtonWrapper">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="buttonFilmsInActors">
+                Films casting with
+            </button>
+        </div>
+        <table class="table table-bordered table-hover" id="filmsInActors">
+            <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Box Office</th>
+                <th>Genre</th>
+                <th>Release Date</th>
+            </tr>
+            </thead>
+            <tbody id="actor_film_table">
+            </tbody>
+        </table>
+    </div>
 </main>
 <div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>
-<script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

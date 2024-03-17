@@ -1,5 +1,6 @@
 package be.kdg.film_project.controller.mvc;
 
+import be.kdg.film_project.controller.mvc.viewmodels.ActorViewModel;
 import be.kdg.film_project.domain.Director;
 import be.kdg.film_project.presentation.exceptions.ActorException;
 import be.kdg.film_project.controller.mvc.viewmodels.DirectorViewModel;
@@ -12,11 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/directors")
 public class DirectorController {
     private DirectorService directorService;
     private Logger logger = LoggerFactory.getLogger(DirectorController.class);
@@ -25,59 +26,86 @@ public class DirectorController {
         this.directorService = directorService;
     }
 
-    @GetMapping
-    public String getDirectorsView(Model model) {
-        List<Director> directorList = directorService.getDirectors();
-        model.addAttribute("directors", directorList);
-        return "directors";
+    @GetMapping("/directors")
+    public ModelAndView allDirectors() {
+        var mav = new ModelAndView();
+        mav.setViewName("directors");
+        mav.addObject("all_directors",
+                directorService.getDirectors()
+                        .stream()
+                        .map(actor -> new DirectorViewModel(
+                                actor.getId(),
+                                actor.getDirectorName(),
+                                actor.getBirth(),
+                                actor.getAward()
+                        ))
+                        .toList());
+        return mav;
     }
 
-    @GetMapping("/{id}")
-    public String getDirectorId(@PathVariable Integer id, Model model) {
-        Director director = directorService.getDirectorById(id);
-        model.addAttribute("director", director);
-        return "extraDirectorInfo";
+    @GetMapping("/extraDirectorInfo")
+    public ModelAndView oneActor(@RequestParam("id") int id) {
+        var director = directorService.getDirectorById(id);
+        var mav = new ModelAndView();
+        mav.setViewName("extraDirectorInfo");
+        mav.addObject("one_director",
+                new DirectorViewModel(
+                        director.getId(),
+                        director.getDirectorName(),
+                        director.getBirth(),
+                        director.getAward()
+                ));
+        return mav;
     }
 
-    @GetMapping("/search")
-    public String searchDirectors(@RequestParam(required = false, value = "award") String award, Model model) {
+    @GetMapping("/directors/search")
+    public ModelAndView searchDirectors(@RequestParam(required = false, value = "award") String award) {
+        var mav = new ModelAndView("directors");
         List<Director> directors;
         if (award != null) {
             directors = directorService.getByAward(award);
         } else {
             directors = directorService.getDirectors();
         }
-        model.addAttribute("directors", directors);
-        return "directors";
+        List<DirectorViewModel> directorViewModels = directors.stream()
+                .map(director -> new DirectorViewModel(
+                        director.getId(),
+                        director.getDirectorName(),
+                        director.getBirth(),
+                        director.getAward()
+                )).toList();
+
+        mav.addObject("all_directors", directorViewModels);
+        return mav;
     }
 
     @GetMapping("/addDirector")
     public String getAddDirector(Model model) {
         model.addAttribute("director", new DirectorViewModel());
-        return "addDirector";
+        return "/addDirector";
     }
 
-    @PostMapping("/addDirector")
-    public String processAddDirectorForm(@Valid @ModelAttribute("director") DirectorViewModel viewModel, BindingResult result) {
-        logger.info("Processing " + viewModel.toString());
-        if (result.hasErrors()) {
-            result.getAllErrors().forEach(e -> logger.warn(e.toString()));
-            return "addDirector";
-        } else {
-            logger.info("Successfully processed ");
-            directorService.addDirector(
-                    viewModel.getDirectorName(),
-                    viewModel.getBirth(),
-                    viewModel.getAward());
-            return "redirect:/directors";
-        }
-    }
+//    @PostMapping("/addDirector")
+//    public String processAddDirectorForm(@Valid @ModelAttribute("director") DirectorViewModel viewModel, BindingResult result) {
+//        logger.info("Processing " + viewModel.toString());
+//        if (result.hasErrors()) {
+//            result.getAllErrors().forEach(e -> logger.warn(e.toString()));
+//            return "addDirector";
+//        } else {
+//            logger.info("Successfully processed ");
+//            directorService.addDirector(
+//                    viewModel.getDirectorName(),
+//                    viewModel.getBirth(),
+//                    viewModel.getAward());
+//            return "redirect:/directors";
+//        }
+//    }
 
-    @RequestMapping("/{id}")
-    public String deleteDirector(@PathVariable int id) {
-        directorService.deleteDirector(id);
-        return "redirect:/directors";
-    }
+//    @RequestMapping("/{id}")
+//    public String deleteDirector(@PathVariable int id) {
+//        directorService.deleteDirector(id);
+//        return "redirect:/directors";
+//    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ActorException.class)

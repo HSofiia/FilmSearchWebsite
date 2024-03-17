@@ -15,6 +15,8 @@ public interface ActorService {
 
     boolean deleteActor(int actorId);
 
+    boolean changeActorInfo(int actorId, Actor.Gender gender, String nationality);
+
     List<Actor> getByGender(Actor.Gender gender);
 
     List<Actor> getByGenderAndNationality(Actor.Gender gender, String nationality);

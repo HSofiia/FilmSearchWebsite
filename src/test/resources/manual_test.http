@@ -1,43 +1,120 @@
 ### Homepage
-
 GET http://localhost:8080/home
 
 ### API: retrieve all actors
-
 GET http://localhost:8080/api/actors
 
 ### API: retrieve all films
-
 GET http://localhost:8080/api/films
 
 ### API: retrieve one actor (path variable)
-
-GET http://localhost:8080/api/actors/1
+GET http://localhost:8080/api/extraActorInfo/1
 
 ### API: retrieve one film (path variable)
-
-GET http://localhost:8080/api/films/1
+GET http://localhost:8080/api/extraFilmInfo/2
 
 ### API: retrieve all films of one specific actor
-
-GET http://localhost:8080/api/actors/1/films
+GET http://localhost:8080/api/extraActorInfo/1/films
 
 ### API: retrieve all actors of one specific film
-
-GET http://localhost:8080/api/films/1/actors
+GET http://localhost:8080/api/extraFilmInfo/1/actors
 
 ### API: search actor
-
 GET http://localhost:8080/actors/search?nationality=American&gender=M
 
 ### API: search film
-
 GET http://localhost:8080/actors/search?actorName=Rami+Malek
 
 ### API: delete an actor
-
-DELETE http://localhost:8080/api/actors/2
+DELETE http://localhost:8080/api/extraActorInfo/2
 
 ### API: delete an film
+DELETE http://localhost:8080/api/extraFilmInfo/1
 
-DELETE http://localhost:8080/api/films/1
+### API: create an issue (bad request)
+POST http://localhost:8080/api/addFilm
+Accept: application/json
+Content-Type: application/json
+
+{
+  "filmName": "",
+  "year": "2024-04-04",
+  "boxOffice": 0.0,
+  "genre": "SPY"
+}
+
+### API: create an issue (created)
+POST http://localhost:8080/api/addFilm
+Accept: application/json
+Content-Type: application/json
+
+{
+  "filmName": "Sjkd",
+  "year": "2021-02-02",
+  "boxOffice": 220.0,
+  "genre": "SPY"
+}
+
+### API: change an film's info (no content)
+
+PATCH http://localhost:8080/api/extraFilmInfo/1
+Content-Type: application/json
+
+{
+  "year": "2023-02-12",
+  "boxOffice": 673.0,
+  "genre": "SPY"
+}
+
+### API: change an film's info (not found)
+
+PATCH http://localhost:8080/api/extraFilmInfo/1000
+Content-Type: application/json
+
+{
+  "year": "2023-02-12",
+  "boxOffice": 673.0,
+  "genre": "SPY"
+}
+
+### API: change an film's info (bad request)
+
+PATCH http://localhost:8080/api/extraFilmInfo/1
+Content-Type: application/json
+
+{
+  "year": "02-12",
+  "boxOffice": 0.0,
+  "genre": "qw"
+}
+
+### API: change an actor's info (no content)
+
+PATCH http://localhost:8080/api/extraActorInfo/1
+Content-Type: application/json
+
+{
+"gender": "F",
+"nationality": "Ukrainian"
+}
+
+### API: change an actor's info (not found)
+
+PATCH http://localhost:8080/api/extraActorInfo/999
+Content-Type: application/json
+
+{
+  "gender": "F",
+  "nationality": "Ukrainian"
+}
+
+### API: change an actor's info (bad request)
+
+PATCH http://localhost:8080/api/extraFilmInfo/2
+Content-Type: application/json
+
+{
+  "gender": "F",
+  "nationality": ""
+}
+

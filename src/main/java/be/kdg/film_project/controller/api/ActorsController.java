@@ -1,10 +1,14 @@
 package be.kdg.film_project.controller.api;
 
-import be.kdg.film_project.controller.api.dto.ActorDto;
-import be.kdg.film_project.controller.api.dto.FilmDto;
+import be.kdg.film_project.controller.api.dto.actor.ActorDto;
+import be.kdg.film_project.controller.api.dto.actor.NewActorDto;
+import be.kdg.film_project.controller.api.dto.actor.UpdateActorDto;
+import be.kdg.film_project.controller.api.dto.film.FilmDto;
 import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.domain.FilmCasting;
 import be.kdg.film_project.service.ActorService;
+import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +16,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/actors")
+//@RequestMapping("/api/actors")
 public class ActorsController {
     private final ActorService service;
+    private final ModelMapper modelMapper;
 
-    public ActorsController(ActorService service) {
+
+    public ActorsController(ActorService service, ModelMapper modelMapper) {
         this.service = service;
+        this.modelMapper = modelMapper;
+    }
+
+    // "/api/issues"
+    @PostMapping("/api/addActor")
+    ResponseEntity<ActorDto> addActor(@RequestBody @Valid NewActorDto actorDto) {
+        var createdActor = service.addActor(
+                actorDto.getActorName(), actorDto.getGender(), actorDto.getNationality());
+        return new ResponseEntity<>(
+                modelMapper.map(createdActor, ActorDto.class),
+                HttpStatus.CREATED
+        );
     }
 
     // "/api/actors/{id}"
-    @GetMapping("{id}")
+    @GetMapping("api/extraActorInfo/{id}")
     ResponseEntity<ActorDto> getOneActor(@PathVariable("id") int actorId) {
         var actor = service.getActor(actorId);
         if (actor == null) {
@@ -38,7 +56,7 @@ public class ActorsController {
 
 
     // "/api/actors/1/films"
-    @GetMapping("{id}/films")
+    @GetMapping("/api/extraActorInfo/{id}/films")
     ResponseEntity<List<FilmDto>> getFilmsOfActor(@PathVariable("id") int actorId) {
         var actor = service.getActorWithFilms(actorId);
         if (actor == null) {
@@ -50,17 +68,12 @@ public class ActorsController {
         return ResponseEntity.ok(actor.getFilm()
                 .stream()
                 .map(FilmCasting::getFilm)
-                .map(film -> new FilmDto(
-                        film.getFilmName(),
-                        film.getYear(),
-                        film.getBoxOffice(),
-                        film.getGenre(),
-                        film.getId()
-                )).toList());
+                .map(film -> modelMapper.map(film, FilmDto.class))
+                .toList());
     }
 
     // "/api/actors"
-    @GetMapping
+    @GetMapping("/api/actors")
     ResponseEntity<List<ActorDto>> searchActor(@RequestParam(required = false, value = "gender") Actor.Gender gender,
                                                @RequestParam(required = false, value = "nationality") String nationality) {
         if (gender == null && nationality == null) {
@@ -91,11 +104,21 @@ public class ActorsController {
     }
 
     // "/api/actors/{id}"
-    @DeleteMapping("{id}")
+    @DeleteMapping("/api/extraActorInfo/{id}")
     ResponseEntity<Void> deleteActor(@PathVariable("id") int actorId) {
         if (service.deleteActor(actorId)){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PatchMapping("/api/extraActorInfo/{id}")
+    ResponseEntity<Void> changeIssue(@PathVariable("id") int actorId,
+                                     @RequestBody @Valid UpdateActorDto updateActorInfo) {
+        if (service.changeActorInfo(actorId,updateActorInfo.getGender(), updateActorInfo.getNationality())) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

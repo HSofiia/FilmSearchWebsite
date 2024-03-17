@@ -32,7 +32,7 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "film", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "film")
     private List<FilmCasting> castings;
 
     public Film() {
@@ -93,10 +93,10 @@ public class Film {
         this.castings = castings;
     }
 
-    public Director addDirector(Director director) {
-        directors.add(director);
-        return director;
-    }
+//    public Director addDirector(Director director) {
+//        directors.add(director);
+//        return director;
+//    }
 
     @Override
     public String toString() {

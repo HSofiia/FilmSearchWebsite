@@ -16,3 +16,9 @@ main {
     padding-left: 10em;
     padding-right: 10em;
 }
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

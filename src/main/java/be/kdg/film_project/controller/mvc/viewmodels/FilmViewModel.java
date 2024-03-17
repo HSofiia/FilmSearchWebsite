@@ -3,7 +3,6 @@ package be.kdg.film_project.controller.mvc.viewmodels;
 import be.kdg.film_project.domain.Film;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import nonapi.io.github.classgraph.json.Id;
 
 import java.time.LocalDate;
 import java.util.List;

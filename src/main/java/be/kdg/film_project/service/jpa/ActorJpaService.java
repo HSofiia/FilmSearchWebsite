@@ -51,6 +51,18 @@ public class ActorJpaService implements ActorService {
     }
 
     @Override
+    public boolean changeActorInfo(int actorId, Actor.Gender gender, String nationality) {
+        var actor = actorJpaRepository.findById(actorId).orElse(null);
+        if (actor == null) {
+            return false;
+        }
+        actor.setGender(gender);
+        actor.setNationality(nationality);
+        actorJpaRepository.save(actor);
+        return true;
+    }
+
+    @Override
     public List<Actor> getByGender(Actor.Gender gender) {
         return actorJpaRepository.findByGender(gender);
     }

@@ -1,6 +1,5 @@
 package be.kdg.film_project.service.jpa;
 
-import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.domain.Film;
 import be.kdg.film_project.repository.jpa.FilmJpaRepository;
 import be.kdg.film_project.service.FilmService;
@@ -49,6 +48,19 @@ public class FilmJpaService implements FilmService {
             return false;
         }
         filmJpaRepository.deleteById(filmId);
+        return true;
+    }
+
+    @Override
+    public boolean changeFilmInfo(int filmId, double boxOffice, Film.Genre genre, LocalDate year) {
+        var film = filmJpaRepository.findById(filmId).orElse(null);
+        if (film == null) {
+            return false;
+        }
+        film.setBoxOffice(boxOffice);
+        film.setGenre(genre);
+        film.setYear(year);
+        filmJpaRepository.save(film);
         return true;
     }
 

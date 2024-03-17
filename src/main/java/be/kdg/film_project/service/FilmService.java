@@ -17,6 +17,8 @@ public interface FilmService {
 
     boolean deleteFilm(int filmId);
 
+    boolean changeFilmInfo(int filmId,double boxOffice, Film.Genre genre, LocalDate year);
+
     List<Film> getByName(String name);
 
     List<Film> getByActors(String actorName);

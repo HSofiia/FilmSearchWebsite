@@ -18,23 +18,18 @@ repositories {
 }
 
 dependencies {
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-
     implementation("org.webjars:bootstrap:5.3.2")
-    implementation("org.webjars:webjars-locator-core:0.48")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation ("org.springframework.boot:spring-boot-starter-jdbc")
-    runtimeOnly ("com.h2database:h2")
     runtimeOnly("org.postgresql:postgresql")
-    implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
+    implementation("org.modelmapper:modelmapper:3.2.0")
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.test {

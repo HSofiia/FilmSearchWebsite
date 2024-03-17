@@ -11,6 +11,8 @@ public interface DirectorService {
 
     Director getDirectorById(int id);
 
+    boolean changeDirectorInfo(int directorId, int birth, String award);
+
     void deleteDirector(int directorId);
 
     List<Director> getByAward(String award);
