@@ -1,4 +1,4 @@
-
+import { header, token } from "../util/csrf.js";
 
 const deleteButtons = document.querySelectorAll('button.btn-outline-danger');
 
@@ -12,7 +12,8 @@ async function handleDeleteFilm() {
     console.log("deleting...")
     console.log(filmId);
     const response = await fetch(`/api/extraFilmInfo/${filmId.value}`, {
-        method: "DELETE"
+        method: "DELETE",
+        [header]: token
     })
     if (response.status === 204) {
         console.log("Method delete is successful")
@@ -81,7 +82,8 @@ async function changeFilm() {
     const response = await fetch(`/api/extraFilmInfo/${filmIdInput.value}`, {
         method: "PATCH",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            [header]: token
         },
         body: JSON.stringify({
             year: releaseYearText.value,
@@ -92,8 +94,8 @@ async function changeFilm() {
     if (response.status === 204) {
         console.log("success")
     } else {
-        alert('Something went wrong!'); // Don't use alerts in a "real" application.
+        alert('Something went wrong!');
     }
 }
 
-updateButton.addEventListener("click", changeFilm);
+updateButton?.addEventListener("click", changeFilm);

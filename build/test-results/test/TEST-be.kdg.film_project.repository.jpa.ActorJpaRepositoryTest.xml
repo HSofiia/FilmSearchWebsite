@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.kdg.film_project.repository.jpa.ActorJpaRepositoryTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-03-31T20:48:25" hostname="Sofias-MacBook-Air.local" time="1.011">
+  <properties/>
+  <testcase name="findByIdWithFilmsShouldFetchRelatedData()" classname="be.kdg.film_project.repository.jpa.ActorJpaRepositoryTest" time="1.011">
+    <failure message="org.hibernate.LazyInitializationException: could not initialize proxy [be.kdg.film_project.domain.Film#1] - no Session" type="org.hibernate.LazyInitializationException">org.hibernate.LazyInitializationException: could not initialize proxy [be.kdg.film_project.domain.Film#1] - no Session
+	at app//org.hibernate.proxy.AbstractLazyInitializer.initialize(AbstractLazyInitializer.java:164)
+	at app//org.hibernate.proxy.AbstractLazyInitializer.getImplementation(AbstractLazyInitializer.java:310)
+	at app//org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor.intercept(ByteBuddyInterceptor.java:44)
+	at app//org.hibernate.proxy.ProxyConfiguration$InterceptorDispatcher.intercept(ProxyConfiguration.java:102)
+	at app//be.kdg.film_project.domain.Film$HibernateProxy$BXTbRcei.getFilmName(Unknown Source)
+	at app//be.kdg.film_project.repository.jpa.ActorJpaRepositoryTest.findByIdWithFilmsShouldFetchRelatedData(ActorJpaRepositoryTest.java:39)
+	at java.base@21.0.2/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base@21.0.2/java.lang.reflect.Method.invoke(Method.java:580)
+	at app//org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at app//org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base@21.0.2/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base@21.0.2/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at app//org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at app//org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at app//org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at app//org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at app//org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at app//org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at app//org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at app//org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at app//org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at app//org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:110)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:90)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:85)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base@21.0.2/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base@21.0.2/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <system-out><![CDATA[22:48:15.352 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [be.kdg.film_project.repository.jpa.ActorJpaRepositoryTest]: ActorJpaRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:48:15.929 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.repository.jpa.ActorJpaRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.3)
+
+2024-03-31T22:48:17.868+02:00  INFO 27666 --- [    Test worker] b.k.f.r.jpa.ActorJpaRepositoryTest       : Starting ActorJpaRepositoryTest using Java 21.0.2 with PID 27666 (started by sofiahmyria in /Users/sofiahmyria/IdeaProjects/programming-5)
+2024-03-31T22:48:17.869+02:00  INFO 27666 --- [    Test worker] b.k.f.r.jpa.ActorJpaRepositoryTest       : The following 1 profile is active: "test"
+2024-03-31T22:48:19.532+02:00  INFO 27666 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-31T22:48:19.692+02:00  INFO 27666 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 146 ms. Found 5 JPA repository interfaces.
+2024-03-31T22:48:20.604+02:00  INFO 27666 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-31T22:48:20.709+02:00  INFO 27666 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.7.Final
+2024-03-31T22:48:20.713+02:00  INFO 27666 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-03-31T22:48:20.932+02:00  INFO 27666 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-03-31T22:48:21.100+02:00  INFO 27666 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-31T22:48:21.121+02:00  INFO 27666 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-03-31T22:48:21.525+02:00  INFO 27666 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2ae3235e
+2024-03-31T22:48:21.528+02:00  INFO 27666 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-03-31T22:48:21.931+02:00  INFO 27666 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-03-31T22:48:22.945+02:00  INFO 27666 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-03-31T22:48:22.966+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director drop constraint if exists FKeox6rmuu3j7esmllq1cg022xa
+Hibernate: alter table if exists director drop constraint if exists FKeox6rmuu3j7esmllq1cg022xa
+2024-03-31T22:48:22.977+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKdpbx2oo0uhp58l0dxbqdm6c3q
+Hibernate: alter table if exists film_casting drop constraint if exists FKdpbx2oo0uhp58l0dxbqdm6c3q
+2024-03-31T22:48:22.980+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKb2avfvx70nfcjk3e8p89v94vj
+Hibernate: alter table if exists film_casting drop constraint if exists FKb2avfvx70nfcjk3e8p89v94vj
+2024-03-31T22:48:22.983+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : drop table if exists actor cascade
+Hibernate: drop table if exists actor cascade
+2024-03-31T22:48:22.994+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : drop table if exists director cascade
+Hibernate: drop table if exists director cascade
+2024-03-31T22:48:23.000+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film cascade
+Hibernate: drop table if exists film cascade
+2024-03-31T22:48:23.009+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film_casting cascade
+Hibernate: drop table if exists film_casting cascade
+2024-03-31T22:48:23.017+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : drop table if exists user_table cascade
+Hibernate: drop table if exists user_table cascade
+2024-03-31T22:48:23.035+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : create table actor (id serial not null, actor_name varchar(255), gender varchar(255) check (gender in ('M','F','N')), nationality varchar(255), primary key (id))
+Hibernate: create table actor (id serial not null, actor_name varchar(255), gender varchar(255) check (gender in ('M','F','N')), nationality varchar(255), primary key (id))
+2024-03-31T22:48:23.082+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : create table director (birth integer, film_id integer, id serial not null, award varchar(255), director_name varchar(255), primary key (id))
+Hibernate: create table director (birth integer, film_id integer, id serial not null, award varchar(255), director_name varchar(255), primary key (id))
+2024-03-31T22:48:23.109+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : create table film (box_office float(53), id serial not null, release_year date, film_name varchar(255), genre varchar(255) check (genre in ('HISTORY','SPY','FANTASY','ROMANCE','ACTION')), primary key (id))
+Hibernate: create table film (box_office float(53), id serial not null, release_year date, film_name varchar(255), genre varchar(255) check (genre in ('HISTORY','SPY','FANTASY','ROMANCE','ACTION')), primary key (id))
+2024-03-31T22:48:23.127+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : create table film_casting (actor_id integer not null, film_id integer not null, id serial not null, primary key (id), constraint UKgprrdn7mj3rol443mt5qn0fls unique (film_id, actor_id))
+Hibernate: create table film_casting (actor_id integer not null, film_id integer not null, id serial not null, primary key (id), constraint UKgprrdn7mj3rol443mt5qn0fls unique (film_id, actor_id))
+2024-03-31T22:48:23.166+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : create table user_table (id serial not null, role smallint not null check (role between 0 and 1), password varchar(255) not null, username varchar(255) not null, primary key (id))
+Hibernate: create table user_table (id serial not null, role smallint not null check (role between 0 and 1), password varchar(255) not null, username varchar(255) not null, primary key (id))
+2024-03-31T22:48:23.192+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director add constraint FKeox6rmuu3j7esmllq1cg022xa foreign key (film_id) references film
+Hibernate: alter table if exists director add constraint FKeox6rmuu3j7esmllq1cg022xa foreign key (film_id) references film
+2024-03-31T22:48:23.204+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKdpbx2oo0uhp58l0dxbqdm6c3q foreign key (actor_id) references actor on delete cascade
+Hibernate: alter table if exists film_casting add constraint FKdpbx2oo0uhp58l0dxbqdm6c3q foreign key (actor_id) references actor on delete cascade
+2024-03-31T22:48:23.215+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8p89v94vj foreign key (film_id) references film on delete cascade
+Hibernate: alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8p89v94vj foreign key (film_id) references film on delete cascade
+2024-03-31T22:48:23.230+02:00  INFO 27666 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-31T22:48:23.726+02:00  INFO 27666 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-31T22:48:24.787+02:00  INFO 27666 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@45aa02de, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@19598b38, org.springframework.security.web.context.SecurityContextHolderFilter@16575bfe, org.springframework.security.web.header.HeaderWriterFilter@267a0b6a, org.springframework.security.web.csrf.CsrfFilter@65a03c19, org.springframework.security.web.authentication.logout.LogoutFilter@7f2c36de, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@9be2897, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f1dadeb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6dd8ac29, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d16bb07, org.springframework.security.web.access.ExceptionTranslationFilter@7a7d25ca, org.springframework.security.web.access.intercept.AuthorizationFilter@50cb64d5]
+2024-03-31T22:48:25.461+02:00  INFO 27666 --- [    Test worker] b.k.f.r.jpa.ActorJpaRepositoryTest       : Started ActorJpaRepositoryTest in 8.241 seconds (process running for 15.99)
+2024-03-31T22:48:26.396+02:00 DEBUG 27666 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,f1_0.actor_id,f1_0.id,f1_0.film_id,a1_0.gender,a1_0.nationality from actor a1_0 left join film_casting f1_0 on a1_0.id=f1_0.actor_id where a1_0.id=?
+Hibernate: select a1_0.id,a1_0.actor_name,f1_0.actor_id,f1_0.id,f1_0.film_id,a1_0.gender,a1_0.nationality from actor a1_0 left join film_casting f1_0 on a1_0.id=f1_0.actor_id where a1_0.id=?
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/sofiahmyria/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.6/46e2545d7a97b6ccb195621650c5957279eb4812/byte-buddy-agent-1.14.6.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

@@ -44,7 +44,7 @@ public class DirectorController {
     }
 
     @GetMapping("/extraDirectorInfo")
-    public ModelAndView oneActor(@RequestParam("id") int id) {
+    public ModelAndView oneDirector(@RequestParam("id") int id) {
         var director = directorService.getDirectorById(id);
         var mav = new ModelAndView();
         mav.setViewName("extraDirectorInfo");

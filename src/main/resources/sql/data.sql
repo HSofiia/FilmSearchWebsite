@@ -26,7 +26,10 @@ INSERT INTO PUBLIC.FILM_CASTING (FILM_ID, ACTOR_ID) VALUES
 
 INSERT INTO public.director(director_name, birth, award) VALUES ('Joachim Rønning', 1972, 'Academy Award for Best International Feature Film'),
                                                                         ('Christopher Nolan', 1970, 'Academy Award for Best Picture'),
-                                                                        ('Christopher Nolan', 1970, 'Academy Award for Best Picture'),
                                                                         ('Cary Joji Fukunaga',1977, 'Primetime Emmy Award for Outstanding Directing for a Drama Series'),
                                                                         ('Joe Wright', 1972, 'BAFTA Award for Outstanding Debut by a British Writer, Director or Producer'),
-                                                                        ('Otto Bathurst', 1971, 'British Academy Television Award for Best Drama Serial')
+                                                                        ('Otto Bathurst', 1971, 'British Academy Television Award for Best Drama Serial');
+
+
+INSERT INTO user_table (username, password, role) VALUES ('admin', '$2a$10$N3TGXdcRDhTBQbPxD1BFjO2c0/eV7mAZKl5bpgakNn4tRET53Kgbi', 1),
+                                                      ('user', '$2a$10$N3TGXdcRDhTBQbPxD1BFjO2c0/eV7mAZKl5bpgakNn4tRET53Kgbi', 0)

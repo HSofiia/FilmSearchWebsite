@@ -1,12 +1,16 @@
 package be.kdg.film_project.controller.mvc;
 
+
 import be.kdg.film_project.domain.Film;
 import be.kdg.film_project.presentation.exceptions.FilmException;
 import be.kdg.film_project.controller.mvc.viewmodels.FilmViewModel;
+import be.kdg.film_project.security.CustomUserDetails;
 import be.kdg.film_project.service.FilmService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +18,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+import static be.kdg.film_project.domain.UserRole.ADMIN;
+
 @Controller
 public class FilmController {
     private final FilmService filmService;
     private Logger logger = LoggerFactory.getLogger(FilmController.class);
 
-    public FilmController(FilmService actorService) {
-        this.filmService = actorService;
+    public FilmController(FilmService filmService) {
+        this.filmService = filmService;
     }
 
     @GetMapping("/films")
-    public ModelAndView allFilms(){
+    public ModelAndView allFilms(HttpServletRequest request){
         var mav = new ModelAndView();
         mav.setViewName("films");
         mav.addObject("all_films",
@@ -35,14 +41,17 @@ public class FilmController {
                                 film.getFilmName(),
                                 film.getGenre(),
                                 film.getBoxOffice(),
-                                film.getYear()
+                                film.getYear(),
+                                request.isUserInRole(ADMIN.getCode())
                         ))
                         .toList());
         return mav;
     }
 
     @GetMapping("/extraFilmInfo")
-    public ModelAndView oneFilm(@RequestParam("id") int filmId) {
+    public ModelAndView oneFilm(@RequestParam("id") int filmId,
+                                @AuthenticationPrincipal CustomUserDetails user,
+                                HttpServletRequest request) {
         var film = filmService.getFilm(filmId);
         var mav = new ModelAndView();
         mav.setViewName("extraFilmInfo");
@@ -52,36 +61,11 @@ public class FilmController {
                         film.getFilmName(),
                         film.getGenre(),
                         film.getBoxOffice(),
-                        film.getYear()
-                ));
+                        film.getYear(),
+                        user != null && (request.isUserInRole(ADMIN.getCode())
+                        )));
         return mav;
     }
-
-//    @GetMapping("/extraFilmInfo")
-//    public ModelAndView getFilmId(@RequestParam("id")int id) {
-//        var film = filmService.getFilmWithActors(id);
-//        var mav = new ModelAndView();
-//        mav.setViewName("extraFilmInfo");
-//        mav.addObject("one_film",
-//                new FilmViewModel(
-//                        film.getId(),
-//                        film.getFilmName(),
-//                        film.getGenre(),
-//                        film.getBoxOffice(),
-//                        film.getYear(),
-//                        film.getCastings()
-//                                .stream().map(
-//                                        mapper ->
-//                                                new ActorViewModel(
-//                                                        mapper.getActor().getId(),
-//                                                        mapper.getActor().getActorName(),
-//                                                        mapper.getActor().getGender(),
-//                                                        mapper.getActor().getNationality()
-//                                                )
-//                                ).toList()
-//                ));
-//        return mav;
-//    }
 
     @GetMapping("/films/search")
     public ModelAndView searchFilms(@RequestParam(required = false, value = "actorsName") String actorsName) {
@@ -111,29 +95,25 @@ public class FilmController {
         return "/addFilm";
     }
 
-//    @PostMapping("/films/addFilm")
-//    public String processAddFilmForm(@Valid @ModelAttribute("film")  FilmViewModel viewModel, BindingResult result) {
-//        logger.info("Processing " + viewModel.toString());
-//        if (result.hasErrors()) {
-//            result.getAllErrors().forEach(e -> logger.warn(e.toString()));
-//            return "addFilm";
-//        } else {
-//            logger.info("Successfully processed ");
-//            filmService.addFilm(
-//                    viewModel.getFilmName(),
-//                    viewModel.getYear(),
-//                    viewModel.getBoxOffice(),
-//                    viewModel.getGenre());
-//            return "redirect:/films";
+//    @PostMapping("/extraFilmInfo/update")
+//    public String updateFilm(@Valid UpdateFilmViewModel filmViewModel,
+//                                  BindingResult bindingResult,
+//                                  @AuthenticationPrincipal CustomUserDetails user,
+//                                  HttpServletRequest request) {
+//        // Conditions:
+//        // - The user executing the action is the same as the developer whose email is being updated
+//        //   - OR The user is an admin
+//        // - AND no model binding errors
+//        if ((request.isUserInRole(ADMIN.getCode()))
+//                && (!bindingResult.hasErrors())) {
+//            filmService.updateFilmInfo(
+//                    filmViewModel.getId(),
+//                    filmViewModel.getBoxOffice(),
+//                    filmViewModel.getGenre(),
+//                    filmViewModel.getYear());
 //        }
+//        return "redirect:/extraFilmInfo?id=" + filmViewModel.getId();
 //    }
-//
-//    @RequestMapping("/extraFilmInfo")
-//    public String deleteFilm(@RequestParam("id") int id) {
-//        filmService.deleteFilm(id);
-//        return "redirect:/films";
-//    }
-
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(FilmException.class)

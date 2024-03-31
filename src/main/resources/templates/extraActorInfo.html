@@ -8,6 +8,8 @@
     <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/styles.css">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <script src="/js/actor/extraActorInfo.js" type="module"></script>
 </head>
 <body>
@@ -20,12 +22,14 @@
 
         <div class="col-9 lead text-center">
             <label for="gender" class="form-label" th:utext="#{foractor.gender}">Gender:</label>
-            <textarea id="gender" rows="2" th:text="${one_actor.gender}"></textarea>
+            <textarea th:if="${one_actor.modificationAllowed}" id="gender" rows="2" th:text="${one_actor.gender}"></textarea>
+            <p th:if="${!one_actor.modificationAllowed}" th:text="${one_actor.gender}">
         </div>
 
         <div class="col-9 lead text-center">
             <label for="nationality" class="form-label" th:utext="#{foractor.nationality}">Nationality:</label>
-            <textarea id="nationality" rows="2" th:text="${one_actor.nationality}"></textarea>
+            <textarea th:if="${one_actor.modificationAllowed}" id="nationality" rows="2" th:text="${one_actor.nationality}"></textarea>
+            <p th:if="${!one_actor.modificationAllowed}" th:text="${one_actor.nationality}">
         </div>
     </div>
 
@@ -36,10 +40,10 @@
             <a th:utext="#{foractor.back}" th:href="@{/actors}" class="btn btn-secondary">Go Back</a>
         </div>
         <div class="m-2">
-            <button class="btn btn-outline-danger" type="button" th:value="#{foractor.delete}">Delete</button>
+            <button th:if="${one_actor.modificationAllowed}" class="btn btn-outline-danger" type="button" th:value="#{foractor.delete}">Delete</button>
         </div>
         <div class="m-2">
-            <button id="updateButtonActor" type="button" class="btn btn-primary">Update</button>
+            <button th:if="${one_actor.modificationAllowed}" id="updateButtonActor" type="button" class="btn btn-primary">Update</button>
         </div>
     </div>
 

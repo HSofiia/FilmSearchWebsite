@@ -24,25 +24,32 @@ public class ActorViewModel {
 
     private List<FilmViewModel> film;
 
+    private boolean modificationAllowed;
+
+
     public ActorViewModel() {
+    }
+
+    public ActorViewModel(Integer id, String actorName, Actor.Gender gender, String nationality,boolean modificationAllowed) {
+        this.id = id;
+        this.actorName = actorName;
+        this.gender = gender;
+        this.nationality = nationality;
+        this.modificationAllowed = modificationAllowed;
+
+    }
+
+    public ActorViewModel(Integer id, String actorName, Actor.Gender gender, String nationality,boolean modificationAllowed, List<FilmViewModel> film) {
+        this.id = id;
+        this.actorName = actorName;
+        this.gender = gender;
+        this.nationality = nationality;
+        this.modificationAllowed = modificationAllowed;
+        this.film = film;
     }
 
     public ActorViewModel(Integer id, String actorName, Actor.Gender gender, String nationality) {
         this.id = id;
-        this.actorName = actorName;
-        this.gender = gender;
-        this.nationality = nationality;
-    }
-
-    public ActorViewModel(Integer id, String actorName, Actor.Gender gender, String nationality, List<FilmViewModel> film) {
-        this.id = id;
-        this.actorName = actorName;
-        this.gender = gender;
-        this.nationality = nationality;
-        this.film = film;
-    }
-
-    public ActorViewModel(String actorName, Actor.Gender gender, String nationality) {
         this.actorName = actorName;
         this.gender = gender;
         this.nationality = nationality;
@@ -86,6 +93,14 @@ public class ActorViewModel {
 
     public void setFilm(List<FilmViewModel> film) {
         this.film = film;
+    }
+
+    public boolean isModificationAllowed() {
+        return modificationAllowed;
+    }
+
+    public void setModificationAllowed(boolean modificationAllowed) {
+        this.modificationAllowed = modificationAllowed;
     }
 
     @Override

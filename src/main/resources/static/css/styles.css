@@ -22,3 +22,8 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+.navbar-expand-xxl {
+    flex-wrap: wrap;
+    justify-content: center;
+}

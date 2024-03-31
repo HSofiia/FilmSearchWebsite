@@ -7,6 +7,7 @@ import be.kdg.film_project.controller.api.dto.film.FilmDto;
 import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.domain.FilmCasting;
 import be.kdg.film_project.service.ActorService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static be.kdg.film_project.domain.UserRole.ADMIN;
 
 @RestController
 //@RequestMapping("/api/actors")
@@ -46,12 +49,7 @@ public class ActorsController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(
-                new ActorDto(
-                        actor.getActorName(),
-                        actor.getGender(),
-                        actor.getNationality(),
-                        actor.getId()
-                ));
+                modelMapper.map(actor, ActorDto.class));
     }
 
 
@@ -80,11 +78,7 @@ public class ActorsController {
             return ResponseEntity
                     .ok(service.getActors()
                             .stream()
-                            .map(actor -> new ActorDto(
-                                    actor.getActorName(),
-                                    actor.getGender(),
-                                    actor.getNationality(),
-                                    actor.getId()))
+                            .map(actor -> modelMapper.map(actor, ActorDto.class))
                             .toList());
         } else {
             var searchResult = service.getByGenderAndNationality(gender, nationality);
@@ -93,11 +87,7 @@ public class ActorsController {
             } else {
                 return ResponseEntity.ok(searchResult
                         .stream()
-                        .map(actor -> new ActorDto(
-                                actor.getActorName(),
-                                actor.getGender(),
-                                actor.getNationality(),
-                                actor.getId()))
+                        .map(actor -> modelMapper.map(actor, ActorDto.class))
                         .toList());
             }
         }
@@ -105,7 +95,11 @@ public class ActorsController {
 
     // "/api/actors/{id}"
     @DeleteMapping("/api/extraActorInfo/{id}")
-    ResponseEntity<Void> deleteActor(@PathVariable("id") int actorId) {
+    ResponseEntity<Void> deleteActor(@PathVariable("id") int actorId,
+                                     HttpServletRequest request) {
+        if (!request.isUserInRole(ADMIN.getCode())){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         if (service.deleteActor(actorId)){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -114,8 +108,12 @@ public class ActorsController {
 
     @PatchMapping("/api/extraActorInfo/{id}")
     ResponseEntity<Void> changeIssue(@PathVariable("id") int actorId,
-                                     @RequestBody @Valid UpdateActorDto updateActorInfo) {
-        if (service.changeActorInfo(actorId,updateActorInfo.getGender(), updateActorInfo.getNationality())) {
+                                     @RequestBody @Valid UpdateActorDto updateActorInfo,
+                                     HttpServletRequest request) {
+        if (!request.isUserInRole(ADMIN.getCode())){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        if (service.updateActorInfo(actorId,updateActorInfo.getGender(), updateActorInfo.getNationality())) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

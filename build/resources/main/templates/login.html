@@ -8,10 +8,12 @@
     <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/styles.css">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
 
-<header th:replace="~{includes :: header(page = 'login')}"></header>
+<header th:replace="~{navigation :: header(page = 'login')}"></header>
 <main class="container">
     <h1>Sign in</h1>
     <form th:action="@{/login}" method="post">

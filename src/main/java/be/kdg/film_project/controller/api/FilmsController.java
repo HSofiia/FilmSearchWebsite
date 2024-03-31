@@ -5,14 +5,19 @@ import be.kdg.film_project.controller.api.dto.film.FilmDto;
 import be.kdg.film_project.controller.api.dto.film.NewFilmDto;
 import be.kdg.film_project.controller.api.dto.film.UpdateFilmDto;
 import be.kdg.film_project.domain.FilmCasting;
+import be.kdg.film_project.security.CustomUserDetails;
 import be.kdg.film_project.service.FilmService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static be.kdg.film_project.domain.UserRole.ADMIN;
 
 @RestController
 //@RequestMapping("/api/films")
@@ -26,30 +31,25 @@ public class FilmsController {
     }
 
     @PostMapping("/api/addFilm")
-    ResponseEntity<FilmDto> addFilm(@RequestBody @Valid NewFilmDto filmDto) {
-        var createdFilm = service.addFilm(
-                filmDto.getFilmName(), filmDto.getYear(), filmDto.getBoxOffice(), filmDto.getGenre());
-        return new ResponseEntity<>(
-                modelMapper.map(createdFilm, FilmDto.class),
-                HttpStatus.CREATED
-        );
+    ResponseEntity<FilmDto> addFilm(@RequestBody @Valid NewFilmDto filmDto, @AuthenticationPrincipal CustomUserDetails user) {
+        if(user.getAuthorities().stream().anyMatch(aut -> aut.getAuthority().equals("ROLE_ADMIN"))) {
+            var createdFilm = service.addFilm(
+                    filmDto.getFilmName(), filmDto.getYear(), filmDto.getBoxOffice(), filmDto.getGenre());
+            return new ResponseEntity<>(
+                    modelMapper.map(createdFilm, FilmDto.class),
+                    HttpStatus.CREATED
+            );
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // "/api/films/{id}"
     @GetMapping("/api/extraFilmInfo/{id}")
     ResponseEntity<FilmDto> getOneFilm(@PathVariable("id") int filmId) {
         var film = service.getFilm(filmId);
         if (film == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(
-                new FilmDto(
-                        film.getFilmName(),
-                        film.getYear(),
-                        film.getBoxOffice(),
-                        film.getGenre(),
-                        film.getId()
-                ));
+        return ResponseEntity.ok(modelMapper.map(film, FilmDto.class));
     }
 
     @GetMapping("/api/extraFilmInfo/{id}/actors")
@@ -68,20 +68,12 @@ public class FilmsController {
                 .toList());
     }
 
-    // "/api/actors"
     @GetMapping("/api/films")
     ResponseEntity<List<FilmDto>> searchFilm(@RequestParam(required = false, value = "actorsName") String actorsName) {
         if (actorsName == null) {
-            return ResponseEntity
-                    .ok(service.getFilms()
+            return ResponseEntity.ok(service.getFilms()
                             .stream()
-                            .map(film -> new FilmDto(
-                                    film.getFilmName(),
-                                    film.getYear(),
-                                    film.getBoxOffice(),
-                                    film.getGenre(),
-                                    film.getId()))
-                            .toList());
+                            .map(film -> modelMapper.map(film, FilmDto.class)).toList());
         } else {
             var searchResult = service.getByActors(actorsName);
             if (searchResult.isEmpty()) {
@@ -89,31 +81,31 @@ public class FilmsController {
             } else {
                 return ResponseEntity.ok(searchResult
                         .stream()
-                        .map(film -> new FilmDto(
-                                film.getFilmName(),
-                                film.getYear(),
-                                film.getBoxOffice(),
-                                film.getGenre(),
-                                film.getId()))
-                        .toList());
+                        .map(film -> modelMapper.map(film, FilmDto.class)).toList());
             }
         }
     }
 
-    // "/api/actors/{id}"
     @DeleteMapping("/api/extraFilmInfo/{id}")
-    ResponseEntity<Void> deleteFilm(@PathVariable("id") int filmId) {
+    ResponseEntity<Void> deleteFilm(@PathVariable("id") int filmId,
+                                    HttpServletRequest request) {
+        if (!request.isUserInRole(ADMIN.getCode())) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         if (service.deleteFilm(filmId)){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // "/api/issues/{id}"
     @PatchMapping("/api/extraFilmInfo/{id}")
     ResponseEntity<Void> changeIssue(@PathVariable("id") int filmId,
-                                     @RequestBody @Valid UpdateFilmDto updateFilmInfo) {
-        if (service.changeFilmInfo(filmId,updateFilmInfo.getBoxOffice(), updateFilmInfo.getGenre(), updateFilmInfo.getYear())) {
+                                     @RequestBody @Valid UpdateFilmDto updateFilmInfo,
+                                     HttpServletRequest request) {
+        if (!request.isUserInRole(ADMIN.getCode())) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        if (service.changeFilmInfo(filmId, updateFilmInfo.getBoxOffice(), updateFilmInfo.getGenre(), updateFilmInfo.getYear())) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

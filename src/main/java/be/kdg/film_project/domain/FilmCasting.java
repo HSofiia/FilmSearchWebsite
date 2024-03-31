@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "film_id", "actor_id" }) })
 public class FilmCasting {
@@ -21,17 +23,19 @@ public class FilmCasting {
     @JoinColumn(name = "actor_id")
     private Actor actor;
 
-    @Column
-    private String role;
 
     public FilmCasting() {
     }
 
-    public FilmCasting(int film_casting_id, Film film, Actor actor, String role) {
+    public FilmCasting(int film_casting_id, Film film, Actor actor) {
         this.id = film_casting_id;
         this.film = film;
         this.actor = actor;
-        this.role = role;
+    }
+
+    public FilmCasting(Film film, Actor actor) {
+        this.film = film;
+        this.actor = actor;
     }
 
     public int getId() {
@@ -58,11 +62,4 @@ public class FilmCasting {
         this.actor = actor;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

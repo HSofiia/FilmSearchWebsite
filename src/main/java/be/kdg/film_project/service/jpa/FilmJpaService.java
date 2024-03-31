@@ -30,7 +30,6 @@ public class FilmJpaService implements FilmService {
     }
 
     @Override
-    @Transactional
     public List<Film> getFilms() {
         return filmJpaRepository.findAll();
     }
@@ -62,6 +61,17 @@ public class FilmJpaService implements FilmService {
         film.setYear(year);
         filmJpaRepository.save(film);
         return true;
+    }
+
+    @Override
+    public void updateFilmInfo(int filmId, double boxOffice, Film.Genre genre, LocalDate year){
+        var film = filmJpaRepository.findById(filmId).orElse(null);
+        if (film != null) {
+            film.setBoxOffice(boxOffice);
+            film.setYear(year);
+            film.setGenre(genre);
+            filmJpaRepository.save(film);
+        }
     }
 
     @Override

@@ -27,11 +27,15 @@ GET http://localhost:8080/actors/search?actorName=Rami+Malek
 
 ### API: delete an actor
 DELETE http://localhost:8080/api/extraActorInfo/2
+Cookie: JSESSIONID=0896C8C2F7FAA5CC7B2AA7FD7E15491D
+X-CSRF-TOKEN: l4agQY-ROCmc_MGnSNu_FRg_6fzXJYyFVd8RVYNGLhLjo31T8-LDeL6gDE-xxfiTLfaLInsPxMTnFOqoZr4hYLt0S3SGlkhh
 
 ### API: delete an film
 DELETE http://localhost:8080/api/extraFilmInfo/1
+Cookie: JSESSIONID=0896C8C2F7FAA5CC7B2AA7FD7E15491D
+X-CSRF-TOKEN: l4agQY-ROCmc_MGnSNu_FRg_6fzXJYyFVd8RVYNGLhLjo31T8-LDeL6gDE-xxfiTLfaLInsPxMTnFOqoZr4hYLt0S3SGlkhh
 
-### API: create an issue (bad request)
+### API: create an film (bad request)
 POST http://localhost:8080/api/addFilm
 Accept: application/json
 Content-Type: application/json
@@ -43,7 +47,19 @@ Content-Type: application/json
   "genre": "SPY"
 }
 
-### API: create an issue (created)
+### API: create an actor (bad request)
+POST http://localhost:8080/api/addActor
+Accept: application/xml
+Content-Type: application/xml
+
+
+<actor>
+    <actorName></actorName>
+    <nationality>Spanish</nationality>
+    <gender>Male</gender>
+</actor>
+
+### API: create an film (created)
 POST http://localhost:8080/api/addFilm
 Accept: application/json
 Content-Type: application/json
@@ -54,6 +70,19 @@ Content-Type: application/json
   "boxOffice": 220.0,
   "genre": "SPY"
 }
+
+### API: create an actor (created)
+POST http://localhost:8080/api/addActor
+Accept: application/xml
+Content-Type: application/xml
+
+
+<actor>
+    <actorName>Actor</actorName>
+    <nationality>Spanish</nationality>
+    <gender>M</gender>
+</actor>
+
 
 ### API: change an film's info (no content)
 

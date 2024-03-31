@@ -7,9 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface FilmService {
-    Film addFilm(String filmName, LocalDate year, double boxOffice, Film.Genre genre);
-
     List<Film> getFilms();
+    Film addFilm(String filmName, LocalDate year, double boxOffice, Film.Genre genre);
 
     Film getFilm(int filmId);
 
@@ -18,6 +17,8 @@ public interface FilmService {
     boolean deleteFilm(int filmId);
 
     boolean changeFilmInfo(int filmId,double boxOffice, Film.Genre genre, LocalDate year);
+
+    void updateFilmInfo(int filmId, double boxOffice, Film.Genre genre, LocalDate year);
 
     List<Film> getByName(String name);
 

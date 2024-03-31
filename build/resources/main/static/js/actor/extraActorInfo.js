@@ -1,3 +1,5 @@
+import { header, token } from "../util/csrf.js";
+
 const deleteButtons = document.querySelectorAll('button.btn-outline-danger');
 
 for (const deleteButton of deleteButtons) {
@@ -10,7 +12,8 @@ async function handleDeleteActor() {
     console.log("deleting...")
     console.log(actorId);
     const response = await fetch(`/api/extraActorInfo/${actorId.value}`, {
-        method: "DELETE"
+        method: "DELETE",
+        [header]: token
     })
     if (response.status === 204) {
         console.log("Method delete is successful")
@@ -79,7 +82,8 @@ async function changeActor() {
     const response = await fetch(`/api/extraActorInfo/${actorIdInput.value}`, {
         method: "PATCH",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            [header]: token
         },
         body: JSON.stringify({
             gender: genderText.value,
@@ -89,9 +93,9 @@ async function changeActor() {
     if (response.status === 204) {
         console.log("success")
     } else {
-        alert('Something went wrong!'); // Don't use alerts in a "real" application.
+        alert('Something went wrong!');
     }
 }
 
-updateButton.addEventListener("click", changeActor);
+updateButton?.addEventListener("click", changeActor);
 

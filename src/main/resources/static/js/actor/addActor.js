@@ -1,3 +1,5 @@
+import { header, token } from "../util/csrf.js";
+
 const titleInput = document.getElementById("actorName");
 const nationalityInput = document.getElementById("nationality");
 const genderInput = document.getElementById("gender");
@@ -5,32 +7,45 @@ const addButton = document.getElementById("addButton");
 
 console.log("add actor class")
 async function addNewActor() {
+    console.log("addNewFilm response done");
 
-    console.log("addNewFilm response done")
+    const xmlData = `
+        <actor>
+            <actorName>${titleInput.value}</actorName>
+            <nationality>${nationalityInput.value}</nationality>
+            <gender>${genderInput.value}</gender>
+        </actor>
+    `;
+
     const response = await fetch('/api/addActor', {
         method: "POST",
         headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
+            "Accept": "application/xml",
+            "Content-Type": "application/xml",
+            [header]: token
         },
-        body: JSON.stringify({
-            actorName: titleInput.value,
-            nationality: nationalityInput.value,
-            gender: genderInput.value
-        })
+        body: xmlData
     });
 
     if (response.status === 201) {
-        window.location.replace("/actors")
-        console.log("fetched")
-        /**
-         * @type {{id: number, actorName: string, nationality: string, gender: string }}
-         */
-        const actor = await response.json();
+        window.location.replace("/actors");
+        console.log("fetched");
+
+        const actorXml = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(actorXml, "text/xml");
+
+        const actor = {
+            id: xmlDoc.querySelector("id").textContent,
+            actorName: xmlDoc.querySelector("actorName").textContent,
+            nationality: xmlDoc.querySelector("nationality").textContent,
+            gender: xmlDoc.querySelector("gender").textContent
+        };
+
         addFilmToHtmlTable(actor);
     } else {
-        alert("Something went wrong!"); // alerts are "bad"...
-        console.log("issue with adding the actor to the table")
+        alert("Something went wrong!");
+        console.log("issue with adding the actor to the table");
     }
 }
 
@@ -52,4 +67,4 @@ function addFilmToHtmlTable(actor) {
     console.log(actorTableBody)
 }
 
-addButton.addEventListener("click", addNewActor);
+addButton?.addEventListener("click", addNewActor);

@@ -2,9 +2,6 @@ package be.kdg.film_project.domain;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Table(name = "director")
 @Entity
 public class Director {
@@ -77,14 +74,4 @@ public class Director {
         this.award = award;
     }
 
-
-    @Override
-    public String toString() {
-        return "Director{" +
-                "id=" + id +
-                ", directorName='" + directorName + '\'' +
-                ", birth=" + birth +
-                ", award='" + award + '\'' +
-                '}';
-    }
 }

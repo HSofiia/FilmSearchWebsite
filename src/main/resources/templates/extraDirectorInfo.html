@@ -6,6 +6,8 @@
     <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/styles.css">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
 <main>
@@ -13,10 +15,11 @@
     <!-- Details Info -->
 
     <div class="container mt-3 mb-3">
-        <h1 class="text-center display-5 mt-3 mb-3" th:text="${director.getDirectorName()}"></h1>
+        <h1 class="text-center display-5 mt-3 mb-3" th:text="${one_director.getDirectorName()}"></h1>
+        <input id="filmId" type="hidden" th:value="${one_director.id}">
         <p class="lead text-center">
-            <span th:utext="#{fordirector.birth}">Birth Year:</span> <a th:text="${director.getBirth()}"></a><br>
-            <span th:utext="#{fordirector.award}">Award:</span> <a th:text="${director.getAward()}"></a><br>
+            <span th:utext="#{fordirector.birth}">Birth Year:</span> <a th:text="${one_director.getBirth()}"></a><br>
+            <span th:utext="#{fordirector.award}">Award:</span> <a th:text="${one_director.getAward()}"></a><br>
         </p>
     </div>
 
@@ -27,7 +30,7 @@
             <a th:utext="#{foractor.back}" th:href="@{/directors}" class="btn btn-secondary">Go Back</a>
         </div>
         <div class="m-2">
-            <form th:method="DELETE" th:action="@{/directors/{id}(id=${director.getId()})}" class="mb-2">
+            <form th:method="DELETE" th:action="@{/directors/{id}(id=${one_director.getId()})}" class="mb-2">
                 <input class="btn btn-outline-danger" type="submit" th:value="#{foractor.delete}">
             </form>
         </div>

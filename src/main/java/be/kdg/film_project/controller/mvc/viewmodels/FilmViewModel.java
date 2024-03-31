@@ -26,27 +26,39 @@ public class FilmViewModel {
 
     private List<ActorViewModel> castings;
 
+    private boolean modificationAllowed;
+
     public FilmViewModel() {
     }
 
-    public FilmViewModel(Integer filmId, String filmName, Film.Genre genre, Double boxOffice, LocalDate year) {
+    public FilmViewModel(Integer filmId, String filmName, Film.Genre genre, Double boxOffice, LocalDate year, boolean modificationAllowed) {
         this.id = filmId;
         this.filmName = filmName;
         this.genre = genre;
         this.boxOffice = boxOffice;
         this.year = year;
+        this.modificationAllowed = modificationAllowed;
     }
 
-    public FilmViewModel(Integer filmId, String filmName, Film.Genre genre, Double boxOffice, LocalDate year, List<ActorViewModel> castings) {
+    public FilmViewModel(Integer filmId, String filmName, Film.Genre genre, Double boxOffice, LocalDate year,boolean modificationAllowed, List<ActorViewModel> castings) {
         this.id = filmId;
         this.filmName = filmName;
         this.genre = genre;
         this.boxOffice = boxOffice;
         this.year = year;
+        this.modificationAllowed = modificationAllowed;
         this.castings = castings;
     }
 
     public FilmViewModel(String filmName, Film.Genre genre, Double boxOffice, LocalDate year) {
+        this.filmName = filmName;
+        this.genre = genre;
+        this.boxOffice = boxOffice;
+        this.year = year;
+    }
+
+    public FilmViewModel(Integer id, String filmName, Film.Genre genre, Double boxOffice, LocalDate year) {
+        this.id = id;
         this.filmName = filmName;
         this.genre = genre;
         this.boxOffice = boxOffice;
@@ -99,6 +111,14 @@ public class FilmViewModel {
 
     public void setCastings(List<ActorViewModel> castings) {
         this.castings = castings;
+    }
+
+    public boolean isModificationAllowed() {
+        return modificationAllowed;
+    }
+
+    public void setModificationAllowed(boolean modificationAllowed) {
+        this.modificationAllowed = modificationAllowed;
     }
 
     @Override

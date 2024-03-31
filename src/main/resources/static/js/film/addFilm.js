@@ -1,3 +1,5 @@
+import { header, token } from "../util/csrf.js";
+
 const titleInput = document.getElementById("filmName");
 const yearInput = document.getElementById("year");
 const boxOfficeInput = document.getElementById("boxOffice");
@@ -12,7 +14,8 @@ async function addNewFilm() {
         method: "POST",
         headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            [header]: token
         },
         body: JSON.stringify({
             filmName: titleInput.value,
@@ -54,4 +57,4 @@ function addFilmToHtmlTable(film) {
     console.log(filmTableBody)
 }
 
-addButton.addEventListener("click", addNewFilm);
+addButton?.addEventListener("click", addNewFilm);

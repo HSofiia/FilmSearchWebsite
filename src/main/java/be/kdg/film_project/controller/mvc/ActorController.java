@@ -4,17 +4,23 @@ import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.presentation.exceptions.ActorException;
 import be.kdg.film_project.controller.mvc.viewmodels.ActorViewModel;
 import be.kdg.film_project.controller.mvc.viewmodels.FilmViewModel;
+import be.kdg.film_project.security.CustomUserDetails;
 import be.kdg.film_project.service.ActorService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import static be.kdg.film_project.domain.UserRole.ADMIN;
+
 
 import java.util.List;
 
@@ -28,7 +34,8 @@ public class ActorController {
     }
 
     @GetMapping("/actors")
-    public ModelAndView allActors() {
+    public ModelAndView allActors(@AuthenticationPrincipal CustomUserDetails user,
+                                  HttpServletRequest request) {
         var mav = new ModelAndView();
         mav.setViewName("actors");
         mav.addObject("all_actors",
@@ -38,14 +45,17 @@ public class ActorController {
                                 actor.getId(),
                                 actor.getActorName(),
                                 actor.getGender(),
-                                actor.getNationality()
+                                actor.getNationality(),
+                                request.isUserInRole(ADMIN.getCode())
                         ))
                         .toList());
         return mav;
     }
 
     @GetMapping("/extraActorInfo")
-    public ModelAndView oneActor(@RequestParam("id") int id) {
+    public ModelAndView oneActor(@RequestParam("id") int id,
+                                 @AuthenticationPrincipal CustomUserDetails user,
+                                 HttpServletRequest request) {
         var actor = actorService.getActor(id);
         var mav = new ModelAndView();
         mav.setViewName("extraActorInfo");
@@ -54,15 +64,16 @@ public class ActorController {
                         actor.getId(),
                         actor.getActorName(),
                         actor.getGender(),
-                        actor.getNationality()
-                ));
+                        actor.getNationality(),
+                        user != null && (request.isUserInRole(ADMIN.getCode())
+                        )));
         return mav;
     }
 
     @GetMapping("/actors/search")
     public ModelAndView searchActors(@RequestParam(required = false, value = "gender") Actor.Gender gender,
                                @RequestParam(required = false, value = "nationality") String nationality) {
-        var mav = new ModelAndView("actors"); // Return the actors.html template
+        var mav = new ModelAndView("actors");
         List<Actor> actors;
         if (gender != null && nationality != null) {
             actors = actorService.getByGenderAndNationality(gender, nationality);
