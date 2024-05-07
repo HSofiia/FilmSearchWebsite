@@ -1,4 +1,4 @@
-package be.kdg.film_project.service.jpa;
+package be.kdg.film_project.service.impl;
 
 import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.repository.jpa.ActorJpaRepository;
@@ -19,6 +19,9 @@ public class ActorJpaService implements ActorService {
     @Override
     @Transactional
     public Actor addActor(String name, Actor.Gender gender, String nationality) {
+        if (name == null || gender == null || nationality == null) {
+            throw new IllegalArgumentException("Name, gender, and nationality cannot be null");
+        }
         Actor actor = new Actor(name, gender, nationality);
         return actorJpaRepository.save(actor);
     }

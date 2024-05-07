@@ -13,7 +13,10 @@ async function handleDeleteActor() {
     console.log(actorId);
     const response = await fetch(`/api/extraActorInfo/${actorId.value}`, {
         method: "DELETE",
-        [header]: token
+        headers: {
+            [header]: token
+        }
+
     })
     if (response.status === 204) {
         console.log("Method delete is successful")

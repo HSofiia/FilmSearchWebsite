@@ -26,14 +26,14 @@ GET http://localhost:8080/actors/search?nationality=American&gender=M
 GET http://localhost:8080/actors/search?actorName=Rami+Malek
 
 ### API: delete an actor
-DELETE http://localhost:8080/api/extraActorInfo/2
-Cookie: JSESSIONID=0896C8C2F7FAA5CC7B2AA7FD7E15491D
-X-CSRF-TOKEN: l4agQY-ROCmc_MGnSNu_FRg_6fzXJYyFVd8RVYNGLhLjo31T8-LDeL6gDE-xxfiTLfaLInsPxMTnFOqoZr4hYLt0S3SGlkhh
+DELETE http://localhost:8080/api/extraActorInfo/1
+Cookie: JSESSIONID=FBB6A69AB306215609C740947F12628F
+X-CSRF-TOKEN: jMqriInEu_5rr1VlHfVR7xpa9dynGTJ9s2XDcSbK0gqr-yYzvamc7r_ygslGl2NTLthl2y5q2L7DelFQi1X0FUKstj2eyx8C
 
 ### API: delete an film
-DELETE http://localhost:8080/api/extraFilmInfo/1
-Cookie: JSESSIONID=0896C8C2F7FAA5CC7B2AA7FD7E15491D
-X-CSRF-TOKEN: l4agQY-ROCmc_MGnSNu_FRg_6fzXJYyFVd8RVYNGLhLjo31T8-LDeL6gDE-xxfiTLfaLInsPxMTnFOqoZr4hYLt0S3SGlkhh
+DELETE http://localhost:8080/api/extraFilmInfo/4
+Cookie: JSESSIONID=FBB6A69AB306215609C740947F12628F
+X-CSRF-TOKEN: jMqriInEu_5rr1VlHfVR7xpa9dynGTJ9s2XDcSbK0gqr-yYzvamc7r_ygslGl2NTLthl2y5q2L7DelFQi1X0FUKstj2eyx8C
 
 ### API: create an film (bad request)
 POST http://localhost:8080/api/addFilm

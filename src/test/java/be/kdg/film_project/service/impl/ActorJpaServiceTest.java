@@ -1,4 +1,4 @@
-package be.kdg.film_project.service.jpa;
+package be.kdg.film_project.service.impl;
 
 import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.repository.jpa.ActorJpaRepository;
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -24,13 +25,11 @@ class ActorJpaServiceTest {
     private ActorJpaRepository actorJpaRepository;
 
     private int testId;
+    private Actor testActor;
 
     @BeforeAll
     void setup() {
-        // Create an issue to be used in this test class.
-        // Such an issue (BeforeAll) should not be modified from within tests.
-        // NOTE: I'm NOT actually using this record. This is just a demo.
-        var testActor = actorJpaRepository.save(new Actor("Brad Pitt", Actor.Gender.M, "American"));
+        testActor = actorJpaRepository.save(new Actor("Brad Pitt", Actor.Gender.M, "American"));
         testId = testActor.getId();
     }
 
@@ -42,7 +41,7 @@ class ActorJpaServiceTest {
     @Test
     void changeActorGenderAndNationalityShouldReturnTrueForExistingActorAndUpdateSaidActor() {
         // Arrange
-        var createdActor = actorJpaRepository.save(new Actor("Brad Pitt", Actor.Gender.M, "American"));
+        var createdActor = actorJpaRepository.save(testActor);
 
         // Act
         var result = actorJpaService.updateActorInfo(
@@ -55,12 +54,11 @@ class ActorJpaServiceTest {
         assertEquals(Actor.Gender.F,
                 actorJpaRepository.findById(createdActor.getId()).get().getGender());
 
-        // (cleanup)
         actorJpaRepository.deleteById(createdActor.getId());
     }
 
     @Test
-    void changeIssueDescriptionShouldReturnFalseForNonExistingIssue() {
+    void changeActorGenderAndNationalityShouldReturnFalseForNonExistingActor() {
         // Arrange
 
         // Act
@@ -69,7 +67,53 @@ class ActorJpaServiceTest {
 
         // Assert
         assertFalse(result);
-        // This is a bit over the top (my "assumptions" were clear).
         assertTrue(actorJpaRepository.findById(9999).isEmpty());
+    }
+
+
+    @Test
+    void addActorShouldBeAddedSuccessfully() {
+        // Arrange
+        String name = testActor.getActorName();
+        Actor.Gender gender = testActor.getGender();
+        String nationality = testActor.getNationality();
+
+        // Act
+        var addedActor = actorJpaService.addActor(name, gender, nationality);
+
+        // Assert
+        assertNotNull(addedActor);
+        assertNotNull(addedActor.getId());
+        assertEquals(name, addedActor.getActorName());
+        assertEquals(gender, addedActor.getGender());
+        assertEquals(nationality, addedActor.getNationality());
+
+        // (cleanup)
+        actorJpaRepository.deleteById(addedActor.getId());
+    }
+
+    @Test
+    void addActorShouldFailOfNullName() {
+        // Arrange
+        Actor.Gender gender = testActor.getGender();
+        String nationality = testActor.getNationality();
+
+        Executable addedActor = () -> actorJpaService.addActor(null, gender, nationality);
+
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, addedActor);
+    }
+
+    @Test
+    void addActor_Failure_NullGender() {
+        // Arrange
+        String name = testActor.getActorName();
+        String nationality = testActor.getNationality();
+
+        Executable addedActor = () -> actorJpaService.addActor(name, null, nationality);
+
+        // Act & Assert
+        assertThrows(IllegalArgumentException.class, addedActor);
     }
 }

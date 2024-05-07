@@ -13,7 +13,9 @@ async function handleDeleteFilm() {
     console.log(filmId);
     const response = await fetch(`/api/extraFilmInfo/${filmId.value}`, {
         method: "DELETE",
-        [header]: token
+        headers: {
+            [header]: token
+        }
     })
     if (response.status === 204) {
         console.log("Method delete is successful")

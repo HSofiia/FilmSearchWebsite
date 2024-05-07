@@ -1,4 +1,4 @@
-package be.kdg.film_project.service.jpa;
+package be.kdg.film_project.service.impl;
 
 import be.kdg.film_project.domain.Film;
 import be.kdg.film_project.repository.jpa.FilmJpaRepository;

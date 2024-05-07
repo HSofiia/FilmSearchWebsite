@@ -26,14 +26,16 @@ GET http://localhost:8080/actors/search?nationality=American&gender=M
 GET http://localhost:8080/actors/search?actorName=Rami+Malek
 
 ### API: delete an actor
-DELETE http://localhost:8080/api/extraActorInfo/2
+DELETE http://localhost:8080/api/extraActorInfo/1
+Cookie: JSESSIONID=FBB6A69AB306215609C740947F12628F
+X-CSRF-TOKEN: jMqriInEu_5rr1VlHfVR7xpa9dynGTJ9s2XDcSbK0gqr-yYzvamc7r_ygslGl2NTLthl2y5q2L7DelFQi1X0FUKstj2eyx8C
 
 ### API: delete an film
-DELETE http://localhost:8080/api/extraFilmInfo/1
-Cookie: JSESSIONID=9DC85C4D18264CC00D31348E9576250C
-X-CSRF-TOKEN: b-ZW1AjCo9tDe9tOeNqy12TEo9eX6-RJeEOP-DecjCDDKhI1C99jtjH3lbluTOwvHveGtVWijrXy09dkHXO6yAL-uRKiHiQA
+DELETE http://localhost:8080/api/extraFilmInfo/4
+Cookie: JSESSIONID=FBB6A69AB306215609C740947F12628F
+X-CSRF-TOKEN: jMqriInEu_5rr1VlHfVR7xpa9dynGTJ9s2XDcSbK0gqr-yYzvamc7r_ygslGl2NTLthl2y5q2L7DelFQi1X0FUKstj2eyx8C
 
-### API: create an issue (bad request)
+### API: create an film (bad request)
 POST http://localhost:8080/api/addFilm
 Accept: application/json
 Content-Type: application/json
@@ -45,7 +47,19 @@ Content-Type: application/json
   "genre": "SPY"
 }
 
-### API: create an issue (created)
+### API: create an actor (bad request)
+POST http://localhost:8080/api/addActor
+Accept: application/xml
+Content-Type: application/xml
+
+
+<actor>
+    <actorName></actorName>
+    <nationality>Spanish</nationality>
+    <gender>Male</gender>
+</actor>
+
+### API: create an film (created)
 POST http://localhost:8080/api/addFilm
 Accept: application/json
 Content-Type: application/json
@@ -56,6 +70,19 @@ Content-Type: application/json
   "boxOffice": 220.0,
   "genre": "SPY"
 }
+
+### API: create an actor (created)
+POST http://localhost:8080/api/addActor
+Accept: application/xml
+Content-Type: application/xml
+
+
+<actor>
+    <actorName>Actor</actorName>
+    <nationality>Spanish</nationality>
+    <gender>M</gender>
+</actor>
+
 
 ### API: change an film's info (no content)
 

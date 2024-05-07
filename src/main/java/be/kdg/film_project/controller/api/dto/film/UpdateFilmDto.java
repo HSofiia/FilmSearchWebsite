@@ -9,6 +9,15 @@ public class UpdateFilmDto {
     private double boxOffice;
     private Film.Genre genre;
 
+    public UpdateFilmDto() {
+    }
+
+    public UpdateFilmDto(LocalDate year, double boxOffice, Film.Genre genre) {
+        this.year = year;
+        this.boxOffice = boxOffice;
+        this.genre = genre;
+    }
+
     public LocalDate getYear() {
         return year;
     }
