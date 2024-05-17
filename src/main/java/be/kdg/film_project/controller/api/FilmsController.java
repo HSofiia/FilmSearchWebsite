@@ -86,6 +86,7 @@ public class FilmsController {
         }
     }
 
+
     @DeleteMapping("/api/extraFilmInfo/{id}")
     ResponseEntity<Void> deleteFilm(@PathVariable("id") int filmId,
                                     HttpServletRequest request) {

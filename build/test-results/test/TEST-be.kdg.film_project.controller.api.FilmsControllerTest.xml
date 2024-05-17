@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="be.kdg.film_project.controller.api.FilmsControllerTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-05-07T21:19:06" hostname="Sofias-MacBook-Air.local" time="1.41">
+<testsuite name="be.kdg.film_project.controller.api.FilmsControllerTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-05-17T07:53:29" hostname="Sofias-MacBook-Air.local" time="1.152">
   <properties/>
-  <testcase name="changeFilmWithUserRoleReturnsForbidden()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.955"/>
-  <testcase name="changeFilmIsNotAllowedIfNotSignedIn()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.048"/>
-  <testcase name="getActorsOfFilmsShouldReturnNoContentIfNoAssignedActors()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.09"/>
-  <testcase name="changeFilmWithAdminRoleShouldReturnNoContent()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.114"/>
+  <testcase name="changeFilmWithUserRoleReturnsForbidden()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.754"/>
+  <testcase name="changeFilmIsNotAllowedIfNotSignedIn()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.036"/>
+  <testcase name="getActorsOfFilmsShouldReturnNoContentIfNoAssignedActors()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.068"/>
+  <testcase name="changeFilmWithAdminRoleShouldReturnNoContent()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.135"/>
   <testcase name="getActorsOfFilmsShouldReturnNotFoundForNonExistentIssue()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.022"/>
-  <testcase name="changeFilmShouldReturnNotFoundIfFilmDoesNotExist()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.027"/>
-  <testcase name="getActorsOfFilmsShouldReturnOkWithActors()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.144"/>
-  <system-out><![CDATA[23:19:02.939 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [be.kdg.film_project.controller.api.FilmsControllerTest]: FilmsControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-23:19:03.034 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.controller.api.FilmsControllerTest
+  <testcase name="changeFilmShouldReturnNotFoundIfFilmDoesNotExist()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.022"/>
+  <testcase name="getActorsOfFilmsShouldReturnOkWithActors()" classname="be.kdg.film_project.controller.api.FilmsControllerTest" time="0.108"/>
+  <system-out><![CDATA[09:53:24.200 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [be.kdg.film_project.controller.api.FilmsControllerTest]: FilmsControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+09:53:24.347 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.controller.api.FilmsControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -19,182 +19,182 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.3)
 
-2024-05-07T23:19:03.426+02:00  INFO 21094 --- [    Test worker] b.k.f.c.api.FilmsControllerTest          : Starting FilmsControllerTest using Java 21.0.2 with PID 21094 (started by sofiahmyria in /Users/sofiahmyria/IdeaProjects/programming-5)
-2024-05-07T23:19:03.428+02:00  INFO 21094 --- [    Test worker] b.k.f.c.api.FilmsControllerTest          : The following 1 profile is active: "test"
-2024-05-07T23:19:04.192+02:00  INFO 21094 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-05-07T23:19:04.240+02:00  INFO 21094 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 5 JPA repository interfaces.
-2024-05-07T23:19:04.544+02:00  INFO 21094 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-05-07T23:19:04.578+02:00  INFO 21094 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.7.Final
-2024-05-07T23:19:04.580+02:00  INFO 21094 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
-2024-05-07T23:19:04.662+02:00  INFO 21094 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-05-07T23:19:04.746+02:00  INFO 21094 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-05-07T23:19:04.759+02:00  INFO 21094 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-05-07T23:19:04.926+02:00  INFO 21094 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@619c3546
-2024-05-07T23:19:04.927+02:00  INFO 21094 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-05-07T23:19:05.112+02:00  INFO 21094 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-05-07T23:19:05.563+02:00  INFO 21094 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-05-07T23:19:05.571+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director drop constraint if exists FKeox6rmuu3j7esmllq1cg022xa
+2024-05-17T09:53:24.725+02:00  INFO 20228 --- [    Test worker] b.k.f.c.api.FilmsControllerTest          : Starting FilmsControllerTest using Java 21.0.2 with PID 20228 (started by sofiahmyria in /Users/sofiahmyria/IdeaProjects/programming-5)
+2024-05-17T09:53:24.726+02:00  INFO 20228 --- [    Test worker] b.k.f.c.api.FilmsControllerTest          : The following 1 profile is active: "test"
+2024-05-17T09:53:25.392+02:00  INFO 20228 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-17T09:53:25.474+02:00  INFO 20228 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 5 JPA repository interfaces.
+2024-05-17T09:53:25.909+02:00  INFO 20228 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-17T09:53:25.982+02:00  INFO 20228 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.7.Final
+2024-05-17T09:53:25.984+02:00  INFO 20228 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-05-17T09:53:26.089+02:00  INFO 20228 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-05-17T09:53:26.249+02:00  INFO 20228 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-17T09:53:26.261+02:00  INFO 20228 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-05-17T09:53:26.535+02:00  INFO 20228 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e2cdc51
+2024-05-17T09:53:26.536+02:00  INFO 20228 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-05-17T09:53:26.880+02:00  INFO 20228 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-05-17T09:53:27.639+02:00  INFO 20228 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-17T09:53:27.658+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director drop constraint if exists FKeox6rmuu3j7esmllq1cg022xa
 Hibernate: alter table if exists director drop constraint if exists FKeox6rmuu3j7esmllq1cg022xa
-2024-05-07T23:19:05.588+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKdpbx2oo0uhp58l0dxbqdm6c3q
+2024-05-17T09:53:27.706+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKdpbx2oo0uhp58l0dxbqdm6c3q
 Hibernate: alter table if exists film_casting drop constraint if exists FKdpbx2oo0uhp58l0dxbqdm6c3q
-2024-05-07T23:19:05.590+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKb2avfvx70nfcjk3e8p89v94vj
+2024-05-17T09:53:27.710+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKb2avfvx70nfcjk3e8p89v94vj
 Hibernate: alter table if exists film_casting drop constraint if exists FKb2avfvx70nfcjk3e8p89v94vj
-2024-05-07T23:19:05.592+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : drop table if exists actor cascade
+2024-05-17T09:53:27.712+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : drop table if exists actor cascade
 Hibernate: drop table if exists actor cascade
-2024-05-07T23:19:05.599+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : drop table if exists director cascade
+2024-05-17T09:53:27.725+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : drop table if exists director cascade
 Hibernate: drop table if exists director cascade
-2024-05-07T23:19:05.602+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film cascade
+2024-05-17T09:53:27.730+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film cascade
 Hibernate: drop table if exists film cascade
-2024-05-07T23:19:05.605+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film_casting cascade
+2024-05-17T09:53:27.733+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film_casting cascade
 Hibernate: drop table if exists film_casting cascade
-2024-05-07T23:19:05.608+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : drop table if exists user_table cascade
+2024-05-17T09:53:27.736+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : drop table if exists user_table cascade
 Hibernate: drop table if exists user_table cascade
-2024-05-07T23:19:05.614+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : create table actor (id serial not null, actor_name varchar(255), gender varchar(255) check (gender in ('M','F','N')), nationality varchar(255), primary key (id))
+2024-05-17T09:53:27.770+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : create table actor (id serial not null, actor_name varchar(255), gender varchar(255) check (gender in ('M','F','N')), nationality varchar(255), primary key (id))
 Hibernate: create table actor (id serial not null, actor_name varchar(255), gender varchar(255) check (gender in ('M','F','N')), nationality varchar(255), primary key (id))
-2024-05-07T23:19:05.625+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : create table director (birth integer, film_id integer, id serial not null, award varchar(255), director_name varchar(255), primary key (id))
+2024-05-17T09:53:27.799+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : create table director (birth integer, film_id integer, id serial not null, award varchar(255), director_name varchar(255), primary key (id))
 Hibernate: create table director (birth integer, film_id integer, id serial not null, award varchar(255), director_name varchar(255), primary key (id))
-2024-05-07T23:19:05.629+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : create table film (box_office float(53), id serial not null, release_year date, film_name varchar(255), genre varchar(255) check (genre in ('HISTORY','SPY','FANTASY','ROMANCE','ACTION')), primary key (id))
+2024-05-17T09:53:27.808+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : create table film (box_office float(53), id serial not null, release_year date, film_name varchar(255), genre varchar(255) check (genre in ('HISTORY','SPY','FANTASY','ROMANCE','ACTION')), primary key (id))
 Hibernate: create table film (box_office float(53), id serial not null, release_year date, film_name varchar(255), genre varchar(255) check (genre in ('HISTORY','SPY','FANTASY','ROMANCE','ACTION')), primary key (id))
-2024-05-07T23:19:05.634+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : create table film_casting (actor_id integer not null, film_id integer not null, id serial not null, primary key (id), constraint UKgprrdn7mj3rol443mt5qn0fls unique (film_id, actor_id))
+2024-05-17T09:53:27.818+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : create table film_casting (actor_id integer not null, film_id integer not null, id serial not null, primary key (id), constraint UKgprrdn7mj3rol443mt5qn0fls unique (film_id, actor_id))
 Hibernate: create table film_casting (actor_id integer not null, film_id integer not null, id serial not null, primary key (id), constraint UKgprrdn7mj3rol443mt5qn0fls unique (film_id, actor_id))
-2024-05-07T23:19:05.638+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : create table user_table (id serial not null, role smallint not null check (role between 0 and 1), password varchar(255) not null, username varchar(255) not null, primary key (id))
+2024-05-17T09:53:27.823+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : create table user_table (id serial not null, role smallint not null check (role between 0 and 1), password varchar(255) not null, username varchar(255) not null, primary key (id))
 Hibernate: create table user_table (id serial not null, role smallint not null check (role between 0 and 1), password varchar(255) not null, username varchar(255) not null, primary key (id))
-2024-05-07T23:19:05.642+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director add constraint FKeox6rmuu3j7esmllq1cg022xa foreign key (film_id) references film
+2024-05-17T09:53:27.829+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director add constraint FKeox6rmuu3j7esmllq1cg022xa foreign key (film_id) references film
 Hibernate: alter table if exists director add constraint FKeox6rmuu3j7esmllq1cg022xa foreign key (film_id) references film
-2024-05-07T23:19:05.645+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKdpbx2oo0uhp58l0dxbqdm6c3q foreign key (actor_id) references actor on delete cascade
+2024-05-17T09:53:27.835+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKdpbx2oo0uhp58l0dxbqdm6c3q foreign key (actor_id) references actor on delete cascade
 Hibernate: alter table if exists film_casting add constraint FKdpbx2oo0uhp58l0dxbqdm6c3q foreign key (actor_id) references actor on delete cascade
-2024-05-07T23:19:05.647+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8p89v94vj foreign key (film_id) references film on delete cascade
+2024-05-17T09:53:27.838+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8p89v94vj foreign key (film_id) references film on delete cascade
 Hibernate: alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8p89v94vj foreign key (film_id) references film on delete cascade
-2024-05-07T23:19:05.651+02:00  INFO 21094 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-05-07T23:19:05.862+02:00  INFO 21094 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-05-07T23:19:06.394+02:00  INFO 21094 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@62099f75, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@132f1d85, org.springframework.security.web.context.SecurityContextHolderFilter@28806954, org.springframework.security.web.header.HeaderWriterFilter@4973dacf, org.springframework.security.web.csrf.CsrfFilter@ab90b8c, org.springframework.security.web.authentication.logout.LogoutFilter@1737acc0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@22ab3e3b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24e0bdb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@348d1a5e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4a2c69a6, org.springframework.security.web.access.ExceptionTranslationFilter@38293d23, org.springframework.security.web.access.intercept.AuthorizationFilter@619dc070]
-2024-05-07T23:19:06.749+02:00  INFO 21094 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2024-05-07T23:19:06.749+02:00  INFO 21094 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2024-05-07T23:19:06.750+02:00  INFO 21094 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2024-05-07T23:19:06.763+02:00  INFO 21094 --- [    Test worker] b.k.f.c.api.FilmsControllerTest          : Started FilmsControllerTest in 3.626 seconds (process running for 4.569)
-2024-05-07T23:19:06.840+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
+2024-05-17T09:53:27.843+02:00  INFO 20228 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-17T09:53:28.320+02:00  INFO 20228 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-17T09:53:29.096+02:00  INFO 20228 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@62099f75, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@132f1d85, org.springframework.security.web.context.SecurityContextHolderFilter@28806954, org.springframework.security.web.header.HeaderWriterFilter@4973dacf, org.springframework.security.web.csrf.CsrfFilter@ab90b8c, org.springframework.security.web.authentication.logout.LogoutFilter@1737acc0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@22ab3e3b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24e0bdb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@348d1a5e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4a2c69a6, org.springframework.security.web.access.ExceptionTranslationFilter@38293d23, org.springframework.security.web.access.intercept.AuthorizationFilter@619dc070]
+2024-05-17T09:53:29.622+02:00  INFO 20228 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-05-17T09:53:29.623+02:00  INFO 20228 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-05-17T09:53:29.623+02:00  INFO 20228 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2024-05-17T09:53:29.638+02:00  INFO 20228 --- [    Test worker] b.k.f.c.api.FilmsControllerTest          : Started FilmsControllerTest in 5.144 seconds (process running for 6.438)
+2024-05-17T09:53:29.774+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
 Hibernate: select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
-2024-05-07T23:19:07.607+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.291+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.640+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.317+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.654+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T09:53:30.330+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-07T23:19:07.670+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
+2024-05-17T09:53:30.340+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
 Hibernate: insert into film_casting (actor_id,film_id) values (?,?)
-2024-05-07T23:19:07.697+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
+2024-05-17T09:53:30.375+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
-2024-05-07T23:19:07.708+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
+2024-05-17T09:53:30.388+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
 Hibernate: delete from film_casting where id=?
-2024-05-07T23:19:07.713+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.392+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:07.718+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
+2024-05-17T09:53:30.397+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
-2024-05-07T23:19:07.733+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.432+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.738+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.441+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.745+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T09:53:30.444+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-07T23:19:07.748+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
+2024-05-17T09:53:30.445+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
 Hibernate: insert into film_casting (actor_id,film_id) values (?,?)
-2024-05-07T23:19:07.765+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
+2024-05-17T09:53:30.457+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
-2024-05-07T23:19:07.768+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
+2024-05-17T09:53:30.458+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
 Hibernate: delete from film_casting where id=?
-2024-05-07T23:19:07.771+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.460+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:07.774+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
+2024-05-17T09:53:30.462+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
-2024-05-07T23:19:07.782+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.469+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.785+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.472+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.788+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T09:53:30.475+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-07T23:19:07.790+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
+2024-05-17T09:53:30.476+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
 Hibernate: insert into film_casting (actor_id,film_id) values (?,?)
-2024-05-07T23:19:07.834+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,c1_0.film_id,c1_0.id,c1_0.actor_id,a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 left join film_casting c1_0 on f1_0.id=c1_0.film_id left join actor a1_0 on a1_0.id=c1_0.actor_id where f1_0.id=?
+2024-05-17T09:53:30.513+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,c1_0.film_id,c1_0.id,c1_0.actor_id,a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 left join film_casting c1_0 on f1_0.id=c1_0.film_id left join actor a1_0 on a1_0.id=c1_0.actor_id where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,c1_0.film_id,c1_0.id,c1_0.actor_id,a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 left join film_casting c1_0 on f1_0.id=c1_0.film_id left join actor a1_0 on a1_0.id=c1_0.actor_id where f1_0.id=?
-2024-05-07T23:19:07.854+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
+2024-05-17T09:53:30.527+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
-2024-05-07T23:19:07.857+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
+2024-05-17T09:53:30.529+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
 Hibernate: delete from film_casting where id=?
-2024-05-07T23:19:07.859+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.531+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:07.862+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
+2024-05-17T09:53:30.532+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
-2024-05-07T23:19:07.875+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
+2024-05-17T09:53:30.538+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
 Hibernate: select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
-2024-05-07T23:19:07.879+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.540+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.884+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.543+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.888+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T09:53:30.545+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-07T23:19:07.891+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
+2024-05-17T09:53:30.547+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
 Hibernate: insert into film_casting (actor_id,film_id) values (?,?)
-2024-05-07T23:19:07.965+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.643+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:07.969+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.648+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:07.974+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : update film set box_office=?,film_name=?,genre=?,release_year=? where id=?
+2024-05-17T09:53:30.654+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : update film set box_office=?,film_name=?,genre=?,release_year=? where id=?
 Hibernate: update film set box_office=?,film_name=?,genre=?,release_year=? where id=?
-2024-05-07T23:19:07.978+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
+2024-05-17T09:53:30.659+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
-2024-05-07T23:19:07.980+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
+2024-05-17T09:53:30.661+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
 Hibernate: delete from film_casting where id=?
-2024-05-07T23:19:07.982+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.662+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:07.983+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
+2024-05-17T09:53:30.667+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
-2024-05-07T23:19:07.988+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.673+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.991+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.676+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:07.994+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T09:53:30.678+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-07T23:19:07.995+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
+2024-05-17T09:53:30.680+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
 Hibernate: insert into film_casting (actor_id,film_id) values (?,?)
-2024-05-07T23:19:07.999+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,c1_0.film_id,c1_0.id,c1_0.actor_id,a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 left join film_casting c1_0 on f1_0.id=c1_0.film_id left join actor a1_0 on a1_0.id=c1_0.actor_id where f1_0.id=?
+2024-05-17T09:53:30.685+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,c1_0.film_id,c1_0.id,c1_0.actor_id,a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 left join film_casting c1_0 on f1_0.id=c1_0.film_id left join actor a1_0 on a1_0.id=c1_0.actor_id where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,c1_0.film_id,c1_0.id,c1_0.actor_id,a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 left join film_casting c1_0 on f1_0.id=c1_0.film_id left join actor a1_0 on a1_0.id=c1_0.actor_id where f1_0.id=?
-2024-05-07T23:19:08.002+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
+2024-05-17T09:53:30.687+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
-2024-05-07T23:19:08.003+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
+2024-05-17T09:53:30.688+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
 Hibernate: delete from film_casting where id=?
-2024-05-07T23:19:08.005+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.690+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:08.006+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
+2024-05-17T09:53:30.691+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
-2024-05-07T23:19:08.012+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
+2024-05-17T09:53:30.696+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
 Hibernate: select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
-2024-05-07T23:19:08.015+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.698+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:08.019+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.701+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:08.021+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T09:53:30.703+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-07T23:19:08.022+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
+2024-05-17T09:53:30.704+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
 Hibernate: insert into film_casting (actor_id,film_id) values (?,?)
-2024-05-07T23:19:08.026+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.708+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:08.028+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
+2024-05-17T09:53:30.710+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
-2024-05-07T23:19:08.029+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
+2024-05-17T09:53:30.712+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
 Hibernate: delete from film_casting where id=?
-2024-05-07T23:19:08.030+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.713+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:08.032+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
+2024-05-17T09:53:30.714+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
-2024-05-07T23:19:08.042+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.720+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:08.049+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-17T09:53:30.722+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-07T23:19:08.058+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T09:53:30.724+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-07T23:19:08.062+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
+2024-05-17T09:53:30.725+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into film_casting (actor_id,film_id) values (?,?)
 Hibernate: insert into film_casting (actor_id,film_id) values (?,?)
-2024-05-07T23:19:08.070+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,c1_0.film_id,c1_0.id,c1_0.actor_id,a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 left join film_casting c1_0 on f1_0.id=c1_0.film_id left join actor a1_0 on a1_0.id=c1_0.actor_id where f1_0.id=?
+2024-05-17T09:53:30.729+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,c1_0.film_id,c1_0.id,c1_0.actor_id,a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 left join film_casting c1_0 on f1_0.id=c1_0.film_id left join actor a1_0 on a1_0.id=c1_0.actor_id where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,c1_0.film_id,c1_0.id,c1_0.actor_id,a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 left join film_casting c1_0 on f1_0.id=c1_0.film_id left join actor a1_0 on a1_0.id=c1_0.actor_id where f1_0.id=?
 
 MockHttpServletRequest:
@@ -233,13 +233,13 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2024-05-07T23:19:08.164+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
+2024-05-17T09:53:30.816+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.actor_id,f1_0.film_id from film_casting f1_0 where f1_0.id=?
-2024-05-07T23:19:08.169+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
+2024-05-17T09:53:30.819+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film_casting where id=?
 Hibernate: delete from film_casting where id=?
-2024-05-07T23:19:08.174+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-17T09:53:30.821+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-07T23:19:08.177+02:00 DEBUG 21094 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
+2024-05-17T09:53:30.823+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
 ]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/sofiahmyria/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.6/46e2545d7a97b6ccb195621650c5957279eb4812/byte-buddy-agent-1.14.6.jar)

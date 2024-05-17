@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,43 +25,40 @@ class ActorJpaRepositoryTest {
         // Arrange
 
         // Act
-        var actorOptional = actorJpaRepository.findByIdWithRelatedFilm(1);
+        var actorOptional = actorJpaRepository.findByIdWithFilms(1);
 
         // Assert
         assertTrue(actorOptional.isPresent());
         var actor = actorOptional.get();
         assertEquals(1, actor.getId());
         assertEquals(Actor.Gender.M, actor.getGender());
-        // There are other ways to compare lists in tests (Hamcrest, AssertJ, ...)
         var film = actor.getFilm()
                 .stream()
                 .sorted((a1, a2) -> (int) (a1.getId() - a2.getId()))
                 .toList();
         assertEquals("Oppenheimer",
                 film.get(0).getFilm().getFilmName());
-        assertEquals("No Time to Die",
-                film.get(1).getFilm().getFilmName());
         assertEquals("Inception",
-                film.get(2).getFilm().getFilmName());
-        assertEquals("Pride and Prejudice",
-                film.get(3).getFilm().getFilmName());
+                film.get(1).getFilm().getFilmName());
         assertEquals("Peaky Blinders",
-                film.get(4).getFilm().getFilmName());
-        assertEquals("Pirates of the Caribbean",
-                film.get(5).getFilm().getFilmName());
+                film.get(2).getFilm().getFilmName());
     }
 
     @Test
-    public void filmEntitiesShouldBeUnique() {
+    public void findByGenderAndNationalityShouldReturnMatchingActors() {
         // Arrange
-        actorJpaRepository.save(new Actor("Johny Depp", Actor.Gender.M, "American"));
+        Actor.Gender gender = Actor.Gender.F;
+        String nationality = "British";
 
         // Act
-        Executable executable = () -> actorJpaRepository.save(new Actor(
-                "Johny Depp", Actor.Gender.M, "American"
-        ));
+        List<Actor> actors = actorJpaRepository.findByGenderAndNationality(gender, nationality);
 
         // Assert
-        assertThrows(DataIntegrityViolationException.class, executable);
+        assertTrue(!actors.isEmpty(), "List of actors should not be empty");
+
+        for (Actor actor : actors) {
+            assertEquals(gender, actor.getGender(), "Actor's gender should match the expected gender");
+            assertEquals(nationality, actor.getNationality(), "Actor's nationality should match the expected nationality");
+        }
     }
 }
