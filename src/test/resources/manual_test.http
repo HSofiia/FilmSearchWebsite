@@ -8,7 +8,7 @@ GET http://localhost:8080/api/actors
 GET http://localhost:8080/api/films
 
 ### API: retrieve one actor (path variable)
-GET http://localhost:8080/api/extraActorInfo/1
+GET http://localhost:8080/api/extraActorInfo/1000
 
 ### API: retrieve one film (path variable)
 GET http://localhost:8080/api/extraFilmInfo/2
@@ -27,18 +27,20 @@ GET http://localhost:8080/actors/search?actorName=Rami+Malek
 
 ### API: delete an actor
 DELETE http://localhost:8080/api/extraActorInfo/1
-Cookie: JSESSIONID=FBB6A69AB306215609C740947F12628F
-X-CSRF-TOKEN: jMqriInEu_5rr1VlHfVR7xpa9dynGTJ9s2XDcSbK0gqr-yYzvamc7r_ygslGl2NTLthl2y5q2L7DelFQi1X0FUKstj2eyx8C
+Cookie: JSESSIONID=F0096413F5E13DD94F7A22B24AA46C7F
+X-CSRF-TOKEN: nxaos53v4xzE5qLDujhB72DbbzqMy69U-CXdnJsglsj7KZrKqC-f16WL1yvpgpL02RV12wXqQlu588t5yxW5qK8S86vJSKn6
 
 ### API: delete an film
 DELETE http://localhost:8080/api/extraFilmInfo/4
-Cookie: JSESSIONID=FBB6A69AB306215609C740947F12628F
-X-CSRF-TOKEN: jMqriInEu_5rr1VlHfVR7xpa9dynGTJ9s2XDcSbK0gqr-yYzvamc7r_ygslGl2NTLthl2y5q2L7DelFQi1X0FUKstj2eyx8C
+Cookie: JSESSIONID=F0096413F5E13DD94F7A22B24AA46C7F
+X-CSRF-TOKEN: nxaos53v4xzE5qLDujhB72DbbzqMy69U-CXdnJsglsj7KZrKqC-f16WL1yvpgpL02RV12wXqQlu588t5yxW5qK8S86vJSKn6
 
 ### API: create an film (bad request)
 POST http://localhost:8080/api/addFilm
 Accept: application/json
 Content-Type: application/json
+Cookie: JSESSIONID=9258829151A6577389DE38E6E1036D79
+X-CSRF-TOKEN: KY0spddgb0Jc5tWZ1GusN_OZZ5WHvitf1Y7cNCTYgf-peeCoTbRPluIGWyFx1reh40aYU5GgSvTl30hy5ra-UBS8uM6ZQNib
 
 {
   "filmName": "",
@@ -51,6 +53,8 @@ Content-Type: application/json
 POST http://localhost:8080/api/addActor
 Accept: application/xml
 Content-Type: application/xml
+Cookie: JSESSIONID=9258829151A6577389DE38E6E1036D79
+X-CSRF-TOKEN: KY0spddgb0Jc5tWZ1GusN_OZZ5WHvitf1Y7cNCTYgf-peeCoTbRPluIGWyFx1reh40aYU5GgSvTl30hy5ra-UBS8uM6ZQNib
 
 
 <actor>
@@ -63,6 +67,8 @@ Content-Type: application/xml
 POST http://localhost:8080/api/addFilm
 Accept: application/json
 Content-Type: application/json
+Cookie: JSESSIONID=9258829151A6577389DE38E6E1036D79
+X-CSRF-TOKEN: KY0spddgb0Jc5tWZ1GusN_OZZ5WHvitf1Y7cNCTYgf-peeCoTbRPluIGWyFx1reh40aYU5GgSvTl30hy5ra-UBS8uM6ZQNib
 
 {
   "filmName": "Sjkd",
@@ -75,6 +81,8 @@ Content-Type: application/json
 POST http://localhost:8080/api/addActor
 Accept: application/xml
 Content-Type: application/xml
+Cookie: JSESSIONID=F0096413F5E13DD94F7A22B24AA46C7F
+X-CSRF-TOKEN: nxaos53v4xzE5qLDujhB72DbbzqMy69U-CXdnJsglsj7KZrKqC-f16WL1yvpgpL02RV12wXqQlu588t5yxW5qK8S86vJSKn6
 
 
 <actor>
@@ -88,6 +96,8 @@ Content-Type: application/xml
 
 PATCH http://localhost:8080/api/extraFilmInfo/1
 Content-Type: application/json
+Cookie: JSESSIONID=CD3CEF08AD5275963B9B4A8121553620
+X-CSRF-TOKEN: jo4bwiI-qB6qzAoytKU2tsrlu9W5eFpumgQ1KD7_KQbhZzYavu8r90NbkCiH_GsBgIgC0P6Alu2NT29DqjMNGAqZGj-HBFMq
 
 {
   "year": "2023-02-12",
@@ -99,6 +109,9 @@ Content-Type: application/json
 
 PATCH http://localhost:8080/api/extraFilmInfo/1000
 Content-Type: application/json
+Cookie: JSESSIONID=CD3CEF08AD5275963B9B4A8121553620
+X-CSRF-TOKEN: jo4bwiI-qB6qzAoytKU2tsrlu9W5eFpumgQ1KD7_KQbhZzYavu8r90NbkCiH_GsBgIgC0P6Alu2NT29DqjMNGAqZGj-HBFMq
+
 
 {
   "year": "2023-02-12",
@@ -110,6 +123,8 @@ Content-Type: application/json
 
 PATCH http://localhost:8080/api/extraFilmInfo/1
 Content-Type: application/json
+Cookie: JSESSIONID=F0096413F5E13DD94F7A22B24AA46C7F
+X-CSRF-TOKEN: nxaos53v4xzE5qLDujhB72DbbzqMy69U-CXdnJsglsj7KZrKqC-f16WL1yvpgpL02RV12wXqQlu588t5yxW5qK8S86vJSKn6
 
 {
   "year": "02-12",
@@ -121,6 +136,8 @@ Content-Type: application/json
 
 PATCH http://localhost:8080/api/extraActorInfo/1
 Content-Type: application/json
+Cookie: JSESSIONID=F0096413F5E13DD94F7A22B24AA46C7F
+X-CSRF-TOKEN: nxaos53v4xzE5qLDujhB72DbbzqMy69U-CXdnJsglsj7KZrKqC-f16WL1yvpgpL02RV12wXqQlu588t5yxW5qK8S86vJSKn6
 
 {
 "gender": "F",
@@ -131,6 +148,8 @@ Content-Type: application/json
 
 PATCH http://localhost:8080/api/extraActorInfo/999
 Content-Type: application/json
+Cookie: JSESSIONID=F0096413F5E13DD94F7A22B24AA46C7F
+X-CSRF-TOKEN: nxaos53v4xzE5qLDujhB72DbbzqMy69U-CXdnJsglsj7KZrKqC-f16WL1yvpgpL02RV12wXqQlu588t5yxW5qK8S86vJSKn6
 
 {
   "gender": "F",
@@ -141,6 +160,8 @@ Content-Type: application/json
 
 PATCH http://localhost:8080/api/extraFilmInfo/2
 Content-Type: application/json
+Cookie: JSESSIONID=F0096413F5E13DD94F7A22B24AA46C7F
+X-CSRF-TOKEN: nxaos53v4xzE5qLDujhB72DbbzqMy69U-CXdnJsglsj7KZrKqC-f16WL1yvpgpL02RV12wXqQlu588t5yxW5qK8S86vJSKn6
 
 {
   "gender": "F",

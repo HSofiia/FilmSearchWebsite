@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 import static be.kdg.film_project.domain.UserRole.ADMIN;
+import static be.kdg.film_project.domain.UserRole.USER;
 
 @Controller
 public class FilmController {
@@ -42,7 +43,7 @@ public class FilmController {
                                 film.getGenre(),
                                 film.getBoxOffice(),
                                 film.getYear(),
-                                request.isUserInRole(ADMIN.getCode())
+                                request.isUserInRole(ADMIN.getCode()) || request.isUserInRole(USER.getCode())
                         ))
                         .toList());
         return mav;

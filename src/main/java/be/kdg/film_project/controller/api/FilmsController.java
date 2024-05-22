@@ -32,7 +32,7 @@ public class FilmsController {
 
     @PostMapping("/api/addFilm")
     ResponseEntity<FilmDto> addFilm(@RequestBody @Valid NewFilmDto filmDto, @AuthenticationPrincipal CustomUserDetails user) {
-        if(user.getAuthorities().stream().anyMatch(aut -> aut.getAuthority().equals("ROLE_ADMIN"))) {
+        if(user.getAuthorities().stream().anyMatch(aut -> aut.getAuthority().equals("ROLE_ADMIN") || aut.getAuthority().equals("ROLE_USER"))) {
             var createdFilm = service.addFilm(
                     filmDto.getFilmName(), filmDto.getYear(), filmDto.getBoxOffice(), filmDto.getGenre());
             return new ResponseEntity<>(

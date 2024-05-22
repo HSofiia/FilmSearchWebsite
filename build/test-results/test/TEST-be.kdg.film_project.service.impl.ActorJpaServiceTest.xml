@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="be.kdg.film_project.service.impl.ActorJpaServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-05-17T07:53:34" hostname="Sofias-MacBook-Air.local" time="0.106">
+<testsuite name="be.kdg.film_project.service.impl.ActorJpaServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-05-17T12:15:36" hostname="Sofias-MacBook-Air.local" time="0.097">
   <properties/>
-  <testcase name="addActor_Failure_NullGender()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.006"/>
-  <testcase name="changeActorGenderAndNationalityShouldReturnTrueForExistingActorAndUpdateSaidActor()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.03"/>
-  <testcase name="addActorShouldFailOfNullName()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.005"/>
-  <testcase name="addActorShouldBeAddedSuccessfully()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.018"/>
-  <testcase name="changeActorGenderAndNationalityShouldReturnFalseForNonExistingActor()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.044"/>
-  <system-out><![CDATA[2024-05-17T09:53:34.343+02:00  INFO 20228 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [be.kdg.film_project.service.impl.ActorJpaServiceTest]: ActorJpaServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-05-17T09:53:34.354+02:00  INFO 20228 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.service.impl.ActorJpaServiceTest
-2024-05-17T09:53:34.360+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into actor (actor_name,gender,nationality) values (?,?,?)
+  <testcase name="addActor_Failure_NullGender()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.011"/>
+  <testcase name="changeActorGenderAndNationalityShouldReturnTrueForExistingActorAndUpdateSaidActor()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.041"/>
+  <testcase name="addActorShouldFailOfNullName()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.007"/>
+  <testcase name="addActorShouldBeAddedSuccessfully()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.019"/>
+  <testcase name="changeActorGenderAndNationalityShouldReturnFalseForNonExistingActor()" classname="be.kdg.film_project.service.impl.ActorJpaServiceTest" time="0.015"/>
+  <system-out><![CDATA[2024-05-17T14:15:36.810+02:00  INFO 30531 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [be.kdg.film_project.service.impl.ActorJpaServiceTest]: ActorJpaServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-05-17T14:15:36.824+02:00  INFO 30531 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.service.impl.ActorJpaServiceTest
+2024-05-17T14:15:36.833+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : insert into actor (actor_name,gender,nationality) values (?,?,?)
 Hibernate: insert into actor (actor_name,gender,nationality) values (?,?,?)
-2024-05-17T09:53:34.374+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.854+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-17T09:53:34.382+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.862+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-17T09:53:34.385+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.866+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-17T09:53:34.387+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : update actor set actor_name=?,gender=?,nationality=? where id=?
+2024-05-17T14:15:36.868+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : update actor set actor_name=?,gender=?,nationality=? where id=?
 Hibernate: update actor set actor_name=?,gender=?,nationality=? where id=?
-2024-05-17T09:53:34.389+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.872+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-17T09:53:34.392+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.878+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-17T09:53:34.394+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.882+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-17T09:53:34.395+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from actor where id=?
+2024-05-17T14:15:36.884+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : delete from actor where id=?
 Hibernate: delete from actor where id=?
-2024-05-17T09:53:34.410+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : insert into actor (actor_name,gender,nationality) values (?,?,?)
+2024-05-17T14:15:36.902+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : insert into actor (actor_name,gender,nationality) values (?,?,?)
 Hibernate: insert into actor (actor_name,gender,nationality) values (?,?,?)
-2024-05-17T09:53:34.417+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.909+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-17T09:53:34.419+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : delete from actor where id=?
+2024-05-17T14:15:36.913+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : delete from actor where id=?
 Hibernate: delete from actor where id=?
-2024-05-17T09:53:34.431+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.923+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-17T09:53:34.435+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.927+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
-2024-05-17T09:53:34.473+02:00 DEBUG 20228 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
+2024-05-17T14:15:36.937+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 Hibernate: select a1_0.id,a1_0.actor_name,a1_0.gender,a1_0.nationality from actor a1_0 where a1_0.id=?
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -1,9 +1,17 @@
 package be.kdg.film_project.controller.api.dto.director;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
 public class NewDirectorDto {
 
+    @NotBlank(message = "directorName should not be empty!")
     public String directorName;
+
+    @Positive(message = "The birth year should be positive")
     public int birth;
+
+    @NotBlank(message = "award field should not be empty!")
     public String award;
 
     public NewDirectorDto() {

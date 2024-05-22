@@ -1,14 +1,25 @@
 package be.kdg.film_project.controller.api.dto.film;
 
 import be.kdg.film_project.domain.Film;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 
 public class NewFilmDto {
+    @NotBlank(message = "name is mandatory")
     private String filmName;
-    private LocalDate year;
-    private double boxOffice;
+
+    @Enumerated(EnumType.STRING)
     private Film.Genre genre;
+
+    @Positive(message = "The boxOffice should be positive")
+    private Double boxOffice;
+
+    @PastOrPresent(message = "release date should be in the past or present!")
+    private LocalDate year;
 
     public NewFilmDto() {
     }

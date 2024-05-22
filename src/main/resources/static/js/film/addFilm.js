@@ -33,7 +33,8 @@ async function addNewFilm() {
          */
         const film = await response.json();
         addFilmToHtmlTable(film);
-    } else {
+    }
+    else {
         alert("Something went wrong!"); // alerts are "bad"...
         console.log("issue with adding the film to the table")
     }
