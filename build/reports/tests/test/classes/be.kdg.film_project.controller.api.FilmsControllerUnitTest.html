@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.099s</div>
+<div class="counter">0.123s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,12 +79,12 @@
 </thead>
 <tr>
 <td class="success">deleteFilmShouldBeAllowedIfAdminIsAssigned()</td>
-<td class="success">0.029s</td>
+<td class="success">0.039s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deleteFilmShouldBeNotFoundIfFilmDoesntExist()</td>
-<td class="success">0.008s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -94,7 +94,7 @@
 </tr>
 <tr>
 <td class="success">deleteFilmShouldNotBeAllowedIfNotAssigned()</td>
-<td class="success">0.054s</td>
+<td class="success">0.067s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -102,8 +102,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2024-05-17T14:15:31.126+02:00  INFO 30531 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [be.kdg.film_project.controller.api.FilmsControllerUnitTest]: FilmsControllerUnitTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-05-17T14:15:31.134+02:00  INFO 30531 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.controller.api.FilmsControllerUnitTest
+<pre>2024-05-23T23:38:46.345+02:00  INFO 48929 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [be.kdg.film_project.controller.api.FilmsControllerUnitTest]: FilmsControllerUnitTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-05-23T23:38:46.351+02:00  INFO 48929 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.controller.api.FilmsControllerUnitTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -113,56 +113,56 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.3)
 
-2024-05-17T14:15:31.216+02:00  INFO 30531 --- [    Test worker] b.k.f.c.api.FilmsControllerUnitTest      : Starting FilmsControllerUnitTest using Java 21.0.2 with PID 30531 (started by sofiahmyria in /Users/sofiahmyria/IdeaProjects/programming-5)
-2024-05-17T14:15:31.217+02:00  INFO 30531 --- [    Test worker] b.k.f.c.api.FilmsControllerUnitTest      : The following 1 profile is active: &quot;test&quot;
-2024-05-17T14:15:31.559+02:00  INFO 30531 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-05-17T14:15:31.595+02:00  INFO 30531 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 5 JPA repository interfaces.
-2024-05-17T14:15:32.154+02:00  INFO 30531 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-05-17T14:15:32.167+02:00  INFO 30531 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-05-17T14:15:32.168+02:00  INFO 30531 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-05-17T14:15:32.169+02:00  INFO 30531 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2024-05-17T14:15:32.220+02:00  INFO 30531 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@574f976c
-2024-05-17T14:15:32.220+02:00  INFO 30531 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2024-05-17T14:15:32.291+02:00  INFO 30531 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2024-05-17T14:15:32.445+02:00  INFO 30531 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-05-17T14:15:32.446+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director drop constraint if exists FKeox6rmuu3j7esmllq1cg022xa
+2024-05-23T23:38:46.382+02:00  INFO 48929 --- [    Test worker] b.k.f.c.api.FilmsControllerUnitTest      : Starting FilmsControllerUnitTest using Java 21.0.2 with PID 48929 (started by sofiahmyria in /Users/sofiahmyria/IdeaProjects/programming-5)
+2024-05-23T23:38:46.383+02:00  INFO 48929 --- [    Test worker] b.k.f.c.api.FilmsControllerUnitTest      : The following 1 profile is active: &quot;test&quot;
+2024-05-23T23:38:46.601+02:00  INFO 48929 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-23T23:38:46.619+02:00  INFO 48929 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 5 JPA repository interfaces.
+2024-05-23T23:38:47.121+02:00  INFO 48929 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23T23:38:47.134+02:00  INFO 48929 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-05-23T23:38:47.134+02:00  INFO 48929 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-23T23:38:47.135+02:00  INFO 48929 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-05-23T23:38:47.308+02:00  INFO 48929 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@1fd2716f
+2024-05-23T23:38:47.309+02:00  INFO 48929 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-05-23T23:38:47.394+02:00  INFO 48929 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2024-05-23T23:38:47.633+02:00  INFO 48929 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23T23:38:47.634+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director drop constraint if exists FKeox6rmuu3j7esmllq1cg022xa
 Hibernate: alter table if exists director drop constraint if exists FKeox6rmuu3j7esmllq1cg022xa
-2024-05-17T14:15:32.456+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKdpbx2oo0uhp58l0dxbqdm6c3q
+2024-05-23T23:38:47.670+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKdpbx2oo0uhp58l0dxbqdm6c3q
 Hibernate: alter table if exists film_casting drop constraint if exists FKdpbx2oo0uhp58l0dxbqdm6c3q
-2024-05-17T14:15:32.460+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKb2avfvx70nfcjk3e8p89v94vj
+2024-05-23T23:38:47.676+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting drop constraint if exists FKb2avfvx70nfcjk3e8p89v94vj
 Hibernate: alter table if exists film_casting drop constraint if exists FKb2avfvx70nfcjk3e8p89v94vj
-2024-05-17T14:15:32.463+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : drop table if exists actor cascade
+2024-05-23T23:38:47.683+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : drop table if exists actor cascade
 Hibernate: drop table if exists actor cascade
-2024-05-17T14:15:32.506+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : drop table if exists director cascade
+2024-05-23T23:38:47.724+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : drop table if exists director cascade
 Hibernate: drop table if exists director cascade
-2024-05-17T14:15:32.516+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film cascade
+2024-05-23T23:38:47.733+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film cascade
 Hibernate: drop table if exists film cascade
-2024-05-17T14:15:32.523+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film_casting cascade
+2024-05-23T23:38:47.745+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : drop table if exists film_casting cascade
 Hibernate: drop table if exists film_casting cascade
-2024-05-17T14:15:32.527+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : drop table if exists user_table cascade
+2024-05-23T23:38:47.757+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : drop table if exists user_table cascade
 Hibernate: drop table if exists user_table cascade
-2024-05-17T14:15:32.532+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : create table actor (id serial not null, actor_name varchar(255), gender varchar(255) check (gender in ('M','F','N')), nationality varchar(255), primary key (id))
+2024-05-23T23:38:47.770+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : create table actor (id serial not null, actor_name varchar(255), gender varchar(255) check (gender in ('M','F','N')), nationality varchar(255), primary key (id))
 Hibernate: create table actor (id serial not null, actor_name varchar(255), gender varchar(255) check (gender in ('M','F','N')), nationality varchar(255), primary key (id))
-2024-05-17T14:15:32.565+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : create table director (birth integer, film_id integer, id serial not null, award varchar(255), director_name varchar(255), primary key (id))
+2024-05-23T23:38:47.813+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : create table director (birth integer, film_id integer, id serial not null, award varchar(255), director_name varchar(255), primary key (id))
 Hibernate: create table director (birth integer, film_id integer, id serial not null, award varchar(255), director_name varchar(255), primary key (id))
-2024-05-17T14:15:32.589+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : create table film (box_office float(53), id serial not null, release_year date, film_name varchar(255), genre varchar(255) check (genre in ('HISTORY','SPY','FANTASY','ROMANCE','ACTION')), primary key (id))
+2024-05-23T23:38:47.835+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : create table film (box_office float(53), id serial not null, release_year date, film_name varchar(255), genre varchar(255) check (genre in ('HISTORY','SPY','FANTASY','ROMANCE','ACTION')), primary key (id))
 Hibernate: create table film (box_office float(53), id serial not null, release_year date, film_name varchar(255), genre varchar(255) check (genre in ('HISTORY','SPY','FANTASY','ROMANCE','ACTION')), primary key (id))
-2024-05-17T14:15:32.609+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : create table film_casting (actor_id integer not null, film_id integer not null, id serial not null, primary key (id), constraint UKgprrdn7mj3rol443mt5qn0fls unique (film_id, actor_id))
+2024-05-23T23:38:47.871+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : create table film_casting (actor_id integer not null, film_id integer not null, id serial not null, primary key (id), constraint UKgprrdn7mj3rol443mt5qn0fls unique (film_id, actor_id))
 Hibernate: create table film_casting (actor_id integer not null, film_id integer not null, id serial not null, primary key (id), constraint UKgprrdn7mj3rol443mt5qn0fls unique (film_id, actor_id))
-2024-05-17T14:15:32.619+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : create table user_table (id serial not null, role smallint not null check (role between 0 and 1), password varchar(255) not null, username varchar(255) not null, primary key (id))
+2024-05-23T23:38:47.898+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : create table user_table (id serial not null, role smallint not null check (role between 0 and 1), password varchar(255) not null, username varchar(255) not null, primary key (id))
 Hibernate: create table user_table (id serial not null, role smallint not null check (role between 0 and 1), password varchar(255) not null, username varchar(255) not null, primary key (id))
-2024-05-17T14:15:32.632+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director add constraint FKeox6rmuu3j7esmllq1cg022xa foreign key (film_id) references film
+2024-05-23T23:38:47.910+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : alter table if exists director add constraint FKeox6rmuu3j7esmllq1cg022xa foreign key (film_id) references film
 Hibernate: alter table if exists director add constraint FKeox6rmuu3j7esmllq1cg022xa foreign key (film_id) references film
-2024-05-17T14:15:32.640+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKdpbx2oo0uhp58l0dxbqdm6c3q foreign key (actor_id) references actor on delete cascade
+2024-05-23T23:38:47.916+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKdpbx2oo0uhp58l0dxbqdm6c3q foreign key (actor_id) references actor on delete cascade
 Hibernate: alter table if exists film_casting add constraint FKdpbx2oo0uhp58l0dxbqdm6c3q foreign key (actor_id) references actor on delete cascade
-2024-05-17T14:15:32.644+02:00 DEBUG 30531 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8p89v94vj foreign key (film_id) references film on delete cascade
+2024-05-23T23:38:47.923+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8p89v94vj foreign key (film_id) references film on delete cascade
 Hibernate: alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8p89v94vj foreign key (film_id) references film on delete cascade
-2024-05-17T14:15:32.649+02:00  INFO 30531 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-05-17T14:15:32.929+02:00  INFO 30531 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@734b07a2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@553e67ef, org.springframework.security.web.context.SecurityContextHolderFilter@9192e40, org.springframework.security.web.header.HeaderWriterFilter@2c45b4fb, org.springframework.security.web.csrf.CsrfFilter@636c0295, org.springframework.security.web.authentication.logout.LogoutFilter@646e6cc5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@64d457b9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@ae2ed5c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@25a6a700, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1290df12, org.springframework.security.web.access.ExceptionTranslationFilter@5aeea0a0, org.springframework.security.web.access.intercept.AuthorizationFilter@69f5d381]
-2024-05-17T14:15:33.342+02:00  INFO 30531 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2024-05-17T14:15:33.342+02:00  INFO 30531 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2024-05-17T14:15:33.343+02:00  INFO 30531 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2024-05-17T14:15:33.355+02:00  INFO 30531 --- [    Test worker] b.k.f.c.api.FilmsControllerUnitTest      : Started FilmsControllerUnitTest in 2.212 seconds (process running for 29.896)
+2024-05-23T23:38:47.930+02:00  INFO 48929 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-23T23:38:48.254+02:00  INFO 48929 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2404ab3a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58a0b88e, org.springframework.security.web.context.SecurityContextHolderFilter@2fcd0756, org.springframework.security.web.header.HeaderWriterFilter@21471ca8, org.springframework.security.web.csrf.CsrfFilter@20a4f67a, org.springframework.security.web.authentication.logout.LogoutFilter@5e47e1f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@23639e5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@285d33f3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b6fd32d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b404a21, org.springframework.security.web.access.ExceptionTranslationFilter@66a2bc61, org.springframework.security.web.access.intercept.AuthorizationFilter@613452e1]
+2024-05-23T23:38:48.629+02:00  INFO 48929 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-05-23T23:38:48.630+02:00  INFO 48929 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-05-23T23:38:48.631+02:00  INFO 48929 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-05-23T23:38:48.646+02:00  INFO 48929 --- [    Test worker] b.k.f.c.api.FilmsControllerUnitTest      : Started FilmsControllerUnitTest in 2.289 seconds (process running for 11.093)
 </pre>
 </span>
 </div>
@@ -174,7 +174,7 @@ Hibernate: alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.2</a> at May 17, 2024, 2:15:42 PM</p>
+<a href="http://www.gradle.org">Gradle 8.2</a> at May 23, 2024, 11:38:54 PM</p>
 </div>
 </div>
 </body>

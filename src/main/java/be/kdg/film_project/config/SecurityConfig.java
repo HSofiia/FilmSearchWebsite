@@ -39,6 +39,9 @@ public class SecurityConfig {
                     .anyRequest()
                         .authenticated()
             )
+                .csrf(csrf -> csrf.ignoringRequestMatchers(
+                        antMatcher(HttpMethod.POST, "/api/addFilm") // Disable specifically for the client application
+                ))
             .formLogin(formLogin ->
                 formLogin
                     .loginPage("/login")
