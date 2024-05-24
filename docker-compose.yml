@@ -10,3 +10,17 @@ services:
       POSTGRES_PASSWORD: 'student1234567890'
     ports:
       - '5436:5432'
+    profiles:
+      - dev
+
+  postgres_issues_test_db:
+    image: postgres:16.1-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: 'pg_film'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'student1234567890'
+    ports:
+      - '5433:5432'
+    profiles:
+      - test
