@@ -1,8 +1,6 @@
 package be.kdg.film_project.repository.jpa;
 
-import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.domain.Film;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

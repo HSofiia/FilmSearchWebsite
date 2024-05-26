@@ -1,6 +1,7 @@
 package be.kdg.film_project.service;
 
 import be.kdg.film_project.domain.Actor;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -17,7 +18,5 @@ public interface ActorService {
 
     boolean updateActorInfo(int actorId, Actor.Gender gender, String nationality);
 
-    List<Actor> getByGender(Actor.Gender gender);
-
-    List<Actor> getByGenderAndNationality(Actor.Gender gender, String nationality);
+    List<Actor> getByNationality(String searchTerm);
 }

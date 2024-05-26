@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Films and Actors</title>
-    <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/styles.css">
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <thymeleaf th:replace="~{navigation :: meta_script_link}"/>
+
 </head>
 <body>
 <main>
@@ -36,11 +33,6 @@
         <form th:action="@{/directors/search}" method="get" class="m-5 p-sm-1">
             <div class="form-group">
                 <input type="text" id="award" name="award" class="form-control" placeholder="Search by Award">
-            </div>
-            <div class="container d-flex justify-content-center mt-4 mb-1">
-                <div>
-                    <button th:utext="#{fordirector.find}" class="btn btn-outline-secondary" type="submit">Find</button>
-                </div>
             </div>
         </form>
     </div>

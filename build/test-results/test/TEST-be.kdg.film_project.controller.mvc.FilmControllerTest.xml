@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="be.kdg.film_project.controller.mvc.FilmControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-05-23T21:38:48" hostname="Sofias-MacBook-Air.local" time="0.868">
+<testsuite name="be.kdg.film_project.controller.mvc.FilmControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-05-24T12:48:44" hostname="Sofias-MacBook-Air.local" time="0.321">
   <properties/>
-  <testcase name="filmViewShouldAllowModificationIfAdminSignedIn()" classname="be.kdg.film_project.controller.mvc.FilmControllerTest" time="0.812"/>
-  <testcase name="filmViewShouldBeRenderedWithFilmAndActorData()" classname="be.kdg.film_project.controller.mvc.FilmControllerTest" time="0.053"/>
-  <system-out><![CDATA[2024-05-23T23:38:48.797+02:00  INFO 48929 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [be.kdg.film_project.controller.mvc.FilmControllerTest]: FilmControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-05-23T23:38:48.872+02:00  INFO 48929 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.controller.mvc.FilmControllerTest
-2024-05-23T23:38:48.910+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
+  <testcase name="filmViewShouldAllowModificationIfAdminSignedIn()" classname="be.kdg.film_project.controller.mvc.FilmControllerTest" time="0.302"/>
+  <testcase name="filmViewShouldBeRenderedWithFilmAndActorData()" classname="be.kdg.film_project.controller.mvc.FilmControllerTest" time="0.019"/>
+  <system-out><![CDATA[2024-05-24T14:48:44.015+02:00  INFO 11385 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [be.kdg.film_project.controller.mvc.FilmControllerTest]: FilmControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-05-24T14:48:44.027+02:00  INFO 11385 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.controller.mvc.FilmControllerTest
+2024-05-24T14:48:44.031+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
 Hibernate: select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
-2024-05-23T23:38:48.944+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-24T14:48:44.034+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-23T23:38:48.987+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-24T14:48:44.040+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-23T23:38:49.665+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-24T14:48:44.327+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-23T23:38:49.669+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
+2024-05-24T14:48:44.328+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
-2024-05-23T23:38:49.698+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
+2024-05-24T14:48:44.333+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
 Hibernate: select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
-2024-05-23T23:38:49.708+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
+2024-05-24T14:48:44.335+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-23T23:38:49.716+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-24T14:48:44.337+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-23T23:38:49.733+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
+2024-05-24T14:48:44.347+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-23T23:38:49.736+02:00 DEBUG 48929 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
+2024-05-24T14:48:44.348+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

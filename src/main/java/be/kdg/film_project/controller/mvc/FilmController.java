@@ -96,26 +96,6 @@ public class FilmController {
         return "/addFilm";
     }
 
-//    @PostMapping("/extraFilmInfo/update")
-//    public String updateFilm(@Valid UpdateFilmViewModel filmViewModel,
-//                                  BindingResult bindingResult,
-//                                  @AuthenticationPrincipal CustomUserDetails user,
-//                                  HttpServletRequest request) {
-//        // Conditions:
-//        // - The user executing the action is the same as the developer whose email is being updated
-//        //   - OR The user is an admin
-//        // - AND no model binding errors
-//        if ((request.isUserInRole(ADMIN.getCode()))
-//                && (!bindingResult.hasErrors())) {
-//            filmService.updateFilmInfo(
-//                    filmViewModel.getId(),
-//                    filmViewModel.getBoxOffice(),
-//                    filmViewModel.getGenre(),
-//                    filmViewModel.getYear());
-//        }
-//        return "redirect:/extraFilmInfo?id=" + filmViewModel.getId();
-//    }
-
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(FilmException.class)
     public String handlePageException(Exception e, Model model) {

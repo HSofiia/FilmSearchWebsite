@@ -72,16 +72,15 @@ public class ActorsController {
 
     // "/api/actors"
     @GetMapping("/api/actors")
-    ResponseEntity<List<ActorDto>> searchActor(@RequestParam(required = false, value = "gender") Actor.Gender gender,
-                                               @RequestParam(required = false, value = "nationality") String nationality) {
-        if (gender == null && nationality == null) {
+    ResponseEntity<List<ActorDto>> searchActor(@RequestParam(required = false, value = "nationality") String nationality) {
+        if (nationality == null) {
             return ResponseEntity
                     .ok(service.getActors()
                             .stream()
                             .map(actor -> modelMapper.map(actor, ActorDto.class))
                             .toList());
         } else {
-            var searchResult = service.getByGenderAndNationality(gender, nationality);
+            var searchResult = service.getByNationality(nationality);
             if (searchResult.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {

@@ -18,45 +18,43 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.authorizeHttpRequests(
-            auths -> auths
-                    .requestMatchers(regexMatcher("^/(home|films|actors|directors|extraFilmInfo|extraActorInfo)"))
-                        .permitAll()
-                    .requestMatchers(
-                            antMatcher(HttpMethod.GET, "/js/**"),
-                            antMatcher(HttpMethod.GET, "/css/**"),
-                            antMatcher(HttpMethod.GET, "/webjars/**"),
-                            regexMatcher(HttpMethod.GET, "\\.ico$"))
-                        .permitAll()
-                    .requestMatchers(
-                            antMatcher(HttpMethod.GET, "/api/**"),
-                            antMatcher(HttpMethod.GET, "/films/search"),
-                            antMatcher(HttpMethod.GET, "/directors/search"),
-                            antMatcher(HttpMethod.GET, "/actors/search")) // Permit access to /actors/search endpoint
-                    .permitAll()
-                    .requestMatchers(antMatcher(HttpMethod.GET, "/"))
-                        .permitAll()
-                    .anyRequest()
-                        .authenticated()
-            )
+        http.authorizeHttpRequests(auths -> auths
+                        // Public endpoints
+                        .requestMatchers(regexMatcher("^/(home|films|actors|directors|extraFilmInfo|extraActorInfo)")).permitAll()
+                        .requestMatchers(
+                                antMatcher(HttpMethod.GET, "/js/**"),
+                                antMatcher(HttpMethod.GET, "/css/**"),
+                                antMatcher(HttpMethod.GET, "/webjars/**"),
+                                regexMatcher(HttpMethod.GET, "\\.ico$"),
+                                antMatcher(HttpMethod.GET, "/favicon.ico")).permitAll() // Add this line
+                        .requestMatchers(antMatcher(HttpMethod.GET, "/api/**")).permitAll()
+                        .requestMatchers(antMatcher(HttpMethod.GET, "/films/search")).permitAll()
+                        .requestMatchers(antMatcher(HttpMethod.GET, "/directors/search")).permitAll()
+                        .requestMatchers(antMatcher(HttpMethod.GET, "/actors/search")).permitAll()
+                        .requestMatchers(antMatcher(HttpMethod.GET, "/films-csv")).permitAll()
+                        .requestMatchers(antMatcher(HttpMethod.GET, "/")).permitAll()
+
+                        // Secured endpoints
+                        .anyRequest().hasRole("ADMIN")
+                )
                 .csrf(csrf -> csrf.ignoringRequestMatchers(
                         antMatcher(HttpMethod.POST, "/api/addFilm") // Disable specifically for the client application
                 ))
-            .formLogin(formLogin ->
-                formLogin
-                    .loginPage("/login")
-                        .defaultSuccessUrl("/home")
-                    .permitAll())
-            .exceptionHandling(exceptionHandling ->
-                exceptionHandling.authenticationEntryPoint(
-                    (request, response, exception) -> {
-                        if (request.getRequestURI().startsWith("/api")) {
-                            response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                        } else {
-                            response.sendRedirect(request.getContextPath() + "/login");
-                        }
-                    })
-            );
+                .formLogin(formLogin ->
+                        formLogin
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/home")
+                                .permitAll())
+                .exceptionHandling(exceptionHandling ->
+                        exceptionHandling.authenticationEntryPoint(
+                                (request, response, exception) -> {
+                                    if (request.getRequestURI().startsWith("/api")) {
+                                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                                    } else {
+                                        response.sendRedirect(request.getContextPath() + "/login");
+                                    }
+                                })
+                );
         // @formatter:on
         return http.build();
     }

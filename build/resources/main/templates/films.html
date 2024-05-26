@@ -4,12 +4,7 @@
 <head>
     <meta charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Films and Actors</title>
-    <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/styles.css">
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <script src="/js/film/addFilm.js" type="module"></script>
+    <thymeleaf th:replace="~{navigation :: meta_script_link}"/>
 </head>
 <body>
 <main>
@@ -41,14 +36,8 @@
     <div class="container search_form">
         <form th:action="@{/films/search}" method="get" class="m-5 p-sm-1">
             <div class="form-group">
-                <input type="text" id="actorsName" name="actorsName" class="form-control"
-                       placeholder="Search by Actors">
-            </div>
-
-            <div class="container d-flex justify-content-center mt-4 mb-1">
-                <div>
-                    <button class="btn btn-outline-secondary" type="submit">Find</button>
-                </div>
+                <input type="text" id="searchTerm" name="actorsName" class="form-control"
+                       aria-describedby="searchHelp" placeholder="Search by Actors">
             </div>
         </form>
     </div>

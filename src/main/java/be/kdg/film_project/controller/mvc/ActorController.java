@@ -1,36 +1,39 @@
 package be.kdg.film_project.controller.mvc;
 
+import be.kdg.film_project.controller.api.dto.actor.ActorDto;
+import be.kdg.film_project.controller.mvc.viewmodels.ActorViewModel;
 import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.presentation.exceptions.ActorException;
-import be.kdg.film_project.controller.mvc.viewmodels.ActorViewModel;
-import be.kdg.film_project.controller.mvc.viewmodels.FilmViewModel;
 import be.kdg.film_project.security.CustomUserDetails;
 import be.kdg.film_project.service.ActorService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import static be.kdg.film_project.domain.UserRole.ADMIN;
-
-
 import java.util.List;
+
+import static be.kdg.film_project.domain.UserRole.ADMIN;
 
 @Controller
 public class ActorController {
     private final ActorService actorService;
     private Logger logger = LoggerFactory.getLogger(ActorController.class);
+    private final ModelMapper modelMapper;
 
-    public ActorController(ActorService actorService) {
+    public ActorController(ActorService actorService, ModelMapper modelMapper) {
         this.actorService = actorService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/actors")
@@ -71,12 +74,11 @@ public class ActorController {
     }
 
     @GetMapping("/actors/search")
-    public ModelAndView searchActors(@RequestParam(required = false, value = "gender") Actor.Gender gender,
-                               @RequestParam(required = false, value = "nationality") String nationality) {
+    public ModelAndView searchActors(@RequestParam(required = false, value = "nationality") String nationality) {
         var mav = new ModelAndView("actors");
         List<Actor> actors;
-        if (gender != null && nationality != null) {
-            actors = actorService.getByGenderAndNationality(gender, nationality);
+        if ( nationality != null) {
+            actors = actorService.getByNationality(nationality);
         } else {
             actors = actorService.getActors();
         }
@@ -93,31 +95,9 @@ public class ActorController {
 
     @GetMapping("/addActor")
     public String getAddActor(Model model) {
-            model.addAttribute("actor", new ActorViewModel());
-            return "/addActor";
+        model.addAttribute("actor", new ActorViewModel());
+        return "/addActor";
     }
-
-//    @PostMapping("/actors/addActor")
-//    public String processAddActorForm(@Valid @ModelAttribute("actor") ActorViewModel viewModel, BindingResult result) {
-//        logger.info("Processing " + viewModel.toString());
-//        if (result.hasErrors()) {
-//            result.getAllErrors().forEach(e -> logger.warn(e.toString()));
-//            return "addActor";
-//        } else {
-//            logger.info("Successfully processed ");
-//            actorService.addActor(
-//                    viewModel.getActorName(),
-//                    viewModel.getGender(),
-//                    viewModel.getNationality());
-//            return "redirect:/actors";
-//        }
-//    }
-
-//    @RequestMapping("/extraActorInfo")
-//    public String deleteActor(@RequestParam("id") int id) {
-//        actorService.deleteActor(id);
-//        return "redirect:/actors";
-//    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ActorException.class)

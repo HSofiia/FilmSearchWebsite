@@ -3,8 +3,9 @@ package be.kdg.film_project.service.impl;
 import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.repository.jpa.ActorJpaRepository;
 import be.kdg.film_project.service.ActorService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class ActorJpaService implements ActorService {
     }
 
     @Override
-    @Transactional
+    @CacheEvict(value = "searchActors", allEntries = true)
     public Actor addActor(String name, Actor.Gender gender, String nationality) {
         if (name == null || gender == null || nationality == null) {
             throw new IllegalArgumentException("Name, gender, and nationality cannot be null");
@@ -42,7 +43,7 @@ public class ActorJpaService implements ActorService {
     }
 
     @Override
-    @Transactional
+    @CacheEvict(value = "searchActors", allEntries = true)
     public boolean deleteActor(int actorId) {
         var actor = actorJpaRepository.findByIdWithRelatedFilm(actorId);
         if (actor.isEmpty()) {
@@ -53,6 +54,7 @@ public class ActorJpaService implements ActorService {
     }
 
     @Override
+    @CacheEvict(value = "searchActors", allEntries = true)
     public boolean updateActorInfo(int actorId, Actor.Gender gender, String nationality) {
         var actor = actorJpaRepository.findById(actorId).orElse(null);
         if (actor == null) {
@@ -65,13 +67,9 @@ public class ActorJpaService implements ActorService {
     }
 
     @Override
-    public List<Actor> getByGender(Actor.Gender gender) {
-        return actorJpaRepository.findByGender(gender);
-    }
-
-    @Override
-    public List<Actor> getByGenderAndNationality(Actor.Gender gender, String nationality) {
-        return actorJpaRepository.findByGenderAndNationality(gender, nationality);
+    @Cacheable(value = "searchActors")
+    public List<Actor> getByNationality(String nationality) {
+        return actorJpaRepository.findByNationality(nationality);
     }
 }
 
