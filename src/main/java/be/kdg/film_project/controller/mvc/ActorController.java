@@ -74,21 +74,22 @@ public class ActorController {
     }
 
     @GetMapping("/actors/search")
-    public ModelAndView searchActors(@RequestParam(required = false, value = "nationality") String nationality) {
+    public ModelAndView searchActors(@RequestParam(required = false, value = "gender") Actor.Gender gender,
+                                     @RequestParam(required = false, value = "nationality") String nationality) {
         var mav = new ModelAndView("actors");
         List<Actor> actors;
-        if ( nationality != null) {
-            actors = actorService.getByNationality(nationality);
+        if (gender != null && nationality != null) {
+            actors = actorService.getByGenderAndNationality(gender, nationality);
         } else {
             actors = actorService.getActors();
         }
         List<ActorViewModel> actorViewModels = actors.stream()
-                        .map(actor -> new ActorViewModel(
-                                actor.getId(),
-                                actor.getActorName(),
-                                actor.getGender(),
-                                actor.getNationality()
-                        )).toList();
+                .map(actor -> new ActorViewModel(
+                        actor.getId(),
+                        actor.getActorName(),
+                        actor.getGender(),
+                        actor.getNationality()
+                )).toList();
         mav.addObject("all_actors",actorViewModels);
         return mav;
     }

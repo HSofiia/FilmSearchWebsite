@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface ActorJpaRepository extends JpaRepository<Actor, Integer> {
 
-    List<Actor> findByNationality(String nationality);
+    List<Actor> findByGenderAndNationality(Actor.Gender gender, String nationality);
 
     @Query("""
             select actor from Actor actor

@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.321s</div>
+<div class="counter">0.809s</div>
 <p>duration</p>
 </div>
 </td>
@@ -66,6 +66,9 @@
 <li>
 <a href="#tab1">Standard output</a>
 </li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Tests</h2>
@@ -79,12 +82,12 @@
 </thead>
 <tr>
 <td class="success">filmViewShouldAllowModificationIfAdminSignedIn()</td>
-<td class="success">0.302s</td>
+<td class="success">0.791s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">filmViewShouldBeRenderedWithFilmAndActorData()</td>
-<td class="success">0.019s</td>
+<td class="success">0.018s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -92,28 +95,72 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2024-05-24T14:48:44.015+02:00  INFO 11385 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [be.kdg.film_project.controller.mvc.FilmControllerTest]: FilmControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-05-24T14:48:44.027+02:00  INFO 11385 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.controller.mvc.FilmControllerTest
-2024-05-24T14:48:44.031+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
+<pre>13:50:16.281 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [be.kdg.film_project.controller.mvc.FilmControllerTest]: FilmControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:50:16.369 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration be.kdg.StartApplication for test class be.kdg.film_project.controller.mvc.FilmControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.2)
+
+2024-05-26T13:50:16.604+02:00  INFO 45819 --- [    Test worker] b.k.f.controller.mvc.FilmControllerTest  : Starting FilmControllerTest using Java 21.0.2 with PID 45819 (started by sofiahmyria in /Users/sofiahmyria/IdeaProjects/programming-5)
+2024-05-26T13:50:16.605+02:00  INFO 45819 --- [    Test worker] b.k.f.controller.mvc.FilmControllerTest  : The following 1 profile is active: &quot;test&quot;
+2024-05-26T13:50:17.072+02:00  INFO 45819 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-26T13:50:17.111+02:00  INFO 45819 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 5 JPA repository interfaces.
+2024-05-26T13:50:17.440+02:00  INFO 45819 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-26T13:50:17.485+02:00  INFO 45819 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-05-26T13:50:17.505+02:00  INFO 45819 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-05-26T13:50:17.646+02:00  INFO 45819 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-26T13:50:17.663+02:00  INFO 45819 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-05-26T13:50:17.820+02:00  INFO 45819 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1c90029b
+2024-05-26T13:50:17.820+02:00  INFO 45819 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-05-26T13:50:18.480+02:00  INFO 45819 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: alter table if exists director drop constraint if exists FKeox6rmuu3j7esmllq1cg022xa
+Hibernate: alter table if exists film_casting drop constraint if exists FKdpbx2oo0uhp58l0dxbqdm6c3q
+Hibernate: alter table if exists film_casting drop constraint if exists FKb2avfvx70nfcjk3e8p89v94vj
+Hibernate: drop table if exists actor cascade
+Hibernate: drop table if exists director cascade
+Hibernate: drop table if exists film cascade
+Hibernate: drop table if exists film_casting cascade
+Hibernate: drop table if exists user_table cascade
+Hibernate: create table actor (id serial not null, actor_name varchar(255), gender varchar(255) check (gender in ('M','F','N')), nationality varchar(255), primary key (id))
+Hibernate: create table director (birth integer, film_id integer, id serial not null, award varchar(255), director_name varchar(255), primary key (id))
+Hibernate: create table film (box_office float(53), id serial not null, release_year date, film_name varchar(255), genre varchar(255) check (genre in ('HISTORY','SPY','FANTASY','ROMANCE','ACTION')), primary key (id))
+Hibernate: create table film_casting (actor_id integer not null, film_id integer not null, id serial not null, primary key (id), unique (film_id, actor_id))
+Hibernate: create table user_table (id serial not null, role smallint not null check (role between 0 and 1), password varchar(255) not null, username varchar(255) not null, primary key (id))
+Hibernate: alter table if exists director add constraint FKeox6rmuu3j7esmllq1cg022xa foreign key (film_id) references film
+Hibernate: alter table if exists film_casting add constraint FKdpbx2oo0uhp58l0dxbqdm6c3q foreign key (actor_id) references actor on delete cascade
+Hibernate: alter table if exists film_casting add constraint FKb2avfvx70nfcjk3e8p89v94vj foreign key (film_id) references film on delete cascade
+2024-05-26T13:50:18.573+02:00  INFO 45819 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-26T13:50:18.789+02:00  INFO 45819 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-26T13:50:19.537+02:00  INFO 45819 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@113b39e9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@70b7fec0, org.springframework.security.web.context.SecurityContextHolderFilter@226346d4, org.springframework.security.web.header.HeaderWriterFilter@69e636cc, org.springframework.web.filter.CorsFilter@361eed12, org.springframework.security.web.csrf.CsrfFilter@70a9f4b7, org.springframework.security.web.authentication.logout.LogoutFilter@59dae020, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@12c1826, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39e3da5a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@339d5e8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@73c5b676, org.springframework.security.web.access.ExceptionTranslationFilter@70efc3f9, org.springframework.security.web.access.intercept.AuthorizationFilter@61b3de5b]
+2024-05-26T13:50:19.800+02:00  INFO 45819 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-05-26T13:50:19.801+02:00  INFO 45819 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-05-26T13:50:19.801+02:00  INFO 45819 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2024-05-26T13:50:19.819+02:00  INFO 45819 --- [    Test worker] b.k.f.controller.mvc.FilmControllerTest  : Started FilmControllerTest in 3.367 seconds (process running for 4.126)
 Hibernate: select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
-2024-05-24T14:48:44.034+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-24T14:48:44.040+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-24T14:48:44.327+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-24T14:48:44.328+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
-2024-05-24T14:48:44.333+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
 Hibernate: select u1_0.id,u1_0.password,u1_0.role,u1_0.username from user_table u1_0 where u1_0.username=?
-2024-05-24T14:48:44.335+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
 Hibernate: insert into film (box_office,film_name,genre,release_year) values (?,?,?,?)
-2024-05-24T14:48:44.337+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-24T14:48:44.347+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
 Hibernate: select f1_0.id,f1_0.box_office,f1_0.film_name,f1_0.genre,f1_0.release_year from film f1_0 where f1_0.id=?
-2024-05-24T14:48:44.348+02:00 DEBUG 11385 --- [    Test worker] org.hibernate.SQL                        : delete from film where id=?
 Hibernate: delete from film where id=?
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>WARNING: A Java agent has been loaded dynamically (/Users/sofiahmyria/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.11/f9cb566608fbac6bc7bf54901a7aa11543a989ee/byte-buddy-agent-1.14.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
 </pre>
 </span>
 </div>
@@ -125,7 +172,7 @@ Hibernate: delete from film where id=?
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.7</a> at May 24, 2024, 2:48:45 PM</p>
+<a href="http://www.gradle.org">Gradle 8.7</a> at May 26, 2024, 1:50:23 PM</p>
 </div>
 </div>
 </body>

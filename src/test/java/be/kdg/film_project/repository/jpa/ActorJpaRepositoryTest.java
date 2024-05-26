@@ -47,7 +47,7 @@ class ActorJpaRepositoryTest {
         String nationality = "British";
 
         // Act
-        List<Actor> actors = actorJpaRepository.findByGenderOrNationality(gender, nationality);
+        List<Actor> actors = actorJpaRepository.findByGenderAndNationality(gender, nationality);
 
         // Assert
         assertTrue(!actors.isEmpty(), "List of actors should not be empty");

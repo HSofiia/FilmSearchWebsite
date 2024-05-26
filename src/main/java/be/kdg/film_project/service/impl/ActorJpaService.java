@@ -68,8 +68,9 @@ public class ActorJpaService implements ActorService {
 
     @Override
     @Cacheable(value = "searchActors")
-    public List<Actor> getByNationality(String nationality) {
-        return actorJpaRepository.findByNationality(nationality);
+    public List<Actor> getByGenderAndNationality(Actor.Gender gender, String nationality) {
+        return actorJpaRepository.findByGenderAndNationality(gender, nationality);
     }
+
 }
 

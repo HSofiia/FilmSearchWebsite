@@ -2,18 +2,15 @@
 @import "bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-// Define variables for reusable colors
 $background-color: #f2f2f2;
 $primary-color: #007bff;
 
-// Define mixins for common styles
 @mixin flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-// Define styles using SCSS syntax
 body {
     font-family: 'Arial', sans-serif;
     background-color: $background-color;
@@ -34,7 +31,7 @@ main {
 }
 
 .row {
-    @include flex-center; // Use the flex-center mixin
+    @include flex-center;
 }
 
 .navbar-expand-xxl {

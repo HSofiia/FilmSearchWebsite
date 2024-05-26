@@ -18,5 +18,5 @@ public interface ActorService {
 
     boolean updateActorInfo(int actorId, Actor.Gender gender, String nationality);
 
-    List<Actor> getByNationality(String searchTerm);
+    List<Actor> getByGenderAndNationality(Actor.Gender gender, String nationality);
 }
