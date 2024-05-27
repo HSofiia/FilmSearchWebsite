@@ -7450,21 +7450,20 @@ const token = document.querySelector("meta[name=\"_csrf\"]").content;
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!********************************!*\
-  !*** ./src/main/js/addFilm.js ***!
-  \********************************/
+/*!************************************!*\
+  !*** ./src/main/js/addDirector.js ***!
+  \************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
 /* harmony import */ var _util_csrf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/csrf.js */ "./src/main/js/util/csrf.js");
 
 
 
-const form = document.getElementById('film-form');
-const titleInput = document.getElementById('filmName');
-const yearInput = document.getElementById('year');
-const boxOfficeInput = document.getElementById('boxOffice');
-const genreInput = document.getElementById('genre');
-const addButton = form.querySelector('button[type="submit"]');
+const form = document.getElementById('director-form');
+const nameInput = document.getElementById('directorName');
+const birthInput = document.getElementById('birth');
+const awardInput = document.getElementById('award');
+const addButton = document.getElementById("addButton");
 
 function showError(input, message) {
     const formGroup = input.parentElement;
@@ -7488,40 +7487,28 @@ function clearError(input) {
 function validateForm() {
     let isValid = true;
 
-    const filmName = titleInput.value.trim();
-    if (validator__WEBPACK_IMPORTED_MODULE_1__.isEmpty(filmName)) {
-        showError(titleInput, 'Film name is required.');
+    const directorName = nameInput.value.trim();
+    if (validator__WEBPACK_IMPORTED_MODULE_1__.isEmpty(directorName)) {
+        showError(nameInput, 'Director name is required.');
         isValid = false;
     } else {
-        clearError(titleInput);
+        clearError(nameInput);
     }
 
-    const genre = genreInput.value;
-    if (validator__WEBPACK_IMPORTED_MODULE_1__.isEmpty(genre)) {
-        showError(genreInput, 'Genre is required.');
+    const award = awardInput.value.trim();
+    if (validator__WEBPACK_IMPORTED_MODULE_1__.isEmpty(award)) {
+        showError(awardInput, 'Award is required.');
         isValid = false;
     } else {
-        clearError(genreInput);
+        clearError(awardInput);
     }
 
-    const boxOffice = boxOfficeInput.value.trim();
-    if (!validator__WEBPACK_IMPORTED_MODULE_1__.isFloat(boxOffice, { min: 0 })) {
-        showError(boxOfficeInput, 'Box Office must be a positive number.');
+    const birth = birthInput.value.trim();
+    if (!validator__WEBPACK_IMPORTED_MODULE_1__.isInt(birth, { min: 0 })) {
+        showError(birthInput, 'The birth year must be positive.');
         isValid = false;
     } else {
-        clearError(boxOfficeInput);
-    }
-
-    const releaseDate = yearInput.value;
-    const currentYear = new Date().getFullYear();
-    if (!validator__WEBPACK_IMPORTED_MODULE_1__.isDate(releaseDate)) {
-        showError(yearInput, 'Release Date must be a valid date.');
-        isValid = false;
-    } else if (new Date(releaseDate).getFullYear() > currentYear) {
-        showError(yearInput, 'Release Date cannot be in the future.');
-        isValid = false;
-    } else {
-        clearError(yearInput);
+        clearError(birthInput);
     }
 
     return isValid;
@@ -7531,12 +7518,12 @@ form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     if (validateForm()) {
-        addNewFilm();
+        addNewDirector();
     }
 });
 
-async function addNewFilm() {
-    const response = await fetch('/api/addFilm', {
+async function addNewDirector() {
+    const response = await fetch('/api/addDirector', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -7544,40 +7531,39 @@ async function addNewFilm() {
             [_util_csrf_js__WEBPACK_IMPORTED_MODULE_0__.header]: _util_csrf_js__WEBPACK_IMPORTED_MODULE_0__.token,
         },
         body: JSON.stringify({
-            filmName: titleInput.value,
-            year: yearInput.value,
-            boxOffice: boxOfficeInput.value,
-            genre: genreInput.value,
+            directorName: nameInput.value,
+            birth: birthInput.value,
+            award: awardInput.value,
         }),
     });
 
     if (response.status === 201) {
-        window.location.replace('/films');
-        const film = await response.json();
-        addFilmToHtmlTable(film);
+        window.location.replace('/directors');
+        const director = await response.json();
+        addDirectorToHtmlTable(director);
     } else {
         showError(form, 'Something went wrong!');
     }
 }
 
-const filmTableBody = document.getElementById('film_table');
+const directorTableBody = document.getElementById('director_table');
 
 /**
- * @param {{id: number, filmName: string, year: number, boxOffice: number, genre: string }} film
+ * @param {{id: number, directorName: string, birth: number, award: string }} director
  */
-function addFilmToHtmlTable(film) {
+function addDirectorToHtmlTable(director) {
     const tableRow = document.createElement('tr');
-    tableRow.id = `film_${film.id}`;
+    tableRow.id = `director_${director.id}`;
     tableRow.innerHTML = `
         <td>
-            <a>${film.filmName}</a>
+            <a>${director.directorName}</a>
         </td>
     `;
-    filmTableBody.appendChild(tableRow);
+    directorTableBody.appendChild(tableRow);
 }
 
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle-addFilm.js.map
+//# sourceMappingURL=bundle-addDirector.js.map

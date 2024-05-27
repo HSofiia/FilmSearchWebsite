@@ -23,8 +23,8 @@
             <tr th:id="'film_' + ${film.filmId}" th:each="film : ${all_films}">
                 <td class="text-center">
                     <a class="text-decoration-none text-reset"
-                                           th:href="@{/extraFilmInfo(id=${film.getFilmId()})}"
-                                           th:text="${film.getFilmName()}">
+                       th:href="@{/extraFilmInfo(id=${film.getFilmId()})}"
+                       th:text="${film.getFilmName()}">
                     </a>
                 </td>
             </tr>

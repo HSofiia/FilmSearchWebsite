@@ -7465,7 +7465,6 @@ const nationalityInput = document.getElementById("nationality");
 const genderInput = document.getElementById("gender");
 const addButton = document.getElementById("addButton");
 
-// Helper function to show error messages
 function showError(input, message) {
     const formGroup = input.parentElement;
     const alertDiv = formGroup.querySelector(".alert.alert-danger");
@@ -7475,7 +7474,6 @@ function showError(input, message) {
     }
 }
 
-// Helper function to clear error messages
 function clearError(input) {
     const formGroup = input.parentElement;
     const alertDiv = formGroup.querySelector(".alert.alert-danger");
@@ -7485,11 +7483,9 @@ function clearError(input) {
     }
 }
 
-// Custom validation function
 function validateForm() {
     let isValid = true;
 
-    // Validate actor name
     const actorName = actorNameInput.value.trim();
     if (validator__WEBPACK_IMPORTED_MODULE_1__.isEmpty(actorName)) {
         showError(actorNameInput, "Actor name is required.");
@@ -7498,7 +7494,6 @@ function validateForm() {
         clearError(actorNameInput);
     }
 
-    // Validate nationality
     const nationality = nationalityInput.value.trim();
     if (validator__WEBPACK_IMPORTED_MODULE_1__.isEmpty(nationality)) {
         showError(nationalityInput, "Nationality is required.");
@@ -7507,7 +7502,6 @@ function validateForm() {
         clearError(nationalityInput);
     }
 
-    // Validate gender
     const gender = genderInput.value;
     if (!validator__WEBPACK_IMPORTED_MODULE_1__.isIn(gender, ["M", "F", "N"])) {
         showError(genderInput, "Please select a valid gender.");
@@ -7520,14 +7514,13 @@ function validateForm() {
 }
 
 form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     if (validateForm()) {
-        addNewActor(); // Call your existing function to add a new actor
+        addNewActor();
     }
 });
 
-// Existing function to handle the form submission
 async function addNewActor() {
     const xmlData = `
         <actor>

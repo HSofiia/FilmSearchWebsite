@@ -4,39 +4,46 @@
     <meta charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Title</title>
     <thymeleaf th:replace="~{navigation :: meta_script_link}"/>
+    <script src="/js/bundle-addDirector.js" type="module"></script>
 
 </head>
 <body>
 <main>
     <div th:replace="~{navigation::copy}"></div>
 
-    <form method="post" th:object="${director}" class="container">
-        <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
-            <p>The form contained errors!</p>
-        </div>
+    <div class="container">
+        <form id="director-form" th:object="${director}">
+            <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+                <p>The form contained errors!</p>
+            </div>
 
-        <div class="form-group mt-4">
-            <label th:for="name">Name:</label>
-            <input type="text" class="form-control" th:field="*{directorName}" id="directorName" required>
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('directorName')}" th:errors="*{directorName}"></div>
-        </div>
+            <div class="form-group mt-4">
+                <label th:for="name">Name:</label>
+                <input type="text" class="form-control" th:field="*{directorName}" id="directorName" required>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('directorName')}"
+                     th:errors="*{directorName}"></div>
+            </div>
 
-        <div class="form-group mt-4">
-            <label th:for="birth">Birth:</label>
-            <input type="text" class="form-control" th:field="*{birth}" id="birth" required>
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}"></div>
-        </div>
+            <div class="form-group mt-4">
+                <label th:for="birth">Birth:</label>
+                <input type="text" class="form-control" th:field="*{birth}" id="birth" required>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}"></div>
+            </div>
 
-        <div class="form-group mt-4">
-            <label th:for="award">Award:</label>
-            <input type="text" class="form-control" th:field="*{award}" id="award" required>
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('award')}" th:errors="*{award}"></div>
-        </div>
+            <div class="form-group mt-4">
+                <label th:for="award">Award:</label>
+                <input type="text" class="form-control" th:field="*{award}" id="award" required>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('award')}" th:errors="*{award}"></div>
+            </div>
 
-        <button th:utext="#{forfilm.submit}" type="submit" class="btn btn-primary mt-4">Submit</button>
+            <div id="addButton">
+                <button th:utext="#{forfilm.submit}" type="submit" class="btn btn-primary mt-4">Submit</button>
+            </div>
+        </form>
+    </div>
 
-    </form>
 </main>
 <div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>
 </body>
 </html>
+

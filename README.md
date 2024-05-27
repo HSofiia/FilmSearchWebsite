@@ -367,7 +367,13 @@ FilmsControllerUnitTest
 - AddActor Name Validation: Checks if the actor name is empty. Nationality Validation: Checks if the nationality is empty. Gender Validation: Checks if the selected gender is valid (either "M", "F", or "N").
   http://localhost:8080/addActor or [src/main/js/addActor.js](src/main/js/addActor.js)
 
-Which JavaScript dependencies you've added, where can I find them, and which actions do I need to take as a user. Again, make sure to include both the URL and the source file.
+## JavaScript dependencies:
+- Animejs: text slides and color change
+  http://localhost:8080/ or in [src/main/js/home.js](src/main/js/home.js)
+- Axios & NProgress: upload line progress when submitting the csv file (upload a csv file to see the line in the top of the page)
+  http://localhost:8080/films-csv or in [src/main/js/film-csv.js](src/main/js/film-csv.js)
+- Moment & Axios: release date in films list format changed (open the list of related films)
+  http://localhost:8080/extraActorInfo?id=1 or in [src/main/js/extraActorInfo.js](src/main/js/extraActorInfo.js)
 
 # Week 12
 

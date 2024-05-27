@@ -19,7 +19,7 @@
                 <th th:utext="#{fordirector.name}" class="text-center display-5 col-sm-6 col-lg-4 col-xl-2 ">Name</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="director_table">
             <tr th:id="'director_' + ${director.id}" th:each="director : ${all_directors}">
                 <td class="text-center">
                     <a class="text-decoration-none text-reset"
@@ -27,6 +27,7 @@
                        th:text="${director.getDirectorName()}">
                     </a>
                 </td>
+            </tr>
             </tbody>
         </table>
     </div>

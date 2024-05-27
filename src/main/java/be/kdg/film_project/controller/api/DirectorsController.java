@@ -30,7 +30,7 @@ public class DirectorsController {
     }
 
     @PostMapping("/api/addDirector")
-    ResponseEntity<DirectorDto> addFilm(@RequestBody @Valid NewDirectorDto directorDto, @AuthenticationPrincipal CustomUserDetails user) {
+    ResponseEntity<DirectorDto> addDirector(@RequestBody @Valid NewDirectorDto directorDto, @AuthenticationPrincipal CustomUserDetails user) {
         if(user.getAuthorities().stream().anyMatch(aut -> aut.getAuthority().equals("ROLE_ADMIN") || aut.getAuthority().equals("ROLE_USER"))) {
             var createdDirector = service.addDirector(
                     directorDto.getDirectorName(), directorDto.getBirth(), directorDto.getAward());

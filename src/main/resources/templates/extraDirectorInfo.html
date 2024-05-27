@@ -4,6 +4,7 @@
     <meta charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Actor Details</title>
     <thymeleaf th:replace="~{navigation :: meta_script_link}"/>
+    <script src="/js/bundle-extraDirectorInfo.js" defer></script>
 
 </head>
 <body>
@@ -37,7 +38,7 @@
             <button th:if="${one_director.modificationAllowed}" class="btn btn-outline-danger" type="button" th:value="#{foractor.delete}">Delete</button>
         </div>
         <div class="m-2">
-            <button th:if="${one_director.modificationAllowed}" id="updateButtonActor" type="button" class="btn btn-primary">Update</button>
+            <button th:if="${one_director.modificationAllowed}" id="updateButtonDirector" type="button" class="btn btn-primary">Update</button>
         </div>
     </div>
 </main>

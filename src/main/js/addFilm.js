@@ -8,7 +8,6 @@ const boxOfficeInput = document.getElementById('boxOffice');
 const genreInput = document.getElementById('genre');
 const addButton = form.querySelector('button[type="submit"]');
 
-// Helper function to show error messages
 function showError(input, message) {
     const formGroup = input.parentElement;
     let alertDiv = formGroup.querySelector('.alert.alert-danger');
@@ -20,7 +19,6 @@ function showError(input, message) {
     alertDiv.textContent = message;
 }
 
-// Helper function to clear error messages
 function clearError(input) {
     const formGroup = input.parentElement;
     const alertDiv = formGroup.querySelector('.alert.alert-danger');
@@ -29,11 +27,9 @@ function clearError(input) {
     }
 }
 
-// Custom validation function
 function validateForm() {
     let isValid = true;
 
-    // Validate film name
     const filmName = titleInput.value.trim();
     if (validator.isEmpty(filmName)) {
         showError(titleInput, 'Film name is required.');
@@ -42,7 +38,6 @@ function validateForm() {
         clearError(titleInput);
     }
 
-    // Validate genre
     const genre = genreInput.value;
     if (validator.isEmpty(genre)) {
         showError(genreInput, 'Genre is required.');
@@ -51,7 +46,6 @@ function validateForm() {
         clearError(genreInput);
     }
 
-    // Validate box office
     const boxOffice = boxOfficeInput.value.trim();
     if (!validator.isFloat(boxOffice, { min: 0 })) {
         showError(boxOfficeInput, 'Box Office must be a positive number.');
@@ -60,7 +54,6 @@ function validateForm() {
         clearError(boxOfficeInput);
     }
 
-    // Validate release date
     const releaseDate = yearInput.value;
     const currentYear = new Date().getFullYear();
     if (!validator.isDate(releaseDate)) {
@@ -77,10 +70,10 @@ function validateForm() {
 }
 
 form.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     if (validateForm()) {
-        addNewFilm(); // Call your existing function to add a new film
+        addNewFilm();
     }
 });
 
@@ -105,7 +98,7 @@ async function addNewFilm() {
         const film = await response.json();
         addFilmToHtmlTable(film);
     } else {
-        showError(form, 'Something went wrong!'); // Display general error message
+        showError(form, 'Something went wrong!');
     }
 }
 

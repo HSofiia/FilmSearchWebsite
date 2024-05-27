@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 import static be.kdg.film_project.domain.UserRole.ADMIN;
+import static be.kdg.film_project.domain.UserRole.USER;
 
 @Controller
 public class ActorController {
@@ -37,8 +38,7 @@ public class ActorController {
     }
 
     @GetMapping("/actors")
-    public ModelAndView allActors(@AuthenticationPrincipal CustomUserDetails user,
-                                  HttpServletRequest request) {
+    public ModelAndView allActors(HttpServletRequest request) {
         var mav = new ModelAndView();
         mav.setViewName("actors");
         mav.addObject("all_actors",
@@ -49,7 +49,7 @@ public class ActorController {
                                 actor.getActorName(),
                                 actor.getGender(),
                                 actor.getNationality(),
-                                request.isUserInRole(ADMIN.getCode())
+                                request.isUserInRole(ADMIN.getCode()) || request.isUserInRole(USER.getCode())
                         ))
                         .toList());
         return mav;
