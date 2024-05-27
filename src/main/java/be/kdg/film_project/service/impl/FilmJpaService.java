@@ -73,23 +73,6 @@ public class FilmJpaService implements FilmService {
     }
 
     @Override
-    @CacheEvict(value = "search-films", allEntries = true)
-    public void updateFilmInfo(int filmId, double boxOffice, Film.Genre genre, LocalDate year){
-        var film = filmJpaRepository.findById(filmId).orElse(null);
-        if (film != null) {
-            film.setBoxOffice(boxOffice);
-            film.setYear(year);
-            film.setGenre(genre);
-            filmJpaRepository.save(film);
-        }
-    }
-
-    @Override
-    public List<Film> getByName(String name) {
-        return filmJpaRepository.findByFilmName(name);
-    }
-
-    @Override
     @Cacheable(value = "search-films")
     public List<Film> getByActors(String actorName) {
         return filmJpaRepository.findFilmsByActorName(actorName);

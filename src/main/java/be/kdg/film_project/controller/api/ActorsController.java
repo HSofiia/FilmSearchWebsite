@@ -19,7 +19,6 @@ import java.util.List;
 import static be.kdg.film_project.domain.UserRole.ADMIN;
 
 @RestController
-//@RequestMapping("/api/actors")
 public class ActorsController {
     private final ActorService service;
     private final ModelMapper modelMapper;

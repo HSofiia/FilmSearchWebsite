@@ -1,5 +1,5 @@
 ### Homepage
-GET http://localhost:8080/home
+GET http://localhost:8080/
 
 ### API: retrieve all actors
 GET http://localhost:8080/api/actors

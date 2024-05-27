@@ -20,7 +20,6 @@ import java.util.List;
 import static be.kdg.film_project.domain.UserRole.ADMIN;
 
 @RestController
-//@RequestMapping("/api/films")
 public class FilmsController {
     private final FilmService service;
     private final ModelMapper modelMapper;

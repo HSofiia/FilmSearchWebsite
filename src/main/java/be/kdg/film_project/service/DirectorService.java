@@ -17,8 +17,6 @@ public interface DirectorService {
 
     boolean deleteDirector(int directorId);
 
-    boolean updateDirectorInfo(int directorId, String award, int birth);
-
     List<Director> getByAward(String award);
 
 }

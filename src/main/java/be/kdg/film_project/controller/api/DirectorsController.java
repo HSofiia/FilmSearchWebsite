@@ -51,18 +51,6 @@ public class DirectorsController {
         return ResponseEntity.ok(modelMapper.map(director, DirectorDto.class));
     }
 
-//    @GetMapping("/api/extraDirectorInfo/{id}/films")
-//    ResponseEntity<List<FilmDto>> getFilmsOfDirector(@PathVariable("id") int directorId) {
-//        var director = service.getDirectorWithFilms(directorId);
-//        if (director == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return ResponseEntity.ok(director.getFilm()
-//                .stream()
-//                .map(film -> modelMapper.map(film, FilmDto.class))
-//                .toList());
-//    }
-
     @GetMapping("/api/directors")
     ResponseEntity<List<DirectorDto>> searchDirector(@RequestParam(required = false, value = "award") String award) {
         if (award == null) {

@@ -93,10 +93,6 @@ public class Film {
         this.castings = castings;
     }
 
-//    public Director addDirector(Director director) {
-//        directors.add(director);
-//        return director;
-//    }
 
     @Override
     public String toString() {

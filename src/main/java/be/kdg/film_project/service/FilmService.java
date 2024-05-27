@@ -20,10 +20,6 @@ public interface FilmService {
 
     boolean changeFilmInfo(int filmId,double boxOffice, Film.Genre genre, LocalDate year);
 
-    void updateFilmInfo(int filmId, double boxOffice, Film.Genre genre, LocalDate year);
-
-    List<Film> getByName(String name);
-
     List<Film> getByActors(String actorName);
 
     void handleFilmsCsv(InputStream inputStream);

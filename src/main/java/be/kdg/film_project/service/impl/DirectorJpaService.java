@@ -66,19 +66,6 @@ public class DirectorJpaService implements DirectorService {
     }
 
     @Override
-    @CacheEvict(value = "searchDirectors", allEntries = true)
-    public boolean updateDirectorInfo(int directorId, String award, int birth) {
-        var director = directorJpaRepository.findById(directorId).orElse(null);
-        if (director == null) {
-            return false;
-        }
-        director.setAward(award);
-        director.setBirth(birth);
-        directorJpaRepository.save(director);
-        return true;
-    }
-
-    @Override
     @Cacheable(value = "searchDirectors")
     public List<Director> getByAward(String award) {
         return directorJpaRepository.findDirectorByAward(award);
