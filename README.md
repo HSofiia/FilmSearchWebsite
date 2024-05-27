@@ -258,7 +258,7 @@ The following users are added in the seeding step:
 ## API Endpoints
 
 ### Public Endpoints
-- Home Page http://localhost:8080/home
+- Home Page http://localhost:8080/
 - Actors Page http://localhost:8080/actors
 - Films Page http://localhost:8080/films
 - Directors Page http://localhost:8080/directors
@@ -359,7 +359,15 @@ FilmsControllerUnitTest
 
 # Week 11
 
+## Bootstrap icon: https://icons.getbootstrap.com/icons/box-arrow-in-down/
+### You can find it: http://localhost:8080/films-csv or in [resources/templates/films-csv.html](src/main/resources/templates/films-csv.html)
+## Custom client-side validation:
+- AddFilm Name Validation: Checks if the film name is empty. Genre Validation: Checks if the genre is empty. Box Office Validation: Checks if the box office value is a positive number. Release Date Validation: Checks if the release date is a valid date and not in the future.
+  http://localhost:8080/addFilm or [src/main/js/addFilm.js](src/main/js/addFilm.js)
+- AddActor Name Validation: Checks if the actor name is empty. Nationality Validation: Checks if the nationality is empty. Gender Validation: Checks if the selected gender is valid (either "M", "F", or "N").
+  http://localhost:8080/addActor or [src/main/js/addActor.js](src/main/js/addActor.js)
 
+Which JavaScript dependencies you've added, where can I find them, and which actions do I need to take as a user. Again, make sure to include both the URL and the source file.
 
 # Week 12
 

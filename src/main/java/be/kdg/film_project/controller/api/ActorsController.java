@@ -107,7 +107,7 @@ public class ActorsController {
     }
 
     @PatchMapping("/api/extraActorInfo/{id}")
-    ResponseEntity<Void> changeIssue(@PathVariable("id") int actorId,
+    ResponseEntity<Void> changeActor(@PathVariable("id") int actorId,
                                      @RequestBody @Valid UpdateActorDto updateActorInfo,
                                      HttpServletRequest request) {
         if (!request.isUserInRole(ADMIN.getCode())){

@@ -20,7 +20,7 @@ public class SecurityConfig {
         // @formatter:off
         http.authorizeHttpRequests(
                         auths -> auths
-                                .requestMatchers(regexMatcher("^/(home|films|actors|directors|extraFilmInfo|extraActorInfo)"))
+                                .requestMatchers(regexMatcher("^/(home|films|actors|directors|extraFilmInfo|extraActorInfo|extraDirectorInfo)"))
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/js/**"),
@@ -32,11 +32,11 @@ public class SecurityConfig {
                                         antMatcher(HttpMethod.GET, "/api/**"),
                                         antMatcher(HttpMethod.GET, "/films/search"),
                                         antMatcher(HttpMethod.GET, "/directors/search"),
-                                        antMatcher(HttpMethod.GET, "/actors/search")) // Permit access to /actors/search endpoint
+                                        antMatcher(HttpMethod.GET, "/actors/search"))
                                 .permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/"))
                                 .permitAll()
-                                .requestMatchers(antMatcher(HttpMethod.GET, "/films-csv")).hasRole("ADMIN")
+                                .requestMatchers(antMatcher(HttpMethod.GET, "/films-csv/")).hasRole("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )
@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/login")
-                                .defaultSuccessUrl("/home")
+                                .defaultSuccessUrl("/")
                                 .permitAll())
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(
@@ -66,5 +66,4 @@ public class SecurityConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

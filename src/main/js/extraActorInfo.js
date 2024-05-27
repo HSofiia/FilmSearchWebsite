@@ -1,4 +1,6 @@
-import { header, token } from "./util/csrf.js";
+import {header, token} from "./util/csrf.js";
+import moment from 'moment';
+import axios from "axios";
 
 const deleteButtons = document.querySelectorAll('button.btn-outline-danger');
 
@@ -31,26 +33,31 @@ const buttonWrapper = document.getElementById("dropdownButtonWrapper");
 const tableBody = document.getElementById("actor_film_table");
 
 async function toggleActorsTable() {
-    if (filmsTable.style.display === "table") {
-        hideActorsTable();
-    } else {
-        const response = await fetch(`/api/extraActorInfo/${actorIdInput.value}/films`,
-            { headers: { "Accept": "application/json" } });
-        if (response.status === 200) {
-            const films = await response.json();
-            tableBody.innerHTML = '';
-            for (const film of films) {
-                tableBody.innerHTML += `
-                    <tr>
-                        <td>${film.filmName}</td>
-                        <td>${film.boxOffice}</td>
-                        <td>${film.genre}</td>
-                        <td>${film.year}</td>
-                    </tr>
-                `;
+    try {
+        if (filmsTable.style.display === "table") {
+            hideActorsTable();
+        } else {
+            const response = await axios.get(`/api/extraActorInfo/${actorIdInput.value}/films`, {
+                headers: {"Accept": "application/json"}
+            });
+            if (response.status === 200) {
+                const films = response.data;
+                tableBody.innerHTML = '';
+                for (const film of films) {
+                    tableBody.innerHTML += `
+                            <tr>
+                                <td>${film.filmName}</td>
+                                <td>${film.boxOffice}</td>
+                                <td>${film.genre}</td>
+                                <td>${moment(film.year).format('MMMM Do YYYY')}</td>
+                            </tr>
+                        `;
+                }
+                showActorsTable();
             }
-            showActorsTable();
         }
+    } catch (error) {
+        console.error("Error fetching films:", error);
     }
 }
 

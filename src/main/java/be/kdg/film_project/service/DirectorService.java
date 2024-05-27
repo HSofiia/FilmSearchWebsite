@@ -1,6 +1,8 @@
 package be.kdg.film_project.service;
 
+import be.kdg.film_project.domain.Actor;
 import be.kdg.film_project.domain.Director;
+import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.List;
 
@@ -13,7 +15,9 @@ public interface DirectorService {
 
     boolean changeDirectorInfo(int directorId, int birth, String award);
 
-    void deleteDirector(int directorId);
+    boolean deleteDirector(int directorId);
+
+    boolean updateDirectorInfo(int directorId, String award, int birth);
 
     List<Director> getByAward(String award);
 

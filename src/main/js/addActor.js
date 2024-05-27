@@ -1,17 +1,79 @@
+import validator from "validator";
 import { header, token } from "./util/csrf.js";
 
-const titleInput = document.getElementById("actorName");
+const form = document.getElementById("actor-form");
+const actorNameInput = document.getElementById("actorName");
 const nationalityInput = document.getElementById("nationality");
 const genderInput = document.getElementById("gender");
 const addButton = document.getElementById("addButton");
 
-console.log("add actor class")
-async function addNewActor() {
-    console.log("addNewFilm response done");
+// Helper function to show error messages
+function showError(input, message) {
+    const formGroup = input.parentElement;
+    const alertDiv = formGroup.querySelector(".alert.alert-danger");
+    if (alertDiv) {
+        alertDiv.textContent = message;
+        alertDiv.style.display = "block";
+    }
+}
 
+// Helper function to clear error messages
+function clearError(input) {
+    const formGroup = input.parentElement;
+    const alertDiv = formGroup.querySelector(".alert.alert-danger");
+    if (alertDiv) {
+        alertDiv.textContent = "";
+        alertDiv.style.display = "none";
+    }
+}
+
+// Custom validation function
+function validateForm() {
+    let isValid = true;
+
+    // Validate actor name
+    const actorName = actorNameInput.value.trim();
+    if (validator.isEmpty(actorName)) {
+        showError(actorNameInput, "Actor name is required.");
+        isValid = false;
+    } else {
+        clearError(actorNameInput);
+    }
+
+    // Validate nationality
+    const nationality = nationalityInput.value.trim();
+    if (validator.isEmpty(nationality)) {
+        showError(nationalityInput, "Nationality is required.");
+        isValid = false;
+    } else {
+        clearError(nationalityInput);
+    }
+
+    // Validate gender
+    const gender = genderInput.value;
+    if (!validator.isIn(gender, ["M", "F", "N"])) {
+        showError(genderInput, "Please select a valid gender.");
+        isValid = false;
+    } else {
+        clearError(genderInput);
+    }
+
+    return isValid;
+}
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    if (validateForm()) {
+        addNewActor(); // Call your existing function to add a new actor
+    }
+});
+
+// Existing function to handle the form submission
+async function addNewActor() {
     const xmlData = `
         <actor>
-            <actorName>${titleInput.value}</actorName>
+            <actorName>${actorNameInput.value}</actorName>
             <nationality>${nationalityInput.value}</nationality>
             <gender>${genderInput.value}</gender>
         </actor>
@@ -29,42 +91,7 @@ async function addNewActor() {
 
     if (response.status === 201) {
         window.location.replace("/actors");
-        console.log("fetched");
-
-        const actorXml = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(actorXml, "text/xml");
-
-        const actor = {
-            id: xmlDoc.querySelector("id").textContent,
-            actorName: xmlDoc.querySelector("actorName").textContent,
-            nationality: xmlDoc.querySelector("nationality").textContent,
-            gender: xmlDoc.querySelector("gender").textContent
-        };
-
-        addFilmToHtmlTable(actor);
     } else {
         alert("Something went wrong!");
-        console.log("issue with adding the actor to the table");
     }
 }
-
-
-const actorTableBody = document.getElementById("actor_table");
-
-/**
- * @param {{id: number, actorName: string, nationality: string, gender: string }} actor
- */
-function addFilmToHtmlTable(actor) {
-    const tableRow = document.createElement("tr");
-    tableRow.id = `actor_${actor.id}`;
-    tableRow.innerHTML = `
-        <td>
-            <a>${actor.actorName}</a>
-        </td>
-    `
-    actorTableBody.appendChild(tableRow);
-    console.log(actorTableBody)
-}
-
-addButton?.addEventListener("click", addNewActor);

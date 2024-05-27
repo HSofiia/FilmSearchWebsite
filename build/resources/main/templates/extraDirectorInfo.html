@@ -7,17 +7,24 @@
 
 </head>
 <body>
-<main>
+<main class="container mt-3 mb-3">
+    <h1 class="text-center display-5 mt-3 mb-3" th:text="${one_director.getDirectorName()}"></h1>
+    <div>
+        <input id="directorId" type="hidden" th:value="${one_director.id}">
 
-    <!-- Details Info -->
+        <div class="col-9 lead text-center">
+            <label for="birth" class="form-label" th:utext="#{fordirector.birth}">Birth Year:</label>
+            <textarea th:if="${one_director.modificationAllowed}" id="birth" rows="2"
+                      th:text="${one_director.getBirth()}"></textarea>
+            <p th:if="${!one_director.modificationAllowed}" th:text="${one_director.getBirth()}">
+        </div>
 
-    <div class="container mt-3 mb-3">
-        <h1 class="text-center display-5 mt-3 mb-3" th:text="${one_director.getDirectorName()}"></h1>
-        <input id="filmId" type="hidden" th:value="${one_director.id}">
-        <p class="lead text-center">
-            <span th:utext="#{fordirector.birth}">Birth Year:</span> <a th:text="${one_director.getBirth()}"></a><br>
-            <span th:utext="#{fordirector.award}">Award:</span> <a th:text="${one_director.getAward()}"></a><br>
-        </p>
+        <div class="col-9 lead text-center">
+            <label for="award" class="form-label" th:utext="#{fordirector.award}">Award:</label>
+            <textarea th:if="${one_director.modificationAllowed}" id="award" rows="4"
+                      th:text="${one_director.getAward()}"></textarea>
+            <p th:if="${!one_director.modificationAllowed}" th:text="${one_director.getAward()}">
+        </div>
     </div>
 
     <!-- Back and Delete button -->
@@ -27,9 +34,10 @@
             <a th:utext="#{foractor.back}" th:href="@{/directors}" class="btn btn-secondary">Go Back</a>
         </div>
         <div class="m-2">
-            <form th:method="DELETE" th:action="@{/directors/{id}(id=${one_director.getId()})}" class="mb-2">
-                <input class="btn btn-outline-danger" type="submit" th:value="#{foractor.delete}">
-            </form>
+            <button th:if="${one_director.modificationAllowed}" class="btn btn-outline-danger" type="button" th:value="#{foractor.delete}">Delete</button>
+        </div>
+        <div class="m-2">
+            <button th:if="${one_director.modificationAllowed}" id="updateButtonActor" type="button" class="btn btn-primary">Update</button>
         </div>
     </div>
 </main>

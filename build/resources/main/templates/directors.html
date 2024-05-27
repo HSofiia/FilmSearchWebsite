@@ -20,10 +20,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="director : ${all_directors}">
-                <td class="text-center"><a class="text-decoration-none text-reset"
-                                           th:href="@{'/extraDirectorInfo/' + ${director.id}}"
-                                           th:text="${director.getDirectorName()}"></a></td>
+            <tr th:id="'director_' + ${director.id}" th:each="director : ${all_directors}">
+                <td class="text-center">
+                    <a class="text-decoration-none text-reset"
+                       th:href="@{/extraDirectorInfo(id=${director.id})}"
+                       th:text="${director.getDirectorName()}">
+                    </a>
+                </td>
             </tbody>
         </table>
     </div>

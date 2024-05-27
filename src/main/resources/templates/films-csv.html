@@ -6,19 +6,21 @@
     <meta charset="UTF-8">
     <title>Upload CSV</title>
     <thymeleaf th:replace="~{navigation :: meta_script_link}"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+    <script src="/js/bundle-film-csv.js" defer></script>
 </head>
 <body>
 <div th:replace="~{navigation::copy}"></div>
 
 <main class="container">
     <h1>Upload Films CSV</h1>
-    <form th:action="@{/films-csv}"
+    <form id="upload-form" th:action="@{/films-csv}"
           th:method="POST"
           enctype="multipart/form-data">
         <div class="mb-3">
-            <label for="films-csv" class="form-label">
-                Select a file to upload</label>
+            <label for="films-csv" class="form-label">Select a file to upload</label>
+            <i class="bi bi-box-arrow-in-down"></i>
             <input class="form-control"
                    type="file"
                    name="films-csv"

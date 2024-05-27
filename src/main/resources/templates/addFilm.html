@@ -7,54 +7,50 @@
     <title>Films and Actors</title>
     <thymeleaf th:replace="~{navigation :: meta_script_link}"/>
     <script src="/js/bundle-addFilm.js" type="module"></script>
-
-
 </head>
 <body>
 <main>
     <div th:replace="~{navigation::copy}"></div>
 
     <div class="container">
-    <form th:object="${film}">
-        <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
-            <p>The form contained errors!</p>
-        </div>
+        <form id="film-form" th:object="${film}">
+            <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+                <p>The form contained errors!</p>
+            </div>
 
-        <div class="form-group mt-4">
-            <label th:utext="#{forfilm.name}" for="filmName">Name:</label>
-            <input type="text" class="form-control" id="filmName" required>
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('filmName')}"></div>
-        </div>
+            <div class="form-group mt-4">
+                <label th:utext="#{forfilm.name}" for="filmName">Name:</label>
+                <input type="text" class="form-control" id="filmName" required>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('filmName')}"></div>
+            </div>
 
-        <div class="form-group mt-4">
-            <label th:utext="#{forfilm.genre}" th:for="genre">Genre:</label>
-            <select class="form-control" id="genre" required>
-                <option th:utext="#{forfilm.history}" value="HISTORY">History</option>
-                <option th:utext="#{forfilm.spy}" value="SPY">Spy</option>
-                <option th:utext="#{forfilm.fantasy}" value="FANTASY">Fantasy</option>
-                <option th:utext="#{forfilm.romance}" value="ROMANCE">Romance</option>
-                <option th:utext="#{forfilm.action}" value="ACTION">Action</option>
-            </select>
-        </div>
+            <div class="form-group mt-4">
+                <label th:utext="#{forfilm.genre}" th:for="genre">Genre:</label>
+                <select class="form-control" id="genre" required>
+                    <option th:utext="#{forfilm.history}" value="HISTORY">History</option>
+                    <option th:utext="#{forfilm.spy}" value="SPY">Spy</option>
+                    <option th:utext="#{forfilm.fantasy}" value="FANTASY">Fantasy</option>
+                    <option th:utext="#{forfilm.romance}" value="ROMANCE">Romance</option>
+                    <option th:utext="#{forfilm.action}" value="ACTION">Action</option>
+                </select>
+            </div>
 
-        <div class="form-group mt-4">
-            <label th:utext="#{forfilm.box}" th:for="boxOffice">Box Office (millions):</label>
-            <input type="text" class="form-control" id="boxOffice" required>
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('boxOffice')}"></div>
-        </div>
+            <div class="form-group mt-4">
+                <label th:utext="#{forfilm.box}" th:for="boxOffice">Box Office (millions):</label>
+                <input type="text" class="form-control" id="boxOffice" required>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('boxOffice')}"></div>
+            </div>
 
-        <div class="form-group mt-4">
-            <label th:utext="#{forfilm.date}" th:for="year">Release Date:</label>
-            <input type="date" class="form-control" id="year" required>
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('year')}"></div>
-        </div>
-    </form>
-    <div id="addButton">
-        <button  th:utext="#{forfilm.submit}" type="submit" class="btn btn-primary mt-4">Submit</button>
-    </div>
+            <div class="form-group mt-4">
+                <label th:utext="#{forfilm.date}" th:for="year">Release Date:</label>
+                <input type="date" class="form-control" id="year" required>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('year')}"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+        </form>
     </div>
 </main>
 <div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>
 </body>
 </html>
-

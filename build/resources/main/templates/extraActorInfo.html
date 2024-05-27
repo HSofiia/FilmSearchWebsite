@@ -6,13 +6,9 @@
     <meta charset="UTF-8" content="width=device-width, initial-scale=1">
     <title>Actor Details</title>
     <thymeleaf th:replace="~{navigation :: meta_script_link}"/>
-<!--    <script th:src="@{/js/actor/extraActorInfo.js}" type="module"></script>-->
     <script src="/js/bundle-extraActorInfo.js" defer></script>
-
 </head>
 <body>
-
-<!-- Details Info -->
 <main class="container mt-3 mb-3">
     <h1 id="name" class="text-center display-5 mt-3 mb-3" th:text="${one_actor.getActorName()}"></h1>
     <div class="bla">
@@ -31,8 +27,6 @@
         </div>
     </div>
 
-    <!-- Back and Delete, Update button -->
-
     <div class="container d-flex justify-content-center mt-4 mb-1">
         <div class="m-2">
             <a th:utext="#{foractor.back}" th:href="@{/actors}" class="btn btn-secondary">Go Back</a>
@@ -44,8 +38,6 @@
             <button th:if="${one_actor.modificationAllowed}" id="updateButtonActor" type="button" class="btn btn-primary">Update</button>
         </div>
     </div>
-
-    <!-- List of related films -->
 
     <div class="mt-5">
         <div class="dropdown" id="dropdownButtonWrapper">
@@ -65,6 +57,8 @@
             <tbody id="actor_film_table">
             </tbody>
         </table>
+        <!-- Add a canvas for the chart -->
+        <canvas id="filmsChart" width="400" height="200"></canvas>
     </div>
 </main>
 <div th:insert="~{footer::copy}">&copy; 2023 The Films and Actors</div>

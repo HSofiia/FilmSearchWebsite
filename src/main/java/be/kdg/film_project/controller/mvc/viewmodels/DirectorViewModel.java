@@ -18,6 +18,8 @@ public class DirectorViewModel {
     @NotBlank(message = "award field should not be empty!")
     public String award;
 
+    private boolean modificationAllowed;
+
     public DirectorViewModel(int id, String name, int birth, String award) {
         this.id = id;
         this.directorName = name;
@@ -29,6 +31,15 @@ public class DirectorViewModel {
         this.directorName = directorName;
         this.birth = birth;
         this.award = award;
+    }
+
+
+    public DirectorViewModel(int id, String directorName, int birth, String award, boolean modificationAllowed) {
+        this.id = id;
+        this.directorName = directorName;
+        this.birth = birth;
+        this.award = award;
+        this.modificationAllowed = modificationAllowed;
     }
 
     public DirectorViewModel() {
@@ -64,6 +75,14 @@ public class DirectorViewModel {
 
     public String getAward() {
         return award;
+    }
+
+    public boolean isModificationAllowed() {
+        return modificationAllowed;
+    }
+
+    public void setModificationAllowed(boolean modificationAllowed) {
+        this.modificationAllowed = modificationAllowed;
     }
 
     @Override

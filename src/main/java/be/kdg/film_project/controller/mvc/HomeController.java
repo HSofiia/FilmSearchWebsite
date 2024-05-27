@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 @Controller
 public class HomeController {
-@RequestMapping("/home")
+@RequestMapping("/")
 public String home(HttpSession session){
     session.setAttribute("today", Calendar.getInstance().getTime());
     return "home";

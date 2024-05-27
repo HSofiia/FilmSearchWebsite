@@ -4,11 +4,14 @@ import be.kdg.film_project.controller.mvc.viewmodels.ActorViewModel;
 import be.kdg.film_project.domain.Director;
 import be.kdg.film_project.presentation.exceptions.ActorException;
 import be.kdg.film_project.controller.mvc.viewmodels.DirectorViewModel;
+import be.kdg.film_project.security.CustomUserDetails;
 import be.kdg.film_project.service.DirectorService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+
+import static be.kdg.film_project.domain.UserRole.ADMIN;
+import static be.kdg.film_project.domain.UserRole.USER;
 
 @Controller
 public class DirectorController {
@@ -27,7 +33,7 @@ public class DirectorController {
     }
 
     @GetMapping("/directors")
-    public ModelAndView allDirectors() {
+    public ModelAndView allDirectors(HttpServletRequest request) {
         var mav = new ModelAndView();
         mav.setViewName("directors");
         mav.addObject("all_directors",
@@ -37,14 +43,17 @@ public class DirectorController {
                                 actor.getId(),
                                 actor.getDirectorName(),
                                 actor.getBirth(),
-                                actor.getAward()
+                                actor.getAward(),
+                                request.isUserInRole(ADMIN.getCode()) || request.isUserInRole(USER.getCode())
                         ))
                         .toList());
         return mav;
     }
 
     @GetMapping("/extraDirectorInfo")
-    public ModelAndView oneDirector(@RequestParam("id") int id) {
+    public ModelAndView oneDirector(@RequestParam("id") int id,
+                                    @AuthenticationPrincipal CustomUserDetails user,
+                                    HttpServletRequest request) {
         var director = directorService.getDirectorById(id);
         var mav = new ModelAndView();
         mav.setViewName("extraDirectorInfo");
@@ -53,8 +62,9 @@ public class DirectorController {
                         director.getId(),
                         director.getDirectorName(),
                         director.getBirth(),
-                        director.getAward()
-                ));
+                        director.getAward(),
+                        user != null && (request.isUserInRole(ADMIN.getCode())
+                        )));
         return mav;
     }
 
@@ -84,28 +94,6 @@ public class DirectorController {
         model.addAttribute("director", new DirectorViewModel());
         return "/addDirector";
     }
-
-//    @PostMapping("/addDirector")
-//    public String processAddDirectorForm(@Valid @ModelAttribute("director") DirectorViewModel viewModel, BindingResult result) {
-//        logger.info("Processing " + viewModel.toString());
-//        if (result.hasErrors()) {
-//            result.getAllErrors().forEach(e -> logger.warn(e.toString()));
-//            return "addDirector";
-//        } else {
-//            logger.info("Successfully processed ");
-//            directorService.addDirector(
-//                    viewModel.getDirectorName(),
-//                    viewModel.getBirth(),
-//                    viewModel.getAward());
-//            return "redirect:/directors";
-//        }
-//    }
-
-//    @RequestMapping("/{id}")
-//    public String deleteDirector(@PathVariable int id) {
-//        directorService.deleteDirector(id);
-//        return "redirect:/directors";
-//    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ActorException.class)
