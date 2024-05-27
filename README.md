@@ -378,3 +378,4 @@ FilmsControllerUnitTest
 # Week 12
 
 ## Hyperlink to a test report of a recent (successful) pipeline on the GitLab  
+https://gitlab.com/kdg-ti/programming-5/projects-23-24/acs202/sofiia.hmyria/programming-5/-/pipelines/1307500364/test_report?job_name=test
